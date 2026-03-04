@@ -1,0 +1,426 @@
+fileFormatVersion: 2
+guid: 98aba2af8c2fc1444a042e7cf938fac6
+ModelImporter:
+  serializedVersion: 22200
+  internalIDToNameTable: []
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: "\nClip 'Animation_002' has import animation warnings
+      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'Adam_skeleton_Spine1' has translation animation
+      that will be discarded.\n\t'Adam_skeleton_LeftHand' has translation animation
+      that will be discarded.\n\t'Adam_skeleton_RightHand' has translation animation
+      that will be discarded.\n"
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: down_to_top
+      takeName: Animation_002
+      internalID: 224134215592988626
+      firstFrame: 2259
+      lastFrame: 2347
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0.82583445
+        functionName: ChangeTopIdle
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human:
+    - boneName: Adam_skeleton_Hips
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Adam_skeleton_LeftUpLeg
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Adam_skeleton_RightUpLeg
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Adam_skeleton_LeftLeg
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Adam_skeleton_RightLeg
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Adam_skeleton_LeftFoot
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Adam_skeleton_RightFoot
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Adam_skeleton_Spine
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Adam_skeleton_Spine1
+      humanName: Chest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Adam_skeleton_Neck
+      humanName: Neck
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Adam_skeleton_Head
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Adam_skeleton_LeftShoulder
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Adam_skeleton_RightShoulder
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Adam_skeleton_LeftArm
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Adam_skeleton_RightArm
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Adam_skeleton_LeftForeArm
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Adam_skeleton_RightForeArm
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Adam_skeleton_LeftHand
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Adam_skeleton_RightHand
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Adam_skeleton_LeftToeBase
+      humanName: LeftToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Adam_skeleton_RightToeBase
+      humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: Animation_002(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Adam_skeleton_Hips
+      parentName: Animation_002(Clone)
+      position: {x: 0, y: 0.884401, z: -0.16747953}
+      rotation: {x: -0.010020567, y: -0.04445968, z: -0.0073749498, w: 0.99893373}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Adam_skeleton_Spine
+      parentName: Adam_skeleton_Hips
+      position: {x: -0, y: 0.08251982, z: 0}
+      rotation: {x: -0.049261384, y: 0.015393964, z: 0.019116113, w: 0.9984843}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Adam_skeleton_Spine1
+      parentName: Adam_skeleton_Spine
+      position: {x: 0.000000007450581, y: 0.23951846, z: -0.000000014901161}
+      rotation: {x: -0.032062475, y: 0.0051361485, z: -0.010579249, w: 0.9994167}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Adam_skeleton_Neck
+      parentName: Adam_skeleton_Spine1
+      position: {x: -0, y: 0.26027483, z: 0}
+      rotation: {x: 0.19997141, y: -0.002757685, z: -0.038147155, w: 0.979055}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Adam_skeleton_Head
+      parentName: Adam_skeleton_Neck
+      position: {x: -0, y: 0.1559826, z: 0.020126786}
+      rotation: {x: 0.029668046, y: -0.013546031, z: 0.043648522, w: 0.9985145}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Adam_skeleton_LeftShoulder
+      parentName: Adam_skeleton_Spine1
+      position: {x: -0.040659316, y: 0.20981185, z: -0.004740022}
+      rotation: {x: -0.00048598083, y: 0.021361506, z: -0.1430605, w: 0.9894833}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Adam_skeleton_LeftArm
+      parentName: Adam_skeleton_LeftShoulder
+      position: {x: -0.15411875, y: 0, z: 0}
+      rotation: {x: 0.04441618, y: 0.010936992, z: 0.15892835, w: 0.9862299}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Adam_skeleton_LeftForeArm
+      parentName: Adam_skeleton_LeftArm
+      position: {x: -0.22988133, y: 0, z: 0}
+      rotation: {x: 0.06767045, y: -0.005086691, z: -0.003569564, w: 0.99768835}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Adam_skeleton_LeftHand
+      parentName: Adam_skeleton_LeftForeArm
+      position: {x: -0.2973417, y: 0.00000011920929, z: 0.000000014901161}
+      rotation: {x: 0.0676537, y: -0.009583603, z: 0.0210445, w: 0.9974409}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Adam_skeleton_RightShoulder
+      parentName: Adam_skeleton_Spine1
+      position: {x: 0.039836362, y: 0.20981185, z: -0.004740022}
+      rotation: {x: -0.00596492, y: -0.01593588, z: 0.1283323, w: 0.99158525}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Adam_skeleton_RightArm
+      parentName: Adam_skeleton_RightShoulder
+      position: {x: 0.15411875, y: 0, z: 0}
+      rotation: {x: 0.00086045545, y: -0.030675042, z: -0.13208614, w: 0.9907631}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Adam_skeleton_RightForeArm
+      parentName: Adam_skeleton_RightArm
+      position: {x: 0.22988133, y: 0, z: 0}
+      rotation: {x: 0.028183496, y: 0.0110145565, z: 0.0056009693, w: 0.9995264}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Adam_skeleton_RightHand
+      parentName: Adam_skeleton_RightForeArm
+      position: {x: 0.29409182, y: 0.00000011920929, z: -0.000000037252903}
+      rotation: {x: 0.028183775, y: 0.0033327963, z: -0.010610848, w: 0.99954087}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Adam_skeleton_LeftUpLeg
+      parentName: Adam_skeleton_Hips
+      position: {x: -0.100633934, y: 0, z: 0}
+      rotation: {x: -0.058145232, y: -0.005419624, z: -0.06773014, w: 0.9959932}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Adam_skeleton_LeftLeg
+      parentName: Adam_skeleton_LeftUpLeg
+      position: {x: -0, y: -0.39974895, z: 0}
+      rotation: {x: 0.1392932, y: 0.0076316143, z: -0.020566504, w: 0.9900082}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Adam_skeleton_LeftFoot
+      parentName: Adam_skeleton_LeftLeg
+      position: {x: -0, y: -0.4218437, z: 0}
+      rotation: {x: -0.054841626, y: -0.13982974, z: 0.107203655, w: 0.9828263}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Adam_skeleton_LeftToeBase
+      parentName: Adam_skeleton_LeftFoot
+      position: {x: -0, y: -0.06541205, z: 0.15095091}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Adam_skeleton_RightUpLeg
+      parentName: Adam_skeleton_Hips
+      position: {x: 0.100633934, y: 0, z: 0}
+      rotation: {x: -0.057585895, y: 0.00017661994, z: 0.1237818, w: 0.9906371}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Adam_skeleton_RightLeg
+      parentName: Adam_skeleton_RightUpLeg
+      position: {x: -0, y: -0.39974895, z: 0}
+      rotation: {x: 0.17633869, y: 0.005643326, z: -0.02003858, w: 0.9841094}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Adam_skeleton_RightFoot
+      parentName: Adam_skeleton_RightLeg
+      position: {x: -0, y: -0.4218437, z: 0}
+      rotation: {x: -0.08887303, y: 0.1629049, z: -0.11366455, w: 0.9760349}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Adam_skeleton_RightToeBase
+      parentName: Adam_skeleton_RightFoot
+      position: {x: -0, y: -0.06541205, z: 0.15095091}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 3
+  humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
