@@ -128,11 +128,6 @@ namespace StarterAssets
         
         public PlayerStateUI playerState;
 
-        private bool isTargeting;
-        public Transform lockTarget;
-        public Transform faceTarget;
-        public float lockOnCameraLerpSpeed = 2f;
-        public GameObject lockIcon;
 
         private bool isInCombo;
         public bool canRotateDuringAttack;
@@ -151,9 +146,14 @@ namespace StarterAssets
 
         [Header("Lock-On")]
         //public EnemyBase currentLockTarget;
-        public Transform cameraTransform;
-        public float lockOnPitch = 15f;
-        public float lockOnRadius = 15f;
+        public Transform cameraTransform; //Main camera引用
+        public float lockOnPitch = 15f;//与玩家保持的相对高度
+        public float lockOnRadius = 15f; //能够锁定敌人的半径
+        private bool isTargeting; //是否已经锁定
+        public Transform lockTarget; //锁定的目标，通常是敌人
+        //public Transform faceTarget;
+        public float lockOnCameraLerpSpeed = 2f; //相机过渡速度
+        public GameObject lockIcon; //相机锁定的图标
 
         [Header("damage-check")]
         public bool canTakeDamage;
