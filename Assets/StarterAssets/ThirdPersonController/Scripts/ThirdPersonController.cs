@@ -155,6 +155,11 @@ namespace StarterAssets
         public float lockOnCameraLerpSpeed = 2f; //相机过渡速度
         public GameObject lockIcon; //相机锁定的图标
 
+        private bool canUseFreeMove;//用来定义是否结束八向移动，相机未恢复前保持八项移动
+        public float unlockTime = 1f;//用来计算相机过度，相机未恢复前保持八项移动
+        private float unlockTimer;
+        
+
         [Header("damage-check")]
         public bool canTakeDamage;
 
@@ -275,7 +280,7 @@ namespace StarterAssets
 
         private void Update()
         {
-
+            UnlockTimer();
             _hasAnimator = TryGetComponent(out _animator);
             stateInfo = _animator.GetCurrentAnimatorStateInfo(0);
            
@@ -434,7 +439,7 @@ namespace StarterAssets
                 if(canMove&&!isDead&& !LevelManager.Instance.isPause)
                     Move();
             }
-            
+
 
             
 
@@ -461,7 +466,10 @@ namespace StarterAssets
                         CameraRotation();
                 }
             }
+
             
+
+
         }
 
         private void AssignAnimationIDs()
@@ -1261,17 +1269,42 @@ namespace StarterAssets
                 CameraModeController.Instance.SetLockOn(true, lockTarget);
                 _animator.SetFloat("LockOn", 1f);
                 LockCameraPosition = true;
-                
+                canUseFreeMove = false;
+
             }
         }
         public void ReleaseLock()
         {
+            lockTarget = null;
             CameraModeController.Instance.SetLockOn(false, null);
-            _animator.SetFloat("LockOn", 0f);
-            
+            //_animator.SetFloat("LockOn", 0f);
             canMove = true;
             LockCameraPosition = false;
-           
+            unlockTimer = 0f;
+
+        }
+
+        private void UnlockTimer()//unlocktimer, when lost lockTarget, start counting
+        {
+            Debug.Log("unlocktimer=" + unlockTimer + " LockOn" + _animator.GetFloat("LockOn"));
+            if (lockTarget != null)
+            {
+                unlockTimer = 0f;
+                canUseFreeMove = false;
+            }
+            else
+            {
+                if (unlockTimer <= unlockTime)
+                {
+                    unlockTimer += Time.deltaTime;
+                    canUseFreeMove = false;
+                }
+                else
+                {
+                    canUseFreeMove = true;
+                    _animator.SetFloat("LockOn", 0f);
+                }
+            }
         }
 
         private void ChangeCombo()
@@ -1320,6 +1353,7 @@ namespace StarterAssets
             _animator.SetTrigger("isHeavyAttacked");
         }
 
+        
         private void EightDirectionMove()
         {
             Vector2 move = _input.move;
