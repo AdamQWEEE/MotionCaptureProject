@@ -1286,7 +1286,7 @@ namespace StarterAssets
 
         private void UnlockTimer()//unlocktimer, when lost lockTarget, start counting
         {
-            Debug.Log("unlocktimer=" + unlockTimer + " LockOn" + _animator.GetFloat("LockOn"));
+            //Debug.Log("unlocktimer=" + unlockTimer + " LockOn" + _animator.GetFloat("LockOn"));
             if (lockTarget != null)
             {
                 unlockTimer = 0f;
