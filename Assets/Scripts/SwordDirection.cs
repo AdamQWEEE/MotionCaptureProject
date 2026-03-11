@@ -14,7 +14,7 @@ public class SwordDirection : MonoBehaviour
     public bool CanSwitch => !_switchLocked;
     [SerializeField] private bool _switchLocked = false;
 
-    public void LockSwitch() => _switchLocked = true;
+    public void LockSwitch() => _switchLocked = false;
     public void UnlockSwitch() => _switchLocked = false;
     [Header("Colors")]
     public Color normalColor = Color.white;
@@ -65,7 +65,12 @@ public class SwordDirection : MonoBehaviour
         /*Left*/ {  9,   7,   -1,    8 },
         /*Right*/{  1,   3,    2,   -1 },
     };
-
+    private void OnEnable()
+    {
+        CurrentDir = Dir.Right;
+        _lastDir = Dir.Right;
+        SetHighlight(Dir.Right);
+    }
     private void Start()
     {
         CurrentDir = Dir.Right;
@@ -235,6 +240,7 @@ public class SwordDirection : MonoBehaviour
         return SwitchIndexMap[fi, ti];
     }
 
+    
     // 保留（你的 attackID + UI 高亮逻辑不动）
     public void SetHighlight(Dir dir)
     {

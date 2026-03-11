@@ -292,9 +292,12 @@ namespace StarterAssets
                 _animator.SetTrigger("Attack");
                 _animator.SetInteger("attackID", attackID);
                 ResetLayerWeight();
+
+                
                 BlendSwordRight();
 
-                if (attackID == 4)
+
+                if (attackID == 4 && _animator.GetFloat("LockOn") == 1f)
                 {
                     leftSword.SetActive(true);
                     rightSword.SetActive(false);
@@ -806,6 +809,8 @@ namespace StarterAssets
             {
                 _input.defense=false;
                 _animator.SetTrigger("Defense");
+                ResetLayerWeight();
+                BlendSwordDefense();
                 //isCounter = true;
                 if (Time.timeScale != 1f && !Tutorial.Instance.isFinishCounterTip)
                 {
@@ -1221,12 +1226,17 @@ namespace StarterAssets
                     }
                     //currentMarker = Instantiate(lockOnPrefab, lockTarget.GetChild(0));
                     lockIcon.SetActive(true);
+                    swordDir.gameObject.SetActive(true);
                     lockIcon.transform.position = Camera.main.WorldToScreenPoint(lockTarget.GetChild(0).position);
                 }
                 else
                 {
                     ReleaseLock();
+                    
+                    swordDir.gameObject.SetActive(false);
                     lockIcon.SetActive(false);
+                    ChangeRightIdle();
+                    BlendSwordRight();
                 }
                     
             }
@@ -1842,6 +1852,17 @@ namespace StarterAssets
         public void BlendSwordRight()
         {
             playerWeapon.GetComponent<SwordPoseBlender>().BlendToDir(SwordPoseBlender.Dir.Right);
+        }
+
+        public void BlendSwordDefense()
+        {
+            playerWeapon.GetComponent<SwordPoseBlender>().BlendToDir(SwordPoseBlender.Dir.Defense);
+        }
+
+        public void InitRightSword()
+        {
+            rightSword.SetActive(true);
+            leftSword.SetActive(false);
         }
     }
 }
