@@ -156,9 +156,13 @@ public class SwordDirection : MonoBehaviour
 
             if (idx >= 0 && CanSwitch)
             {
-                LockSwitch();                 // ✅ 触发瞬间立刻锁
-                player.SwitchSwordPos(idx);   // 触发动画
-                _lastDir = dir;
+                
+                    //LockSwitch();                 // ✅ 触发瞬间立刻锁                                                                 
+                    LockSwitch();                 // ✅ 触发瞬间立刻锁
+                    player.SwitchSwordPos(idx);   // 触发动画
+                    player.SwitchSwordBlend(idx);
+                    _lastDir = dir;
+                
 
 
             }
@@ -257,7 +261,7 @@ public class SwordDirection : MonoBehaviour
                 if (arrowUp)
                 {
                     arrowUp.color = highlightColor;
-                    player.attackID = (player.playerState.stanceValue >= 0) ? 1 : 5;
+                    player.attackID = (!player.isTired) ? 1 : 5;
                 }
                 break;
 
@@ -265,7 +269,7 @@ public class SwordDirection : MonoBehaviour
                 if (arrowDown)
                 {
                     arrowDown.color = highlightColor;
-                    player.attackID = (player.playerState.stanceValue >= 0) ? 2 : 6;
+                    player.attackID = (!player.isTired) ? 2 : 6;
                 }
                 break;
 
@@ -273,7 +277,7 @@ public class SwordDirection : MonoBehaviour
                 if (arrowLeft)
                 {
                     arrowLeft.color = highlightColor;
-                    player.attackID = (player.playerState.stanceValue >= 0) ? 3 : 7;
+                    player.attackID = (!player.isTired) ? 3 : 7;
                 }
                 break;
 
@@ -281,7 +285,7 @@ public class SwordDirection : MonoBehaviour
                 if (arrowRight)
                 {
                     arrowRight.color = highlightColor;
-                    player.attackID = (player.playerState.stanceValue >= 0) ? 4 : 8;
+                    player.attackID = (!player.isTired) ? 4 : 8;
                 }
                 break;
 

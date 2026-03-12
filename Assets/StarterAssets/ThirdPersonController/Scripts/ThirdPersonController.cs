@@ -19,6 +19,7 @@ namespace StarterAssets
         [Header("Player")]
         [Tooltip("Move speed of the character in m/s")]
         public float MoveSpeed = 2.0f;
+        public float lockMoveSpeed = 4.0f;
 
         [Tooltip("Sprint speed of the character in m/s")]
         public float SprintSpeed = 5.335f;
@@ -219,6 +220,9 @@ namespace StarterAssets
         public GameObject rightSword;
         public int switchIndex;
         public SwordDirection swordDir;
+
+        [Header("Stance")]
+        public bool isTired;
         private bool IsCurrentDeviceMouse
         {
             get
@@ -297,16 +301,16 @@ namespace StarterAssets
                 BlendSwordRight();
 
 
-                if (attackID == 4 && _animator.GetFloat("LockOn") == 1f)
-                {
-                    leftSword.SetActive(true);
-                    rightSword.SetActive(false);
-                }
-                else
-                {
-                    leftSword.SetActive(false);
-                    rightSword.SetActive(true);
-                }
+                //if (attackID == 4 && _animator.GetFloat("LockOn") == 1f)
+                //{
+                //    leftSword.SetActive(true);
+                //    rightSword.SetActive(false);
+                //}
+                //else
+                //{
+                //    leftSword.SetActive(false);
+                //    rightSword.SetActive(true);
+                //}
 
                 
             }
@@ -1240,6 +1244,14 @@ namespace StarterAssets
                 }
                     
             }
+
+            if (Input.GetKeyDown(KeyCode.J))
+            {
+                _animator.SetBool("isTired", !_animator.GetBool("isTired"));
+                MoveSpeed = MoveSpeed == 6 ? 3.5f : 6f;
+                lockMoveSpeed = lockMoveSpeed == 4 ? 2.4f : 4f;
+                isTired = !isTired;
+            }
         }
 
         private void ChangeExecutionView()
@@ -1424,7 +1436,7 @@ namespace StarterAssets
 
                 // 5. 统一速度，防止斜向看起来“慢一档”或“滑步” ★
                 float moveMag = localMove.magnitude;   // 0~1，手柄可用
-                float lockMoveSpeed = 4f;              // 你原来写死的速度
+                //float lockMoveSpeed = 1f;              // 你原来写死的速度
 
                 Vector3 horizontalMove = worldMoveDir * lockMoveSpeed * moveMag;
                 Vector3 verticalMove = Vector3.up * _verticalVelocity;
@@ -1823,6 +1835,59 @@ namespace StarterAssets
             ResetLayerWeight();
         }
 
+        public void SwitchSwordBlend(int index)
+        {
+            if (index == 1 || index == 0 || index == 11)
+            {
+                BlendSwordUp();
+            }
+
+            if (index == 3 || index == 5 || index == 7)
+            {
+                if (isTired)
+                {
+                    BlendSwordDownTired();
+                }
+                else
+                {
+                    BlendSwordDown();
+                }
+            }
+
+            if (index == 2 || index == 4 || index == 12)
+            {
+                BlendSwordLeft();
+            }
+
+            if (index == 6 || index == 8 || index == 10)
+            {
+                BlendSwordRight();
+            }
+
+        }
+
+        public void InitSwordBlendAfterAttack()
+        {
+            if (_animator.GetFloat("HandIndex") == 0)
+            {
+                BlendSwordRight();
+            }
+
+            else if(_animator.GetFloat("HandIndex") == 1)
+            {
+                BlendSwordUp();
+            }
+
+            else if (_animator.GetFloat("HandIndex") == 2)
+            {
+                BlendSwordLeft();
+            }
+            else if (_animator.GetFloat("HandIndex") == 3)
+            {
+                BlendSwordDown();
+            }
+        }
+
 
         public void ResetLayerWeight()
         {
@@ -1859,10 +1924,17 @@ namespace StarterAssets
             playerWeapon.GetComponent<SwordPoseBlender>().BlendToDir(SwordPoseBlender.Dir.Defense);
         }
 
+        public void BlendSwordDownTired()
+        {
+            playerWeapon.GetComponent<SwordPoseBlender>().BlendToDir(SwordPoseBlender.Dir.DownTired);
+        }
+
         public void InitRightSword()
         {
             rightSword.SetActive(true);
             leftSword.SetActive(false);
         }
+
+        
     }
 }

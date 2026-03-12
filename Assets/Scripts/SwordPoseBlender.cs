@@ -3,7 +3,7 @@ using System.Collections;
 
 public class SwordPoseBlender : MonoBehaviour
 {
-    public enum Dir { Up = 0, Down = 1, Left = 2, Right = 3, Defense=4 }
+    public enum Dir { Up = 0, Down = 1, Left = 2, Right = 3, Defense=4, DownTired=5 }
 
     [Header("Sword Transform (same parent space as grips)")]
     [SerializeField] private Transform sword; // д╛хо this.transform
@@ -13,6 +13,7 @@ public class SwordPoseBlender : MonoBehaviour
     [SerializeField] private Transform gripDown;
     [SerializeField] private Transform gripLeft;
     [SerializeField] private Transform gripRight;
+    [SerializeField] private Transform gripDownTired;
     [SerializeField] private Transform gripDefense;
 
     [Header("Blend (Local)")]
@@ -39,6 +40,7 @@ public class SwordPoseBlender : MonoBehaviour
             Dir.Left => gripLeft,
             Dir.Right => gripRight,
             Dir.Defense => gripDefense,
+            Dir.DownTired => gripDownTired,
             _ => null
         };
     }

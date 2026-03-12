@@ -69,15 +69,15 @@ public class PlayerStateUI : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.H))
         {
-            //stanceValue =Mathf.Min(stanceValue + 0.3f,1f);
-            //player.swordDirUI.
+            stanceValue =Mathf.Min(stanceValue + 0.5f,1f);
+            
             
             
         }
 
         if (Input.GetKeyDown(KeyCode.G))
         {
-            //stanceValue = Mathf.Max(stanceValue - 0.3f, -1f);
+            stanceValue = Mathf.Max(stanceValue - 0.5f, -1f);
 
         }
     }
