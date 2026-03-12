@@ -37,7 +37,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: AdamAnimation_001
+      name: unlockidle(AdamAnimation_001)
       takeName: AdamAnimation_001
       internalID: -7707287861213252876
       firstFrame: 1307

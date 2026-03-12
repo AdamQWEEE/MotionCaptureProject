@@ -1228,6 +1228,8 @@ namespace StarterAssets
                     lockIcon.SetActive(true);
                     swordDir.gameObject.SetActive(true);
                     lockIcon.transform.position = Camera.main.WorldToScreenPoint(lockTarget.GetChild(0).position);
+                    ChangeRightIdle();//锁定后默认进入rightIdle
+                    BlendSwordRight();
                 }
                 else
                 {
@@ -1235,8 +1237,10 @@ namespace StarterAssets
                     
                     swordDir.gameObject.SetActive(false);
                     lockIcon.SetActive(false);
-                    ChangeRightIdle();
-                    BlendSwordRight();
+                    //ChangeRightIdle();
+                    //BlendSwordRight();
+                    ChangeUnlockIdle();//解锁后切换到单手持剑
+                    BlendSwordUnlock();
                 }
                     
             }
@@ -1800,7 +1804,6 @@ namespace StarterAssets
             _animator.SetFloat("HandIndex", 1f);
         }
 
-
         public void ChangeLeftIdle()
         {
             _animator.SetFloat("HandIndex", 2f);
@@ -1812,6 +1815,11 @@ namespace StarterAssets
         {
             _animator.SetFloat("HandIndex", 3f);
             //playerWeapon.GetComponent<SwordPoseBlender>().BlendToDir(SwordPoseBlender.Dir.Down);
+        }
+
+        public void ChangeUnlockIdle()
+        {
+            _animator.SetFloat("HandIndex", 4f);
         }
 
         public void SwitchSwordPos(int index)
@@ -1857,6 +1865,11 @@ namespace StarterAssets
         public void BlendSwordDefense()
         {
             playerWeapon.GetComponent<SwordPoseBlender>().BlendToDir(SwordPoseBlender.Dir.Defense);
+        }
+
+        public void BlendSwordUnlock()
+        {
+            playerWeapon.GetComponent<SwordPoseBlender>().BlendToDir(SwordPoseBlender.Dir.Unlock);
         }
 
         public void InitRightSword()

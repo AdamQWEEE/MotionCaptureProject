@@ -10831,6 +10831,10 @@ PrefabInstance:
       propertyPath: stabWeaponTransform
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4548310727515665061, guid: 1b815d5206cfe4d4ba509e730fa66a05, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5551716654024095120, guid: 1b815d5206cfe4d4ba509e730fa66a05, type: 3}
       propertyPath: m_Name
       value: Player
@@ -10855,6 +10859,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8251081898141230154, guid: 1b815d5206cfe4d4ba509e730fa66a05, type: 3}
+      propertyPath: gripUnlock
+      value: 
+      objectReference: {fileID: 1789930901}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -10876,6 +10884,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1884346695510884290, guid: 1b815d5206cfe4d4ba509e730fa66a05, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1848345600}
+    - targetCorrespondingSourceObject: {fileID: 5808420147247954701, guid: 1b815d5206cfe4d4ba509e730fa66a05, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1789930901}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1b815d5206cfe4d4ba509e730fa66a05, type: 3}
 --- !u!1 &933072418
@@ -20772,6 +20783,11 @@ RectTransform:
   m_AnchoredPosition: {x: -261, y: 148}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!4 &1673584525 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5808420147247954701, guid: 1b815d5206cfe4d4ba509e730fa66a05, type: 3}
+  m_PrefabInstance: {fileID: 930298645}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1674731723
 GameObject:
   m_ObjectHideFlags: 0
@@ -22152,6 +22168,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1726336929758125365, guid: 1b815d5206cfe4d4ba509e730fa66a05, type: 3}
   m_PrefabInstance: {fileID: 930298645}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1789930900
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1789930901}
+  m_Layer: 0
+  m_Name: WeaponRotation_Unlock
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1789930901
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1789930900}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.40290177, y: 0.34035605, z: -0.27718833, w: -0.80311555}
+  m_LocalPosition: {x: 0.004, y: 0.009, z: 0.045}
+  m_LocalScale: {x: 3, y: 3, z: 2.1189022}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 1673584525}
+  m_LocalEulerAnglesHint: {x: -27.288, y: -60.052, z: 54.056}
 --- !u!1 &1793706884
 GameObject:
   m_ObjectHideFlags: 0
