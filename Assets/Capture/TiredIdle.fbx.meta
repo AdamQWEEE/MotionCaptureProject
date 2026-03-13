@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: bbbcbd7f3072313438d993481c1ffeee
+guid: d5ca0993f7ae03440b75ceab24a66348
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -17,7 +17,7 @@ ModelImporter:
     removeConstantScaleCurves: 0
     motionNodeName: 
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'AdamAnimation_001' has import animation warnings
+    animationImportWarnings: "\nClip 'AdamAnimation_004' has import animation warnings
       that might lower retargeting quality:\nNote: Activate translation DOF on avatar
       to improve retargeting quality.\n\t'Adam_skeleton_Spine1' has translation animation
       that will be discarded.\n\t'Adam_skeleton_Head' has translation animation that
@@ -37,11 +37,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: NormalIdle
-      takeName: AdamAnimation_001
-      internalID: -7707287861213252876
-      firstFrame: 1307
-      lastFrame: 1995.0001
+      name: TiredIdle
+      takeName: AdamAnimation_004
+      internalID: 1346026879422025233
+      firstFrame: 773
+      lastFrame: 1515
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -284,114 +284,114 @@ ModelImporter:
         length: 0
         modified: 0
     skeleton:
-    - name: Adam_Idle(Clone)
+    - name: TiredIdle(Clone)
       parentName: 
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam_skeleton_Hips
-      parentName: Adam_Idle(Clone)
-      position: {x: 0.0000000037252903, y: 0.9126001, z: -0.11386482}
-      rotation: {x: -0.009001636, y: -0.046898182, z: -0.005544565, w: 0.9988438}
+      parentName: TiredIdle(Clone)
+      position: {x: 0, y: 0.9107915, z: -0.09450119}
+      rotation: {x: 0.0017078838, y: -0.024920644, z: 0.0008264089, w: 0.9996876}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam_skeleton_Spine
       parentName: Adam_skeleton_Hips
-      position: {x: -0, y: 0.08389341, z: 0}
-      rotation: {x: -0.11159829, y: 0.0008401335, z: 0.018706366, w: 0.993577}
+      position: {x: -0, y: 0.08347305, z: 0}
+      rotation: {x: -0.06293709, y: -0.0008894033, z: 0.018083265, w: 0.9978533}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam_skeleton_Spine1
       parentName: Adam_skeleton_Spine
-      position: {x: -0.000000004656613, y: 0.25185055, z: -0.000000014901161}
-      rotation: {x: 0.080982216, y: 0.00029331268, z: -0.017361546, w: 0.9965643}
+      position: {x: -0.0000011157244, y: 0.24129236, z: -0.0000035464764}
+      rotation: {x: 0.028200269, y: -0.00029709633, z: -0.014772427, w: 0.9994931}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam_skeleton_Neck
       parentName: Adam_skeleton_Spine1
-      position: {x: -0, y: 0.26292694, z: 0}
-      rotation: {x: 0.16746597, y: -0.012150932, z: -0.0043008868, w: 0.9857936}
+      position: {x: -0, y: 0.26132262, z: 0}
+      rotation: {x: 0.14325672, y: 0.0038125338, z: -0.021071734, w: 0.9894539}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam_skeleton_Head
       parentName: Adam_skeleton_Neck
-      position: {x: -0, y: 0.15455066, z: 0.019941866}
-      rotation: {x: -0.023953129, y: -0.012957952, z: -0.00024102163, w: 0.9996291}
+      position: {x: -0, y: 0.15778442, z: 0.02035928}
+      rotation: {x: -0.0011237811, y: 0.00027683712, z: 0.006535149, w: 0.999978}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam_skeleton_LeftShoulder
       parentName: Adam_skeleton_Spine1
-      position: {x: -0.04145965, y: 0.2148065, z: -0.0043646246}
-      rotation: {x: 0.005868681, y: 0.06846989, z: -0.115052134, w: 0.99097955}
+      position: {x: -0.04142252, y: 0.21266578, z: -0.0033873841}
+      rotation: {x: -0.0020964264, y: 0.054598235, z: -0.13181484, w: 0.9897674}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam_skeleton_LeftArm
       parentName: Adam_skeleton_LeftShoulder
-      position: {x: -0.14678079, y: 0, z: 0}
-      rotation: {x: 0.0123682255, y: -0.017297858, z: 0.1241712, w: 0.99203295}
+      position: {x: -0.14802723, y: 0, z: 0}
+      rotation: {x: 0.044315938, y: 0.0004125238, z: 0.14112313, w: 0.9889996}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam_skeleton_LeftForeArm
       parentName: Adam_skeleton_LeftArm
-      position: {x: -0.21255615, y: 0, z: 0}
-      rotation: {x: 0.09475487, y: 0.00018930205, z: 0.009366772, w: 0.9954566}
+      position: {x: -0.21169257, y: 0, z: 0}
+      rotation: {x: 0.09285339, y: 0.0027305458, z: 0.006034567, w: 0.99565774}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam_skeleton_LeftHand
       parentName: Adam_skeleton_LeftForeArm
-      position: {x: -0.31025547, y: 0.00000023841858, z: 0}
-      rotation: {x: 0.09472506, y: -0.006134959, z: 0.026047599, w: 0.9951438}
+      position: {x: -0.31243092, y: -0.000011920929, z: -0.0000023543835}
+      rotation: {x: 0.092801705, y: 0.010080678, z: -0.007513239, w: 0.99560523}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam_skeleton_RightShoulder
       parentName: Adam_skeleton_Spine1
-      position: {x: 0.04031618, y: 0.2148065, z: -0.0043646246}
-      rotation: {x: 0.019164845, y: -0.009901388, z: 0.101771116, w: 0.99457395}
+      position: {x: 0.03992545, y: 0.21266578, z: -0.0033873841}
+      rotation: {x: 0.0067334427, y: 0.011378863, z: 0.10729155, w: 0.99413973}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam_skeleton_RightArm
       parentName: Adam_skeleton_RightShoulder
-      position: {x: 0.14678079, y: 0, z: 0}
-      rotation: {x: -0.020965943, y: 0.007298635, z: -0.080371, w: 0.9965178}
+      position: {x: 0.14802723, y: 0, z: 0}
+      rotation: {x: 0.02259219, y: -0.030434914, z: -0.08263562, w: 0.9958588}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam_skeleton_RightForeArm
       parentName: Adam_skeleton_RightArm
-      position: {x: 0.21255615, y: 0, z: 0}
-      rotation: {x: -0.009798241, y: -0.0010947265, z: -0.024259286, w: 0.9996571}
+      position: {x: 0.21169257, y: 0, z: 0}
+      rotation: {x: -0.011076291, y: 0.0033903432, z: 0.003956248, w: 0.99992514}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam_skeleton_RightHand
       parentName: Adam_skeleton_RightForeArm
-      position: {x: 0.3073642, y: -0.00000023841858, z: 0.000000007450581}
-      rotation: {x: -0.009800647, y: 0.007099408, z: 0.0036335904, w: 0.9999202}
+      position: {x: 0.3124264, y: -0.000006556511, z: -0.00000040233135}
+      rotation: {x: -0.0110314265, y: -0.02746821, z: 0.04819553, w: 0.99839926}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam_skeleton_LeftUpLeg
       parentName: Adam_skeleton_Hips
-      position: {x: -0.10230903, y: 0, z: 0}
-      rotation: {x: -0.02078928, y: 0.023181504, z: 0.019446654, w: 0.99932593}
+      position: {x: -0.1017964, y: 0, z: 0}
+      rotation: {x: -0.023806605, y: 0.0023878664, z: 0.0059755426, w: 0.9996959}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam_skeleton_LeftLeg
       parentName: Adam_skeleton_LeftUpLeg
-      position: {x: -0, y: -0.41722316, z: 0}
-      rotation: {x: 0.088632464, y: -0.045785904, z: -0.032446757, w: 0.99448234}
+      position: {x: -0, y: -0.41364628, z: 0}
+      rotation: {x: 0.10437667, y: -0.00278041, z: -0.03876109, w: 0.99377835}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam_skeleton_LeftFoot
       parentName: Adam_skeleton_LeftLeg
-      position: {x: -0, y: -0.4274614, z: 0}
-      rotation: {x: -0.059702024, y: 0.0376856, z: -0.0046937517, w: 0.9974936}
+      position: {x: -0, y: -0.42185146, z: 0}
+      rotation: {x: -0.08507347, y: -0.030058268, z: 0.036508497, w: 0.99525183}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam_skeleton_LeftToeBase
       parentName: Adam_skeleton_LeftFoot
-      position: {x: -0, y: -0.06650087, z: 0.15346356}
+      position: {x: -0, y: -0.06616766, z: 0.15269461}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam_skeleton_RightUpLeg
       parentName: Adam_skeleton_Hips
-      position: {x: 0.10230903, y: 0, z: 0}
-      rotation: {x: -0.0519251, y: 0.018744575, z: 0.046402995, w: 0.99739623}
+      position: {x: 0.1017964, y: 0, z: 0}
+      rotation: {x: -0.052436326, y: 0.0047224313, z: 0.04641847, w: 0.9975337}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam_skeleton_RightLeg
       parentName: Adam_skeleton_RightUpLeg
-      position: {x: -0, y: -0.41722316, z: 0}
-      rotation: {x: 0.16183391, y: 0.013121558, z: -0.009030373, w: 0.98668945}
+      position: {x: -0, y: -0.41364628, z: 0}
+      rotation: {x: 0.15148705, y: -0.0015203546, z: -0.0020939491, w: 0.9884559}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam_skeleton_RightFoot
       parentName: Adam_skeleton_RightLeg
-      position: {x: -0, y: -0.4274614, z: 0}
-      rotation: {x: -0.10019113, y: 0.09074324, z: -0.037114024, w: 0.99012625}
+      position: {x: -0, y: -0.42185146, z: 0}
+      rotation: {x: -0.09378347, y: 0.100908, z: -0.0542711, w: 0.98897773}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam_skeleton_RightToeBase
       parentName: Adam_skeleton_RightFoot
-      position: {x: -0, y: -0.06650087, z: 0.15346356}
+      position: {x: -0, y: -0.06616766, z: 0.15269461}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     armTwist: 0.5

@@ -159,7 +159,9 @@ namespace StarterAssets
         private bool canUseFreeMove;//用来定义是否结束八向移动，相机未恢复前保持八项移动
         public float unlockTime = 1f;//用来计算相机过度，相机未恢复前保持八项移动
         private float unlockTimer;
-        
+        [SerializeField] private float lockOnBlendSpeed = 4f; // 1->0 大概 0.25s（可调：2~8）
+        private float _lockOnParam = 0f;                     // 目标LockOn（0或1）
+
 
         [Header("damage-check")]
         public bool canTakeDamage;
@@ -285,6 +287,7 @@ namespace StarterAssets
         private void Update()
         {
             UnlockTimer();
+            UpdateLockOnParam();
             _hasAnimator = TryGetComponent(out _animator);
             stateInfo = _animator.GetCurrentAnimatorStateInfo(0);
            
@@ -1289,7 +1292,8 @@ namespace StarterAssets
 
                 lockTarget = nearest.transform;
                 CameraModeController.Instance.SetLockOn(true, lockTarget);
-                _animator.SetFloat("LockOn", 1f);
+                //_animator.SetFloat("LockOn", 1f);
+                _lockOnParam = 1f;
                 LockCameraPosition = true;
                 canUseFreeMove = false;
 
@@ -1304,6 +1308,13 @@ namespace StarterAssets
             LockCameraPosition = false;
             unlockTimer = 0f;
 
+        }
+
+        private void UpdateLockOnParam()
+        {
+            float current = _animator.GetFloat("LockOn");
+            float next = Mathf.MoveTowards(current, _lockOnParam, lockOnBlendSpeed * Time.deltaTime);
+            _animator.SetFloat("LockOn", next);
         }
 
         private void UnlockTimer()//unlocktimer, when lost lockTarget, start counting
@@ -1324,7 +1335,8 @@ namespace StarterAssets
                 else
                 {
                     canUseFreeMove = true;
-                    _animator.SetFloat("LockOn", 0f);
+                    //_animator.SetFloat("LockOn", 0f);
+                    _lockOnParam = 0f;
                 }
             }
         }
