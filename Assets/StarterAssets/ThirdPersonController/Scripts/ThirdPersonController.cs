@@ -188,6 +188,12 @@ namespace StarterAssets
         public int switchIndex;
         public SwordDirection swordDir;
 
+        [Header("Skill")]
+        public bool canSkill;
+        public float comboTime = 1f;//定义连击有效区间
+        float comboTimer;
+        int comboCounts;//记录连击次数
+
         [Header("Stance")]
         public bool isTired;
         private bool IsCurrentDeviceMouse
@@ -216,7 +222,8 @@ namespace StarterAssets
         
         };
 
-
+        
+        
         private void Awake()
         {
             // get a reference to our main camera
@@ -263,15 +270,33 @@ namespace StarterAssets
                 _animator.SetTrigger("Attack");
                 _animator.SetInteger("attackID", attackID);
                 ResetLayerWeight();
-
-                
                 BlendSwordRight();
-
-                
+                //每攻击一次计数，过1秒重置，当计数达到2时，设置animator内部的的skill为true
+                comboCounts++;
+                comboTimer = 0f;//每次攻击重置连击计时器               
             }
 
+            //Debug.Log("ComboTimer"+comboTimer+"   ComboCounts" + comboCounts);
+            if (comboTimer <= comboTime)
+            {
+                comboTimer += Time.deltaTime;
+            }
+            else
+            {
+                comboCounts = 0;
+            }
 
-            if (lockTarget != null&&lockIcon!=null)
+            if (comboCounts >= 2 && !isTired)
+            {
+                canSkill = true;
+            }
+            else 
+            {
+                canSkill = false;
+            }
+            
+
+            if (lockTarget != null && lockIcon != null)
             {
                 lockIcon.transform.position = Camera.main.WorldToScreenPoint(lockTarget.GetChild(0).position);
             }
@@ -333,19 +358,19 @@ namespace StarterAssets
             //    }
 
             //}
-            if (stateInfo.IsName("heavyAttack"))
-            {
-                _animator.applyRootMotion = true;
-            }
-            else if (stateInfo.IsName("Dodge"))
-            {
-                _animator.applyRootMotion = true;
-            }
-            else
-            {
-                _animator.applyRootMotion = false;
+            //if (stateInfo.IsName("heavyAttack"))
+            //{
+            //    _animator.applyRootMotion = true;
+            //}
+            //else if (stateInfo.IsName("Dodge"))
+            //{
+            //    _animator.applyRootMotion = true;
+            //}
+            //else
+            //{
+            //    _animator.applyRootMotion = false;
 
-            }
+            //}
 
             if (isdodging) return;
 

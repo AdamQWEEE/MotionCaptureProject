@@ -261,7 +261,15 @@ public class SwordDirection : MonoBehaviour
                 if (arrowUp)
                 {
                     arrowUp.color = highlightColor;
-                    player.attackID = (!player.isTired) ? 1 : 5;
+                    if (player.canSkill)
+                    {
+                        player.attackID = 9;
+                    }
+                    else
+                    {
+                        player.attackID = (!player.isTired) ? 1 : 5;
+                    }
+                    
                 }
                 break;
 
@@ -269,7 +277,15 @@ public class SwordDirection : MonoBehaviour
                 if (arrowDown)
                 {
                     arrowDown.color = highlightColor;
-                    player.attackID = (!player.isTired) ? 2 : 6;
+                    if (player.canSkill)
+                    {
+                        player.attackID = 10;
+                    }
+                    else
+                    {
+                        player.attackID = (!player.isTired) ? 2 : 6;
+                    }
+                        
                 }
                 break;
 
@@ -277,7 +293,15 @@ public class SwordDirection : MonoBehaviour
                 if (arrowLeft)
                 {
                     arrowLeft.color = highlightColor;
-                    player.attackID = (!player.isTired) ? 3 : 7;
+                    if (player.canSkill)
+                    {
+                        player.attackID = 11;
+                    }
+                    else
+                    {
+                        player.attackID = (!player.isTired) ? 3 : 7;
+                    }
+                    
                 }
                 break;
 
@@ -285,7 +309,15 @@ public class SwordDirection : MonoBehaviour
                 if (arrowRight)
                 {
                     arrowRight.color = highlightColor;
-                    player.attackID = (!player.isTired) ? 4 : 8;
+                    if (player.canSkill)
+                    {
+                        player.attackID = 12;
+                    }
+                    else
+                    {
+                        player.attackID = (!player.isTired) ? 4 : 8;
+                    }
+                    
                 }
                 break;
 
