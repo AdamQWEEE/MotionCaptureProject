@@ -1,0 +1,619 @@
+fileFormatVersion: 2
+guid: 9cd6712fc8830804c85c94cd7a750218
+ModelImporter:
+  serializedVersion: 22200
+  internalIDToNameTable: []
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: "\nClip 'Adam0305_029' has import animation warnings
+      that might lower retargeting quality:\nNote: Activate translation DOF on avatar
+      to improve retargeting quality.\n\t'Adam_Spine1' has translation animation
+      that will be discarded.\n\t'Adam_Head' has translation animation that will
+      be discarded.\n\t'Adam_LeftHand' has translation animation that will be discarded.\n\t'Adam_RightHand'
+      has translation animation that will be discarded.\n"
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Adam0305_029
+      takeName: Adam0305_029
+      internalID: 2647537174300296819
+      firstFrame: 406.26
+      lastFrame: 633
+      wrapMode: 0
+      orientationOffsetY: -69.3
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human:
+    - boneName: Adam_Hips
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Adam_LeftUpLeg
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Adam_RightUpLeg
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Adam_LeftLeg
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Adam_RightLeg
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Adam_LeftFoot
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Adam_RightFoot
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Adam_Spine
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Adam_Spine1
+      humanName: Chest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Adam_Neck
+      humanName: Neck
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Adam_Head
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Adam_LeftShoulder
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Adam_RightShoulder
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Adam_LeftArm
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Adam_RightArm
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Adam_LeftForeArm
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Adam_RightForeArm
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Adam_LeftHand
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Adam_RightHand
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Adam_LeftToeBase
+      humanName: LeftToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: Adam_RightToeBase
+      humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: Adam0305_029_C_V2(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Adam_Hips
+      parentName: Adam0305_029_C_V2(Clone)
+      position: {x: 0, y: 0.9091899, z: 0.005503447}
+      rotation: {x: -0.032441147, y: 0.03843322, z: -0.006082728, w: 0.99871594}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Adam_Spine
+      parentName: Adam_Hips
+      position: {x: -0, y: 0.08203221, z: 0}
+      rotation: {x: 0.000000033341365, y: 8.308236e-11, z: 0.0000000050092135, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Adam_Spine1
+      parentName: Adam_Spine
+      position: {x: -0.000000002328306, y: 0.2291148, z: -0.000000029802319}
+      rotation: {x: 6.938894e-18, y: -3.009266e-36, z: -4.336809e-19, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Adam_Neck
+      parentName: Adam_Spine1
+      position: {x: -0, y: 0.24755189, z: 0}
+      rotation: {x: 0.00000013375924, y: 6.646736e-10, z: 0.0000000098054596, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Adam_Head
+      parentName: Adam_Neck
+      position: {x: 0.000000029802319, y: 0.1502423, z: 0.019386228}
+      rotation: {x: 6.938894e-18, y: -3.009266e-36, z: -4.336809e-19, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Adam_LeftShoulder
+      parentName: Adam_Spine1
+      position: {x: -0.04067604, y: 0.1993914, z: -0.002518192}
+      rotation: {x: 6.938894e-18, y: -3.009266e-36, z: -4.336809e-19, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Adam_LeftArm
+      parentName: Adam_LeftShoulder
+      position: {x: -0.1462618, y: 0, z: 0}
+      rotation: {x: 1.4909456e-10, y: -0.000000018572319, z: -0.0000000015343888, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Adam_LeftForeArm
+      parentName: Adam_LeftArm
+      position: {x: -0.2077889, y: 0, z: 0}
+      rotation: {x: -0.000000018615664, y: -0.0000000038640167, z: 9.3325646e-11, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Adam_LeftHand
+      parentName: Adam_LeftForeArm
+      position: {x: -0.31234848, y: -0.00000011920929, z: -0.000000007450581}
+      rotation: {x: -6.436168e-11, y: 0.000000022383464, z: -0.0000000011351377, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Adam_RightShoulder
+      parentName: Adam_Spine1
+      position: {x: 0.03931692, y: 0.1993914, z: -0.002518192}
+      rotation: {x: 6.938894e-18, y: -3.009266e-36, z: -4.336809e-19, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Adam_RightArm
+      parentName: Adam_RightShoulder
+      position: {x: 0.1462618, y: 0, z: 0}
+      rotation: {x: 6.938894e-18, y: -3.009266e-36, z: -4.336809e-19, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Adam_RightForeArm
+      parentName: Adam_RightArm
+      position: {x: 0.2077889, y: 0, z: 0}
+      rotation: {x: 0.0000000014735324, y: -0.0000454305, z: -0.0000029285184, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Adam_RightHand
+      parentName: Adam_RightForeArm
+      position: {x: 0.3128964, y: -0.00000023841858, z: -0.000000022351738}
+      rotation: {x: 6.938894e-18, y: -6.0185307e-36, z: -8.673617e-19, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Adam_LeftUpLeg
+      parentName: Adam_Hips
+      position: {x: -0.100039296, y: 0, z: 0}
+      rotation: {x: -0.0003842966, y: 0.0000000050025237, z: -0.00002966318, w: 0.99999994}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Adam_LeftLeg
+      parentName: Adam_LeftUpLeg
+      position: {x: -0, y: -0.4500994, z: 0}
+      rotation: {x: 0.0008311753, y: -4.600322e-10, z: 0.00006417145, w: 0.99999964}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Adam_LeftFoot
+      parentName: Adam_LeftLeg
+      position: {x: -0, y: -0.3870753, z: 0}
+      rotation: {x: -0.00044688242, y: -0.000000004570653, z: -0.000034508423, w: 0.99999994}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Adam_LeftToeBase
+      parentName: Adam_LeftFoot
+      position: {x: -0, y: -0.06502553, z: 0.1500589}
+      rotation: {x: 6.938894e-18, y: 3.009266e-36, z: 4.336809e-19, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Adam_RightUpLeg
+      parentName: Adam_Hips
+      position: {x: 0.100039296, y: 0, z: 0}
+      rotation: {x: -0.00031836596, y: 0.00000000387914, z: -0.000024587587, w: 0.99999994}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Adam_RightLeg
+      parentName: Adam_RightUpLeg
+      position: {x: -0, y: -0.4500994, z: 0}
+      rotation: {x: 0.00068855955, y: -0.0000000029297884, z: 0.00005316072, w: 0.99999976}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Adam_RightFoot
+      parentName: Adam_RightLeg
+      position: {x: -0, y: -0.3870753, z: 0}
+      rotation: {x: -0.00037019365, y: -9.438867e-10, z: -0.000028573128, w: 0.99999994}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Adam_RightToeBase
+      parentName: Adam_RightFoot
+      position: {x: -0, y: -0.06502553, z: 0.1500589}
+      rotation: {x: -1.3877785e-17, y: -6.938894e-18, z: 1.3010426e-18, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mocap_Ctrl:Reference
+      parentName: Adam0305_029_C_V2(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mocap_Ctrl:Hips
+      parentName: Mocap_Ctrl:Reference
+      position: {x: -0.038850423, y: 0.9091899, z: 0.005503447}
+      rotation: {x: 0.0000014528636, y: 0.000099060264, z: 6.500904e-17, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mocap_Ctrl:LeftUpLeg
+      parentName: Mocap_Ctrl:Hips
+      position: {x: -0.09973779, y: 0.0014649419, z: 0.00762134}
+      rotation: {x: -0.0003854334, y: 0.0000037140642, z: -0.0000002491485, w: 0.99999994}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mocap_Ctrl:LeftLeg
+      parentName: Mocap_Ctrl:LeftUpLeg
+      position: {x: -0.004351832, y: -0.4491186, z: 0.02937685}
+      rotation: {x: 0.00083362305, y: -0.000008042874, z: 0.00000053240257, w: 0.99999964}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mocap_Ctrl:LeftFoot
+      parentName: Mocap_Ctrl:LeftLeg
+      position: {x: -0.0037424837, y: -0.3862319, z: 0.02526344}
+      rotation: {x: -0.00044818452, y: 0.000004325447, z: -0.00000028361063, w: 0.99999994}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mocap_Ctrl:LeftToeBase
+      parentName: Mocap_Ctrl:LeftFoot
+      position: {x: 0.01092181, y: -0.05522992, z: 0.15354599}
+      rotation: {x: 2.7105e-20, y: 0, z: 1.2327612e-32, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mocap_Ctrl:RightUpLeg
+      parentName: Mocap_Ctrl:Hips
+      position: {x: 0.09973779, y: -0.0014649419, z: -0.00762134}
+      rotation: {x: 0.000000003732809, y: 0.000000005467617, z: 0.0000000021765387, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mocap_Ctrl:RightLeg
+      parentName: Mocap_Ctrl:RightUpLeg
+      position: {x: -0.004351833, y: -0.44911867, z: 0.02937685}
+      rotation: {x: 0.000000003733909, y: 1.7507247e-10, z: -0.0000000012441922, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mocap_Ctrl:RightFoot
+      parentName: Mocap_Ctrl:RightLeg
+      position: {x: -0.0037424837, y: -0.3862319, z: 0.02526343}
+      rotation: {x: -0.000000012578929, y: -0.0000000022636262, z: -5.888164e-10, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mocap_Ctrl:RightToeBase
+      parentName: Mocap_Ctrl:RightFoot
+      position: {x: 0.01092181, y: -0.05522992, z: 0.15354599}
+      rotation: {x: 0, y: -0, z: -2.1175826e-22, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mocap_Ctrl:Spine
+      parentName: Mocap_Ctrl:Hips
+      position: {x: 0.0007931373, y: 0.081853464, z: -0.0053540347}
+      rotation: {x: -3.259086e-11, y: 0.0000000010944803, z: -0.000000017562167, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mocap_Ctrl:Spine1
+      parentName: Mocap_Ctrl:Spine
+      position: {x: 0.0022152178, y: 0.2286156, z: -0.01495378}
+      rotation: {x: -3.73838e-18, y: -9.181837e-19, z: 6.938894e-18, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mocap_Ctrl:LeftShoulder
+      parentName: Mocap_Ctrl:Spine1
+      position: {x: -0.038819447, y: 0.1993906, z: -0.01242042}
+      rotation: {x: -1.4437025e-26, y: 3e-45, z: -1.9651171e-19, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mocap_Ctrl:LeftArm
+      parentName: Mocap_Ctrl:LeftShoulder
+      position: {x: -0.1458211, y: 0.002141756, z: 0.011142729}
+      rotation: {x: -1.0842023e-19, y: 1.8160388e-18, z: -1.7347235e-18, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mocap_Ctrl:LeftForeArm
+      parentName: Mocap_Ctrl:LeftArm
+      position: {x: -0.2071627, y: 0.003042801, z: 0.015830081}
+      rotation: {x: -1.0842023e-19, y: 2.6241077e-18, z: 6.636033e-37, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mocap_Ctrl:LeftHand
+      parentName: Mocap_Ctrl:LeftForeArm
+      position: {x: -0.3114071, y: 0.004573891, z: 0.0237958}
+      rotation: {x: 0, y: -0, z: -1.5509633e-25, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mocap_Ctrl:RightShoulder
+      parentName: Mocap_Ctrl:Spine1
+      position: {x: 0.04093244, y: 0.1982192, z: -0.01851456}
+      rotation: {x: -2.1684042e-19, y: 1.3877788e-17, z: 3.1848436e-19, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mocap_Ctrl:RightArm
+      parentName: Mocap_Ctrl:RightShoulder
+      position: {x: 0.1458211, y: -0.002141756, z: -0.01114274}
+      rotation: {x: -1.0842022e-19, y: 4.4503107e-18, z: -1.7347235e-18, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mocap_Ctrl:RightForeArm
+      parentName: Mocap_Ctrl:RightArm
+      position: {x: 0.2071627, y: -0.003042801, z: -0.015830081}
+      rotation: {x: -0.00000066462076, y: -0.00004552238, z: 0.00000005172158, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mocap_Ctrl:RightHand
+      parentName: Mocap_Ctrl:RightForeArm
+      position: {x: 0.3119534, y: -0.004582284, z: -0.02383754}
+      rotation: {x: -4.235165e-22, y: -2.59329e-38, z: -6.8500894e-24, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mocap_Ctrl:Neck
+      parentName: Mocap_Ctrl:Spine1
+      position: {x: 0.0023934809, y: 0.2470124, z: -0.01615708}
+      rotation: {x: 6.534279e-11, y: 4.0998663e-12, z: -1.2704853e-12, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mocap_Ctrl:Head
+      parentName: Mocap_Ctrl:Neck
+      position: {x: 0.002944884, y: 0.1511621, z: 0.009482495}
+      rotation: {x: -0, y: 1.0339758e-25, z: 2.1175826e-22, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mocap_Ctrl:HipsEffector
+      parentName: Mocap_Ctrl:Reference
+      position: {x: -0.03885042, y: 0.9091899, z: 0.005503447}
+      rotation: {x: 0.0000014528636, y: 0.000099060264, z: 6.500904e-17, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mocap_Ctrl:LeftAnkleEffector
+      parentName: Mocap_Ctrl:Reference
+      position: {x: -0.14667019, y: 0.07530457, z: 0.067784}
+      rotation: {x: 0.000001452873, y: 0.0000990602, z: -5.8759703e-12, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mocap_Ctrl:RightAnkleEffector
+      parentName: Mocap_Ctrl:Reference
+      position: {x: 0.052802365, y: 0.07237431, z: 0.05250179}
+      rotation: {x: 0.0000014528628, y: 0.00009906022, z: -4.8607112e-12, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mocap_Ctrl:LeftWristEffector
+      parentName: Mocap_Ctrl:Reference
+      position: {x: -0.7390488, y: 1.428808, z: 0.023684062}
+      rotation: {x: 0.0000014704253, y: 0.00009906033, z: -0.0000000011028418, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mocap_Ctrl:RightWristEffector
+      parentName: Mocap_Ctrl:Reference
+      position: {x: 0.6700119, y: 1.4081118, z: -0.084239855}
+      rotation: {x: 0.0000020999173, y: 0.00014456038, z: 0.000000052687604, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mocap_Ctrl:LeftKneeEffector
+      parentName: Mocap_Ctrl:Reference
+      position: {x: -0.1429326, y: 0.46155906, z: 0.042867176}
+      rotation: {x: 0.00044964263, y: 0.00009473137, z: 0.00000023885812, w: 0.99999994}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mocap_Ctrl:RightKneeEffector
+      parentName: Mocap_Ctrl:Reference
+      position: {x: 0.05653985, y: 0.4586063, z: 0.027238753}
+      rotation: {x: 0.0000014603303, y: 0.000099065895, z: 9.29918e-10, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mocap_Ctrl:LeftElbowEffector
+      parentName: Mocap_Ctrl:Reference
+      position: {x: -0.4276464, y: 1.424234, z: -0.00017344355}
+      rotation: {x: 0.000001470289, y: 0.000099062665, z: -1.8864228e-10, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mocap_Ctrl:RightElbowEffector
+      parentName: Mocap_Ctrl:Reference
+      position: {x: 0.3580611, y: 1.4126937, z: -0.060368914}
+      rotation: {x: 0.0000014747973, y: 0.00009904656, z: -0.00004551498, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mocap_Ctrl:ChestOriginEffector
+      parentName: Mocap_Ctrl:Reference
+      position: {x: -0.038058355, y: 0.9910434, z: 0.00014947892}
+      rotation: {x: 0.0000014528326, y: 0.00009906132, z: -0.000000017561838, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mocap_Ctrl:ChestEndEffector
+      parentName: Mocap_Ctrl:Reference
+      position: {x: -0.03479266, y: 1.4184638, z: -0.030271174}
+      rotation: {x: 0.0000014528326, y: 0.00009906132, z: -0.000000017562247, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mocap_Ctrl:LeftFootEffector
+      parentName: Mocap_Ctrl:Reference
+      position: {x: -0.135718, y: 0.0200742, z: 0.2213277}
+      rotation: {x: 0.0000014528639, y: 0.000099060235, z: -2.5390936e-13, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mocap_Ctrl:RightFootEffector
+      parentName: Mocap_Ctrl:Reference
+      position: {x: 0.063754596, y: 0.017143939, z: 0.2060455}
+      rotation: {x: 0.0000014528638, y: 0.000099060264, z: 1.2703292e-13, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mocap_Ctrl:LeftShoulderEffector
+      parentName: Mocap_Ctrl:Reference
+      position: {x: -0.22048691, y: 1.4211909, z: -0.016044578}
+      rotation: {x: 0.0000014702889, y: 0.0000990578, z: 1.8522653e-10, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mocap_Ctrl:RightShoulderEffector
+      parentName: Mocap_Ctrl:Reference
+      position: {x: 0.15090151, y: 1.4157368, z: -0.044497784}
+      rotation: {x: 0.000001470289, y: 0.000099062665, z: -1.8863747e-10, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mocap_Ctrl:HeadEffector
+      parentName: Mocap_Ctrl:Reference
+      position: {x: -0.030509055, y: 1.6178339, z: -0.021478537}
+      rotation: {x: 0.0000014529953, y: 0.00009906136, z: -0.000000017561675, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mocap_Ctrl:LeftHipEffector
+      parentName: Mocap_Ctrl:Reference
+      position: {x: -0.13858671, y: 0.9106548, z: 0.013144553}
+      rotation: {x: -0.00038398063, y: 0.00010277427, z: -0.00000021092795, w: 0.99999994}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Mocap_Ctrl:RightHipEffector
+      parentName: Mocap_Ctrl:Reference
+      position: {x: 0.06088586, y: 0.907725, z: -0.0021376596}
+      rotation: {x: 0.0000014565967, y: 0.00009906572, z: 0.0000000021739632, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 3
+  humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
