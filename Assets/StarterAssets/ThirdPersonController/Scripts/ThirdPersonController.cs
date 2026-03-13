@@ -266,7 +266,8 @@ namespace StarterAssets
             if (_input.attack)
             {
                 _input.attack = false;
-                Debug.Log("攻击");
+                //_animator.applyRootMotion = true;
+                //Debug.Log("攻击");
                 _animator.SetTrigger("Attack");
                 _animator.SetInteger("attackID", attackID);
                 ResetLayerWeight();

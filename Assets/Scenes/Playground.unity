@@ -63242,6 +63242,8 @@ MonoBehaviour:
   isdodging: 0
   switchIndex: 0
   swordDir: {fileID: 580941298}
+  canSkill: 0
+  comboTime: 1
   isTired: 0
 --- !u!1 &519631589100936363
 GameObject:
