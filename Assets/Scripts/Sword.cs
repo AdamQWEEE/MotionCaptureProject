@@ -34,28 +34,8 @@ public class Sword : MonoBehaviour
                 hitEnemyNum++;
 
                 if(enemy.state==EnemyBase.EnemyState.ChangeYinYang||enemy.isLockHp) return;
-
-
-                if (playerController.isDark != enemy.isDark) { 
-
-                    enemy.TakeDamage(4);
-                    enemy.AddStance(5f);
-                    
-                    if (enemy.currentHealth > 0)
-                    {
-                        if (Random.Range(0, 100) > 60 && knockCoolTime<=0 && hitEnemyNum>2)
-                        {
-                            enemy.ApplyKnockback(playerController.transform.position);
-                            knockCoolTime = 2f;
-
-                        }
-                    }
-
-                }
-                else
-                {
-                    enemy.TakeDamage(0.5f);
-                }
+                enemy.TakeDamage(4);
+                enemy.AddStance(5f);
                 
 
                 playerController.canTakeDamage = false;

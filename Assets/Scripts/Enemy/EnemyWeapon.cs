@@ -44,29 +44,9 @@ public class EnemyWeapon : MonoBehaviour
                 ThirdPersonController player=other.GetComponent<ThirdPersonController>();
                 if (player.isDead) return;
 
-                if (player.isCounter|| player.isCounterReward)
-                {
-                    
-                    player.ShowCounterEffect();
-                    if (player.isDark != enemy.isDark)
-                        enemy.AddStance(25);
-                    if (stateInfo.IsName("Jumpattack"))
-                    {
-                        isCounterHeavy = true;
-                        
-                    }
-                    player.isCounterReward=false;
-                    AudioManager.Instance.PlayCounter();
-                    //player.isCounter=false;
-                    return;
-                }
                 else
                 {
-                    if (player.isRollReward)
-                    {
-                        player.isRollReward=false;
-                        return;
-                    }
+
                     player.playerState.TakeDamage(10);
                     if (Random.Range(0, 100) > 50)
                     {

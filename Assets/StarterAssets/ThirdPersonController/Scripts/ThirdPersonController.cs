@@ -114,36 +114,24 @@ namespace StarterAssets
         private const float _threshold = 0.01f;
 
         private bool _hasAnimator;
-        public bool canMove;
-        private bool roll_accelerate;
-        private bool flip_accelerate;
-        public bool isFliping;
-        public bool canFlipToMove;
-        Vector3 _rollDir;
+        public bool canMove;        
         private AnimatorStateInfo stateInfo;
         public bool canChainNext;//是否进入连招区间
-        public bool bufferAttack;
-        public bool canRollAttack;
-        public bool isRolling;
+        public bool bufferAttack;        
         public bool canImmediatelyAttack;
         
         public PlayerStateUI playerState;
 
 
-        private bool isInCombo;
-        public bool canRotateDuringAttack;
+        //private bool isInCombo;
+        //public bool canRotateDuringAttack;
 
         
 
         public GameObject defenseEffect;
-        //public Transform sword;
-        //public Transform defenceEffectPoint;
 
-        [Header("Spell Settings")]
-        public FireBall fireballPrefab;
-        public Transform firePoint;        // 手/武器前端的挂点
-        public float baseTravelTime = 0.7f; // 基础飞行时间
-        public float maxExtraTime = 0.3f;   // 远距离时额外增加一点时间
+
+
 
         [Header("Lock-On")]
         //public EnemyBase currentLockTarget;
@@ -166,14 +154,12 @@ namespace StarterAssets
         [Header("damage-check")]
         public bool canTakeDamage;
 
-        [Header("Auto Attack Face")]
-        [SerializeField] private float autoFaceRadius = 6f;       // 自由视角下自动转向的半径
-        [SerializeField] private float autoFaceTurnSpeed = 720f;  // 自动转向最大角速度(度/秒)
 
-        [Header("SwordWave")]
-        public SwordWave swordWavePrefab;
-        public SwordWave currSwordWave;
-        public Transform swordWavePoint;
+
+        //[Header("SwordWave")]
+        //public SwordWave swordWavePrefab;
+        //public SwordWave currSwordWave;
+        //public Transform swordWavePoint;
 
         [Header("Counter")]
         public bool isCounter;
@@ -187,18 +173,6 @@ namespace StarterAssets
         public bool isExecutingView;
         public bool canExecute;
 
-        [Header("SwitchSword")]
-        public Material darkSwordMaterial;
-        public Material glowSwordMaterial;
-        public GameObject darkSwordEffect;
-        public GameObject glowSwordEffect;
-        public bool isDark;
-        public bool triggerCounterTutorial;
-        public float switchCoolDown = 0f;
-
-        public bool isCounterReward;
-        public bool isRollReward;
-
         [Header("GetHit")]
         public bool isHitState;
 
@@ -208,18 +182,9 @@ namespace StarterAssets
 
         [Header("Die and Recover")]
         public bool isDead;
-        public Transform bornPoint;
-
-        //private bool isExecuting;
-        [Header("AxeReward")]
-        public GameObject axeEquipped;
-
-        public SwordDirection swordDirUI;
+        public Transform bornPoint;        
         public int attackID;
         public bool isdodging;
-
-        public GameObject leftSword;
-        public GameObject rightSword;
         public int switchIndex;
         public SwordDirection swordDir;
 
@@ -281,7 +246,6 @@ namespace StarterAssets
             _fallTimeoutDelta = FallTimeout;
             playerState = GetComponent<PlayerStateUI>();
             //Time.timeScale = 0.5f;
-            Tutorial.Instance.ShowPerspectiveTip();
         }
 
         private void Update()
@@ -303,18 +267,6 @@ namespace StarterAssets
                 
                 BlendSwordRight();
 
-
-                //if (attackID == 4 && _animator.GetFloat("LockOn") == 1f)
-                //{
-                //    leftSword.SetActive(true);
-                //    rightSword.SetActive(false);
-                //}
-                //else
-                //{
-                //    leftSword.SetActive(false);
-                //    rightSword.SetActive(true);
-                //}
-
                 
             }
 
@@ -324,7 +276,7 @@ namespace StarterAssets
                 lockIcon.transform.position = Camera.main.WorldToScreenPoint(lockTarget.GetChild(0).position);
             }
 
-            if (!isFliping&&!isDead&&!LevelManager.Instance.isPause)
+            if (!isDead&&!LevelManager.Instance.isPause)
             {
 
                 JumpAndGravity();
@@ -332,24 +284,16 @@ namespace StarterAssets
             
                 //Attack();
                 HeavyAttack();
-                UpdateAttackFacing();
+                //UpdateAttackFacing();
                 Counter();
                 Dodge();
-                //Roll();
-                //RollRollAccelerate();
-            
-                Stab();
-                Toss();
-                ChangeToSneak();
-                ChangeCombo();
+                
+                
                 ChangeMovement();
                 //ChangeExecutionView();
                 TakeExecution();
             }
 
-            switchCoolDown-=Time.deltaTime;
-
-            FlipAccelerate();
 
             
             isTargeting = _animator.GetFloat("LockOn") == 1;
@@ -370,64 +314,30 @@ namespace StarterAssets
             }
 
 
-            isInCombo = comboStateNames.Any(name => stateInfo.IsName(name));
+            //isInCombo = comboStateNames.Any(name => stateInfo.IsName(name));
 
-            if (isInCombo)
-            {
-                if (_animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.8f)
-                {
-                    _animator.applyRootMotion = true;
-                }
-                else
-                {
+            //if (isInCombo)
+            //{
+            //    if (_animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.8f)
+            //    {
+            //        _animator.applyRootMotion = true;
+            //    }
+            //    else
+            //    {
                     
 
-                    _animator.applyRootMotion = false;
-                    //attack_num = 0;
-                    //_animator.SetInteger("Attack_num", attack_num);
+            //        _animator.applyRootMotion = false;
+            //        //attack_num = 0;
+            //        //_animator.SetInteger("Attack_num", attack_num);
                     
-                }
-                //_animator.applyRootMotion = true;
-                // 当前正在播放名为“你的动画状态名称”的动画
-                //Debug.Log("当前动画是：你的动画状态名称");
-            }
-            else if (stateInfo.IsName("heavyAttack"))
+            //    }
+
+            //}
+            if (stateInfo.IsName("heavyAttack"))
             {
                 _animator.applyRootMotion = true;
             }
             else if (stateInfo.IsName("Dodge"))
-            {
-                _animator.applyRootMotion = true;
-            }
-            else if (stateInfo.IsName("Dodge Roll"))
-            {
-                if (_animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.3f)
-                {
-                    _animator.applyRootMotion = false;
-                    canRollAttack = false;
-
-
-                    //canMove = false;
-                }
-                else if (_animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.3f && _animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 0.87f)
-                {
-                    canMove = false;
-                    roll_accelerate = false;
-                    _animator.applyRootMotion = true;
-                }
-                else
-                {
-                    if (_animator.GetFloat("LockOn") != 1)
-                    {
-                        _animator.applyRootMotion = false;
-                        canMove = true;
-                    }
-
-
-                }
-            }
-
-            else if (_animator.GetBool("isSneak"))
             {
                 _animator.applyRootMotion = true;
             }
@@ -516,12 +426,6 @@ namespace StarterAssets
 
                 _cinemachineTargetYaw += _input.look.x * deltaTimeMultiplier;
                 _cinemachineTargetPitch += _input.look.y * deltaTimeMultiplier;
-                if (!Tutorial.Instance.isFinishPerspectiveTip)
-                {
-                    Tutorial.Instance.isFinishPerspectiveTip= true;
-                    Tutorial.Instance.HideTip();
-                    Tutorial.Instance.ShowMoveTip();
-                }
             }
 
             // clamp our rotations so our values are limited 360 degrees
@@ -629,7 +533,7 @@ namespace StarterAssets
             if (stateInfo.IsName("Backflip") || CameraModeController.Instance.vcamExecute.Priority>0||canExecute)
                 return;
 
-            bool canStartFirstAttackNow =(attack_num == 0) && (!isRolling || canRollAttack); 
+            bool canStartFirstAttackNow =(attack_num == 0); 
             if ((canChainNext || canStartFirstAttackNow) && GameObject.Find("Dialogue Panel") == null)
             {
                 if (bufferAttack)
@@ -657,11 +561,7 @@ namespace StarterAssets
                 {
                     if (attack_num == 0)
                     {
-                        if (isRolling && !canRollAttack)
-                        {
-                            bufferAttack = true;
-                            return;
-                        }
+                        
                         canChainNext = false;
                         canImmediatelyAttack = true;
                         //ExecuteAttack();
@@ -744,35 +644,27 @@ namespace StarterAssets
             canChainNext = false;
             bufferAttack = false;
 
-            if (attack_num == 2)
-            {
-                if (Tutorial.Instance.isFinishJumpTip && !Tutorial.Instance.isFinishAttackTip)
-                {
-                    Tutorial.Instance.isFinishAttackTip = true;
-                    Tutorial.Instance.HideTip();
-                    Tutorial.Instance.ShowHeavyAttackTip();
-                }
-            }
+
             
 
         }
 
-        private void UpdateAttackFacing()
-        {
+        //private void UpdateAttackFacing()
+        //{
             
-            if (!isTargeting || lockTarget == null) return;
-            if (!canRotateDuringAttack) return;
+        //    if (!isTargeting || lockTarget == null) return;
+        //    if (!canRotateDuringAttack) return;
 
-            Vector3 toTarget = lockTarget.position - transform.position;
-            toTarget.y = 0f;
-            if (toTarget.sqrMagnitude < 0.0001f) return;
+        //    Vector3 toTarget = lockTarget.position - transform.position;
+        //    toTarget.y = 0f;
+        //    if (toTarget.sqrMagnitude < 0.0001f) return;
 
-            Quaternion currentRot = transform.rotation;
-            Quaternion targetRot = Quaternion.LookRotation(toTarget);
+        //    Quaternion currentRot = transform.rotation;
+        //    Quaternion targetRot = Quaternion.LookRotation(toTarget);
 
-            float maxStep = 720f * Time.deltaTime;
-            transform.rotation = Quaternion.RotateTowards(currentRot, targetRot, maxStep);
-        }
+        //    float maxStep = 720f * Time.deltaTime;
+        //    transform.rotation = Quaternion.RotateTowards(currentRot, targetRot, maxStep);
+        //}
 
         private void TakeExecution()
         {
@@ -784,7 +676,7 @@ namespace StarterAssets
                 _animator.SetTrigger("Execution");
                 playerWeapon.SetStabTransform();
                 lockTarget.GetComponent<EnemyBase>().HideExecutionMarker();
-                Tutorial.Instance.HideTip();
+                
                 AudioManager.Instance.PlayBeginExecution();
                 
             }
@@ -801,12 +693,7 @@ namespace StarterAssets
             if (Input.GetKeyDown(KeyCode.R))
             {
                 _animator.SetTrigger("isHeavyAttack");
-                if (Tutorial.Instance.isFinishAttackTip && !Tutorial.Instance.isFinishHeavyAttackTip)
-                {
-                    Tutorial.Instance.isFinishHeavyAttackTip = true;
-                    Tutorial.Instance.HideTip();
-                    
-                }
+
             }
         }
 
@@ -818,15 +705,7 @@ namespace StarterAssets
                 _animator.SetTrigger("Defense");
                 ResetLayerWeight();
                 BlendSwordDefense();
-                //isCounter = true;
-                if (Time.timeScale != 1f && !Tutorial.Instance.isFinishCounterTip)
-                {
-                    Time.timeScale=1f;
-                    Tutorial.Instance.isFinishCounterTip = true;
-                    isCounterReward = true;
-                    Tutorial.Instance.HideTip();
-                }
-                
+               
             }
         }
 
@@ -838,92 +717,16 @@ namespace StarterAssets
         }
 
 
+        //public void AttackRotateOn()
+        //{
+        //    canRotateDuringAttack = true;
+        //}
 
-        private void Stab()
-        {
-            if (_input.stab)
-            {
-                _input.stab=false;
-                _animator.SetTrigger("Stab");
-            }
-        }
-
-        private void Toss()
-        {
-            if (_input.toss)
-            {
-                _input.toss = false;
-                _animator.SetTrigger("Toss");
-                //CastFireball();
-                print("投掷");
-                if (!Tutorial.Instance.isFinishTossTip&&Tutorial.Instance.currentTip==Tutorial.Instance.tossTip)
-                {
-                    Tutorial.Instance.HideTip() ;
-                    Tutorial.Instance.isFinishTossTip = true;
-                }
-                playerState.ConsumeMagic(0.2f);
-            }
-        }
-
-        void CastFireball()
-        {
-            if (fireballPrefab == null || firePoint == null) return;
-            AudioManager.Instance.PlayThrowFireBall();
-            // 1. 生成火球
-            FireBall proj = Instantiate(
-                fireballPrefab,
-                firePoint.position,
-                firePoint.rotation
-            );
-
-            // 2. 计算目标位置
-            Vector3 targetPos;
-
-            if (lockTarget != null)
-            {
-                // 锁定时瞄准敌人锁定点，稍微往上抬一点
-                targetPos = lockTarget.position + Vector3.up * 0.2f;
-            }
-            else
-            {
-                // 无锁定：沿摄像机前方打一段距离
-                Vector3 forward = cameraTransform != null
-                    ? cameraTransform.forward
-                    : transform.forward;
-
-                forward.y = Mathf.Clamp(forward.y, -0.1f, 0.5f); // 避免打太高/太低
-                forward.Normalize();
-
-                float distance = 15f; // 无锁定时默认射程
-                targetPos = firePoint.position + forward * distance;
-            }
-
-            // 3. 根据距离调整飞行时间，让远处多飞一会儿，近处快一点
-            Vector3 displacement = targetPos - firePoint.position;
-            float horizontalDist = new Vector3(displacement.x, 0, displacement.z).magnitude;
-
-            // 简单：水平距离越远，时间稍微长一点（上限 maxExtraTime）
-            float t = baseTravelTime + Mathf.Clamp01(horizontalDist / 20f) * maxExtraTime;
-
-            // 4. 计算初始速度：v = (Δp - 0.5 * g * t^2) / t
-            Vector3 g = Physics.gravity;
-            Vector3 velocity = (displacement - 0.5f * g * t * t) / t;
-
-            // 5. 发射
-            proj.Launch(velocity);
-        }
-
-
-        public void AttackRotateOn()
-        {
-            canRotateDuringAttack = true;
-        }
-
-        // 在挥刀中后段锁死方向
-        public void AttackRotateOff()
-        {
-            canRotateDuringAttack = false;
-        }
+        //// 在挥刀中后段锁死方向
+        //public void AttackRotateOff()
+        //{
+        //    canRotateDuringAttack = false;
+        //}
 
         public void OpenComboWindow()
         {
@@ -959,12 +762,6 @@ namespace StarterAssets
             canTakeDamage = false;
             isHeavyAttack = false;
         }
-        public void OpenRollAttackWindow()
-        {
-            canRollAttack = true;
-            isRolling = false;
-            playerState.recoverEnergy = true;
-        }
 
         public void OpenCounterWindow()
         {
@@ -976,15 +773,6 @@ namespace StarterAssets
             isCounter = false;
         }
 
-        public void ResetCombo()
-        {
-            attack_num = 0;
-            _animator.SetInteger("Attack_num", attack_num);
-            if(!isRolling)
-                playerState.recoverEnergy = true;
-            canFlipToMove = true;
-            
-        }
 
         public void ResetInput()
         {
@@ -995,38 +783,8 @@ namespace StarterAssets
             _input.toss = false;
             Input.ResetInputAxes();
         }
-        private void RollAccelerate()
-        {
-            if (roll_accelerate)
-            {
-                _controller.Move(transform.forward * 5f * Time.deltaTime);
-            }
-        }
-        private void FlipAccelerate()
-        {
-            if (flip_accelerate)
-            {
-                _controller.Move(transform.forward * (-8f) * Time.deltaTime);
-            }
-        }
 
-        public void OpenFilpAccelerateWindow()
-        {
-            canFlipToMove = false;
-            flip_accelerate = true;
-        }
-
-        public void CloseFilpAccelerateWindow()
-        {
-            //canMove = true;
-            flip_accelerate = false;
-            isFliping = false;
-        }
-
-        public void OpenFlipToMoveWindow()
-        {
-            canFlipToMove = true;
-        }
+        
         public void EnableMove()
         {
             canMove=true;
@@ -1128,82 +886,7 @@ namespace StarterAssets
                 _ => Vector2.up
             };
         }
-        private void Roll()
-        {
-            if (_input.roll)
-            {
-                if ((canMove ||isTargeting) && playerState.energyBar.fillAmount > playerState.energy_per_attack ) {
-                    // 1. 计算翻滚方向（这里举例：相机方向 + 输入方向）
-                    if(isTargeting ||_animator.GetBool("isSneak"))
-                    {
-                        Vector2 move = _input.move;
-                        _animator.SetBool("isSneak", false);
-
-                        if (move.sqrMagnitude < 0.01f)
-                        {
-                            // 没有输入时，你可以选择：
-                            // _rollDir = transform.forward;      // 始终向前滚
-                            // 或者 _rollDir = -transform.forward; // 后撤步
-                            _rollDir = transform.forward;
-                        }
-                        else
-                        {
-                            // 相机前/右方向投射到地面
-                            Vector3 camFwd = _mainCamera.transform.forward;
-                            camFwd.y = 0f;
-                            camFwd.Normalize();
-
-                            Vector3 camRight = _mainCamera.transform.right;
-                            camRight.y = 0f;
-                            camRight.Normalize();
-
-                            // 上下左右输入组合成世界空间的滚动方向
-                            _rollDir = (camFwd * move.y + camRight * move.x).normalized;
-                        }
-
-                        // 2. 把角色朝向旋转到滚动方向
-                        if (_rollDir.sqrMagnitude > 0.0001f)
-                            transform.rotation = Quaternion.LookRotation(_rollDir);
-
-                    }
-
-
-                    //_animator.applyRootMotion = true;
-                    _animator.SetTrigger("Roll");
-                    roll_accelerate = true;
-
-
-                    canMove =false;
-                    isRolling = true;
-                    playerState.ConsumeEnergy();
-                    playerState.recoverEnergy = false;
-                    AudioManager.Instance.PlayRoll();
-                    
-
-                    if (Time.timeScale != 1f &&!Tutorial.Instance.isFinishRollTip)
-                    {
-                        Time.timeScale = 1f;
-                        Tutorial.Instance.isFinishRollTip = true;
-                        isRollReward = true;
-                        Tutorial.Instance.HideTip();
-
-                    }
-
-                    if (Time.timeScale != 1f && !Tutorial.Instance.isFinishRollTip_volumeBall)
-                    {
-                        Time.timeScale = 1f;
-                        Tutorial.Instance.isFinishRollTip_volumeBall = true;
-                        //isRollReward = true;
-                        Tutorial.Instance.HideTip();
-
-                    }
-
-
-                }
-                
-                _input.roll = false;
-            }
-        }
+       
 
         
 
@@ -1225,13 +908,6 @@ namespace StarterAssets
                 {
 
                     StartLock();
-                    
-                    if (!Tutorial.Instance.isFinishLockTip)
-                    {
-                        Tutorial.Instance.isFinishLockTip=true;
-                        Tutorial.Instance.HideTip();
-                    }
-                    //currentMarker = Instantiate(lockOnPrefab, lockTarget.GetChild(0));
                     lockIcon.SetActive(true);
                     swordDir.gameObject.SetActive(true);
                     lockIcon.transform.position = Camera.main.WorldToScreenPoint(lockTarget.GetChild(0).position);
@@ -1341,45 +1017,13 @@ namespace StarterAssets
             }
         }
 
-        private void ChangeCombo()
-        {
-            if (Input.GetKeyDown(KeyCode.Tab)&& switchCoolDown<=0 &&Tutorial.Instance.switchSwordBtn.activeInHierarchy)
-            {
-                isFliping = true;
-                _animator.SetBool("changeCombo", !_animator.GetBool("changeCombo"));
-                _animator.SetTrigger("Flip");
-                ResetCombo();
-                if (!isDark) {
-                    isDark = true;
-                    SwitchSwordUI.Instance.ShowSwitchLightBtn();
-                    playerWeapon.GetComponent<MeshRenderer>().material = darkSwordMaterial;
-                    glowSwordEffect.SetActive(false);
-                    darkSwordEffect.SetActive(true);
-                }
-                else
-                {
-                    isDark = false;
-                    SwitchSwordUI.Instance.ShowSwitchDarkBtn();
-                    playerWeapon.GetComponent<MeshRenderer>().material = glowSwordMaterial;
-                    darkSwordEffect.SetActive(false);
-                    glowSwordEffect.SetActive(true);
-                }
-                AudioManager.Instance.PlaySwordWave();
-                if (!Tutorial.Instance.isFinishSwapTip)
-                {
-                    Tutorial.Instance.isFinishSwapTip=true;
-                    Tutorial.Instance.HideTip();
-                    Time.timeScale = 1f;
-                }
-
-            }
-        }
+        
 
         public void CreateSwordWave()
         {
-            currSwordWave = Instantiate(swordWavePrefab, swordWavePoint);
-            currSwordWave.transform.parent = null;
-            currSwordWave.EmitWave();
+            //currSwordWave = Instantiate(swordWavePrefab, swordWavePoint);
+            //currSwordWave.transform.parent = null;
+            //currSwordWave.EmitWave();
         }
 
         public void GetHeavyAttack()
@@ -1392,7 +1036,7 @@ namespace StarterAssets
         {
             Vector2 move = _input.move;
 
-            if (comboStateNames.Any(name => stateInfo.IsName(name))|| stateInfo.IsName("Toss")|| !canFlipToMove)
+            if (comboStateNames.Any(name => stateInfo.IsName(name)))
             {
                 // 输入参数平滑归零，避免动画树切到移动
                 float x0 = Mathf.Lerp(_animator.GetFloat("inputX"), 0f, Time.deltaTime * 10f);
@@ -1408,7 +1052,7 @@ namespace StarterAssets
 
 
             // ---------- 锁定视角移动 ----------
-            if (isTargeting && lockTarget != null && !isRolling)
+            if (isTargeting && lockTarget != null)
             {
                 // ★ 修改 1：无论有没有输入，都先让角色朝向目标
                 Vector3 toTarget = lockTarget.position - transform.position;
@@ -1484,7 +1128,7 @@ namespace StarterAssets
             {
                 AudioManager.Instance.StopFootStep();
 
-                if (_input.move != Vector2.zero && !isRolling)
+                if (_input.move != Vector2.zero)
                 {
 
                     //_animator.applyRootMotion = false;
@@ -1575,12 +1219,7 @@ namespace StarterAssets
                 //Animator animator = GetComponent<Animator>();
                 AudioManager.Instance.PlayFootStepSFX();
 
-                if (Tutorial.Instance.isFinishPerspectiveTip && !Tutorial.Instance.isFinishMoveTip)
-                {
-                    Tutorial.Instance.isFinishMoveTip = true;
-                    Tutorial.Instance.HideTip();
-                    Tutorial.Instance.ShowJumpTip();
-                }
+
 
             }
             else
@@ -1591,16 +1230,10 @@ namespace StarterAssets
 
                 Vector3 targetDirection = Quaternion.Euler(0.0f, _targetRotation, 0.0f) * Vector3.forward;
 
-            if (!canFlipToMove)
-            {
-                _controller.Move(targetDirection.normalized * (0f * Time.deltaTime) +
-                                 new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
-            }
-            else
-            {
-                _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
-                                 new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
-            }
+            
+            _controller.Move(targetDirection.normalized * (_speed * Time.deltaTime) +
+                                new Vector3(0.0f, _verticalVelocity, 0.0f) * Time.deltaTime);
+            
             // move the player
 
             // update animator if using character
@@ -1642,13 +1275,6 @@ namespace StarterAssets
                     if (_hasAnimator)
                     {
                         _animator.SetBool(_animIDJump, true);
-                    }
-
-                    if (Tutorial.Instance.isFinishMoveTip && !Tutorial.Instance.isFinishJumpTip)
-                    {
-                        Tutorial.Instance.isFinishJumpTip = true;
-                        Tutorial.Instance.HideTip();
-                        Tutorial.Instance.ShowAttackTip();
                     }
                 }
 
@@ -1717,7 +1343,7 @@ namespace StarterAssets
         public void GetHit()
         {
             _animator.SetTrigger("getHit");
-            ResetCombo();
+            
 
         }
 
@@ -1731,14 +1357,7 @@ namespace StarterAssets
             isHitState= false;
         }
 
-        public void ShowSwapTip()
-        {
-            if (!Tutorial.Instance.isFinishSwapTip)
-            {
-                Tutorial.Instance.ShowSwapTip();
-                //Time.timeScale = 0.05f;
-            }
-        }
+
 
         public void PlayHeavyAttackSound()
         {
@@ -1755,10 +1374,7 @@ namespace StarterAssets
             Invoke("ShowSwapTip",2f);
         }
 
-        public void EquipAxe()
-        {
-            axeEquipped.SetActive(true);
-        }
+
 
         public void PlayerDead()
         {
@@ -1776,8 +1392,7 @@ namespace StarterAssets
         public void PlayerRecover()
         {
             _animator.SetBool("isRecover",true);
-            _animator.ResetTrigger("isDead");
-            InitParameter();
+            _animator.ResetTrigger("isDead");            
             isDead = false;
             playerState.Heal(100);
             transform.position=bornPoint.position;
@@ -1803,12 +1418,7 @@ namespace StarterAssets
             }
         }
 
-        public void InitParameter()
-        {
-            isFliping = false;
-            ResetCombo();
-            //isRolling = false;
-        }
+
 
         public void SetAttackID(int attackID)
         {
@@ -1828,8 +1438,7 @@ namespace StarterAssets
         public void ChangeLeftIdle()
         {
             _animator.SetFloat("HandIndex", 2f);
-            //playerWeapon.GetComponent<SwordPoseBlender>().BlendToDir(SwordPoseBlender.Dir.Left);
-            //playerWeapon.GetComponent<SwordPoseBlender>().BlendToDir(SwordPoseBlender.Dir.Left);
+
         }
 
         public void ChangeDownIdle()
@@ -1842,8 +1451,6 @@ namespace StarterAssets
         {
             _animator.SetTrigger("switch");
             _animator.SetInteger("SwitchIndex", index);
-            leftSword.SetActive(false);
-            rightSword.SetActive(true);
             ResetLayerWeight();
         }
 
@@ -1940,13 +1547,6 @@ namespace StarterAssets
         {
             playerWeapon.GetComponent<SwordPoseBlender>().BlendToDir(SwordPoseBlender.Dir.DownTired);
         }
-
-        public void InitRightSword()
-        {
-            rightSword.SetActive(true);
-            leftSword.SetActive(false);
-        }
-
         
     }
 }

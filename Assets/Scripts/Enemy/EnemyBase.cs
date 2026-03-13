@@ -135,8 +135,7 @@ public class EnemyBase : MonoBehaviour
 
     public float changeColorCoolTime=30f;
 
-    [Header("后处理特效球")]
-    public VolumeBall volumeball;
+
 
     [Header("是否锁血")]
     public bool isLockHp;
@@ -256,25 +255,6 @@ public class EnemyBase : MonoBehaviour
 
     }
 
-
-    public void ChangeColor()
-    {
-        isDark = !isDark;
-        if (isDark)
-        {
-            bodyMesh.material = bossDarkMaterial;
-            Instantiate(volumeball).transform.position=transform.GetChild(0).transform.position;
-            //VolumeController.Instance.ChangeDarkVolume();
-        }
-        else
-        {
-            
-            bodyMesh.material=bossGlowMaterial;
-            Instantiate(volumeball).transform.position = transform.GetChild(0).transform.position;
-            //VolumeController.Instance.ChangeLightVolume();
-
-        }
-    }
     void ChangeState(EnemyState newState)
     {
         if (state == newState) return;
