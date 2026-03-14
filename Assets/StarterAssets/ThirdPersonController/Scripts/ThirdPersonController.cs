@@ -183,12 +183,14 @@ namespace StarterAssets
         [Header("Die and Recover")]
         public bool isDead;
         public Transform bornPoint;        
-        public int attackID;
+        
         public bool isdodging;
         public int switchIndex;
         public SwordDirection swordDir;
 
         [Header("Skill")]
+        public int attackID;
+        int lastAttackID;
         public bool canSkill;
         public float comboTime = 1f;//定义连击有效区间
         float comboTimer;
@@ -272,12 +274,16 @@ namespace StarterAssets
                 _animator.SetInteger("attackID", attackID);
                 ResetLayerWeight();
                 BlendSwordRight();
-                //每攻击一次计数，过1秒重置，当计数达到2时，设置animator内部的的skill为true
-                comboCounts++;
+                //每攻击一次计数，过1秒重置，当计数达到2时，设置canSkill
+                //只有当非同方向的时候才加，思路，对比attackID做区分
+                if(attackID != lastAttackID) comboCounts++;
+                else comboCounts=0;
+                lastAttackID= attackID;
+                Debug.Log("ComboCounts" + comboCounts);
                 comboTimer = 0f;//每次攻击重置连击计时器               
             }
 
-            //Debug.Log("ComboTimer"+comboTimer+"   ComboCounts" + comboCounts);
+            
             if (comboTimer <= comboTime)
             {
                 comboTimer += Time.deltaTime;

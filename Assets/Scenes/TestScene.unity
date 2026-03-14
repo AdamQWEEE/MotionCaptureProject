@@ -10489,6 +10489,10 @@ PrefabInstance:
       propertyPath: swordDir
       value: 
       objectReference: {fileID: 352476370}
+    - target: {fileID: 502816401503408825, guid: 1b815d5206cfe4d4ba509e730fa66a05, type: 3}
+      propertyPath: comboTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 579682076779793374, guid: 1b815d5206cfe4d4ba509e730fa66a05, type: 3}
       propertyPath: m_LocalPosition.x
       value: 22.24
