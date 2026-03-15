@@ -49,7 +49,7 @@ public class EnemyManager : MonoBehaviour
 
         foreach (var enemy in _enemies)
         {
-            if (enemy == null || enemy.IsDead)
+            if (enemy == null)
                 continue;
 
             // ★ 直接用敌人本体的位置

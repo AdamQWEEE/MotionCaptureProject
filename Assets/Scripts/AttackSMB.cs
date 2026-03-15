@@ -10,7 +10,7 @@ public class AttackSMB : StateMachineBehaviour
         //if (ctrl != null) ctrl.IsInAttackSM = true;
 
         animator.applyRootMotion = true; // 需要时可在这里开
-        Debug.Log("开启");
+        //Debug.Log("开启");
     }
 
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -20,6 +20,6 @@ public class AttackSMB : StateMachineBehaviour
         //if (ctrl != null) ctrl.IsInAttackSM = false;
 
         animator.applyRootMotion = false; // 需要时可在这里关（按你项目需求）
-        Debug.Log("关闭");
+        //Debug.Log("关闭");
     }
 }

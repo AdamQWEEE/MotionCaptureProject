@@ -47,17 +47,7 @@ public class SwordWave : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             EnemyBase enemy = other.gameObject.GetComponent<EnemyBase>();
-            if (enemy.state == EnemyBase.EnemyState.ChangeYinYang) return;
 
-            
-                          
-            enemy.WaveDamage(8);
-            enemy.FallBack();
-            GetComponent<BoxCollider>().enabled = false;
-            
-            
-            
-            enemy.WaveDamage(2);
             
             AudioManager.Instance.PlayHit();
         }

@@ -62,8 +62,7 @@ public class EnemyStanceBar : MonoBehaviour
         currentStance = Mathf.Min(maxStance, currentStance + amount);
         if (currentStance == maxStance)
         {
-            enemy.LoseBalance();
-            enemy.ShowExecutionMarker();
+
         }
         
     }

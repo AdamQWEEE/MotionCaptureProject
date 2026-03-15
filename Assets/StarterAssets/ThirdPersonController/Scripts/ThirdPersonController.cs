@@ -124,7 +124,7 @@ namespace StarterAssets
 
 
         //private bool isInCombo;
-        //public bool canRotateDuringAttack;
+        public bool canRotateDuringAttack;
 
         
 
@@ -138,7 +138,7 @@ namespace StarterAssets
         public Transform cameraTransform; //Main camera引用
         public float lockOnPitch = 15f;//与玩家保持的相对高度
         public float lockOnRadius = 15f; //能够锁定敌人的半径
-        private bool isTargeting; //是否已经锁定
+        public bool isTargeting; //是否已经锁定
         public Transform lockTarget; //锁定的目标，通常是敌人
         //public Transform faceTarget;
         public float lockOnCameraLerpSpeed = 2f; //相机过渡速度
@@ -194,7 +194,7 @@ namespace StarterAssets
         public bool canSkill;
         public float comboTime = 1f;//定义连击有效区间
         float comboTimer;
-        int comboCounts;//记录连击次数
+        public int comboCounts;//记录连击次数
 
         [Header("Stance")]
         public bool isTired;
@@ -279,8 +279,10 @@ namespace StarterAssets
                 if(attackID != lastAttackID) comboCounts++;
                 else comboCounts=0;
                 lastAttackID= attackID;
-                Debug.Log("ComboCounts" + comboCounts);
-                comboTimer = 0f;//每次攻击重置连击计时器               
+                //Debug.Log("ComboCounts" + comboCounts);
+                comboTimer = 0f;//每次攻击重置连击计时器
+                ExecuteAttack();
+                                
             }
 
             
@@ -316,7 +318,7 @@ namespace StarterAssets
             
                 //Attack();
                 HeavyAttack();
-                //UpdateAttackFacing();
+                UpdateAttackFacing();
                 Counter();
                 Dodge();
                 
@@ -337,13 +339,7 @@ namespace StarterAssets
                     Tutorial.Instance.ShowLockTip();
                 }
             }
-            if (lockTarget != null && lockTarget.GetComponent<EnemyBase>().state == EnemyBase.EnemyState.ChangeYinYang)
-            {
-                if (!Tutorial.Instance.isFinishTossTip)
-                {
-                    Tutorial.Instance.ShowTossTip();
-                }
-            }
+
 
 
             //isInCombo = comboStateNames.Any(name => stateInfo.IsName(name));
@@ -655,48 +651,48 @@ namespace StarterAssets
 
            
 
-            Debug.Log("执行一次");
-            _animator.applyRootMotion = true;
-            if(!_animator.GetBool("changeCombo"))
-            {
+            //Debug.Log("执行一次");
+            //_animator.applyRootMotion = true;
+            //if(!_animator.GetBool("changeCombo"))
+            //{
 
-                attack_num = (attack_num % 3) + 1;
-            }
-            else
-            {
-                attack_num = attack_num + 1;
-            }
-            _animator.SetInteger("Attack_num", attack_num);
-            _animator.SetTrigger("Attack");
-            //_input.attack = false;
-            _animator.SetBool("isSneak", false);
-            playerState.ConsumeEnergy();
-            playerState.recoverEnergy = false;
-            canImmediatelyAttack = false;            
-            canChainNext = false;
-            bufferAttack = false;
+            //    attack_num = (attack_num % 3) + 1;
+            //}
+            //else
+            //{
+            //    attack_num = attack_num + 1;
+            //}
+            //_animator.SetInteger("Attack_num", attack_num);
+            //_animator.SetTrigger("Attack");
+            ////_input.attack = false;
+            //_animator.SetBool("isSneak", false);
+            //playerState.ConsumeEnergy();
+            //playerState.recoverEnergy = false;
+            //canImmediatelyAttack = false;            
+            //canChainNext = false;
+            //bufferAttack = false;
 
 
             
 
         }
 
-        //private void UpdateAttackFacing()
-        //{
-            
-        //    if (!isTargeting || lockTarget == null) return;
-        //    if (!canRotateDuringAttack) return;
+        private void UpdateAttackFacing()
+        {
 
-        //    Vector3 toTarget = lockTarget.position - transform.position;
-        //    toTarget.y = 0f;
-        //    if (toTarget.sqrMagnitude < 0.0001f) return;
+            if (!isTargeting || lockTarget == null) return;
+            if (!canRotateDuringAttack) return;
 
-        //    Quaternion currentRot = transform.rotation;
-        //    Quaternion targetRot = Quaternion.LookRotation(toTarget);
+            Vector3 toTarget = lockTarget.position - transform.position;
+            toTarget.y = 0f;
+            if (toTarget.sqrMagnitude < 0.0001f) return;
 
-        //    float maxStep = 720f * Time.deltaTime;
-        //    transform.rotation = Quaternion.RotateTowards(currentRot, targetRot, maxStep);
-        //}
+            Quaternion currentRot = transform.rotation;
+            Quaternion targetRot = Quaternion.LookRotation(toTarget);
+
+            float maxStep = 720f * Time.deltaTime;
+            transform.rotation = Quaternion.RotateTowards(currentRot, targetRot, maxStep);
+        }
 
         private void TakeExecution()
         {
@@ -707,7 +703,7 @@ namespace StarterAssets
                 Debug.Log("执行处决");
                 _animator.SetTrigger("Execution");
                 playerWeapon.SetStabTransform();
-                lockTarget.GetComponent<EnemyBase>().HideExecutionMarker();
+                //lockTarget.GetComponent<EnemyBase>().HideExecutionMarker();
                 
                 AudioManager.Instance.PlayBeginExecution();
                 
@@ -716,8 +712,8 @@ namespace StarterAssets
 
         public void ApplyExecutionEffect()
         {
-            if(isTargeting)
-                lockTarget.GetComponent<EnemyBase>().PlayExecutionAnim();
+            //if(isTargeting)
+                //lockTarget.GetComponent<EnemyBase>().PlayExecutionAnim();
         }
         public void HeavyAttack() {
 
@@ -749,31 +745,34 @@ namespace StarterAssets
         }
 
 
-        //public void AttackRotateOn()
-        //{
-        //    canRotateDuringAttack = true;
-        //}
+        public void AttackRotateOn()
+        {
+            canRotateDuringAttack = true;
+        }
 
-        //// 在挥刀中后段锁死方向
-        //public void AttackRotateOff()
-        //{
-        //    canRotateDuringAttack = false;
-        //}
+        // 在挥刀中后段锁死方向
+        public void AttackRotateOff()
+        {
+            canRotateDuringAttack = false;
+        }
 
         public void OpenComboWindow()
         {
             canChainNext = true;
+            
             //Debug.Log("可以切换连招");
         }
 
         public void CloseComboWindow()
         {
             canChainNext = false;
+            
         }
 
         public void OpenDamageWindow()
         {
             canTakeDamage = true;
+            playerWeapon.GetComponent<CapsuleCollider>().enabled = true;
         }
 
         
@@ -781,6 +780,7 @@ namespace StarterAssets
         public void CloseDamageWindow()
         {
             canTakeDamage = false;
+            playerWeapon.GetComponent<CapsuleCollider>().enabled = false;
         }
 
         public void OpenHeavyAttackWindow()
@@ -977,8 +977,7 @@ namespace StarterAssets
             else
             {
                 CameraModeController.Instance.EndExecuteCamera();
-                if(GameObject.Find("Boss")!=null)
-                    GameObject.Find("Boss").GetComponent<EnemyBase>().changeColorCoolTime = 10f;
+
                 //LockCameraPosition = false;
                 if (isTargeting)
                 {

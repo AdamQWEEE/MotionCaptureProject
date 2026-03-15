@@ -26,17 +26,17 @@ public class Sword : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-      
+            
             if (playerController.canTakeDamage)
             {
                 EnemyBase enemy = other.GetComponent<EnemyBase>();
-                AudioManager.Instance.PlayHit();
-                hitEnemyNum++;
+               
+                enemy.TakeDamage(10f);
+                //AudioManager.Instance.PlayHit();
+                //hitEnemyNum++;
 
-                if(enemy.state==EnemyBase.EnemyState.ChangeYinYang||enemy.isLockHp) return;
-                enemy.TakeDamage(4);
-                enemy.AddStance(5f);
-                
+
+
 
                 playerController.canTakeDamage = false;
             }
