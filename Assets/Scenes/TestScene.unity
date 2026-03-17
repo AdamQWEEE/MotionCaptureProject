@@ -1583,6 +1583,7 @@ MonoBehaviour:
   attackRange: 2
   attackCooldown: 1.5
   target: {fileID: 0}
+  agent: {fileID: 0}
   comboCount: 3
   comboResetTime: 2
   patrolPoints: []

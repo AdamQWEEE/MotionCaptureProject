@@ -64,7 +64,7 @@ public class SwordPoseBlender : MonoBehaviour
         if (!g) return;
 
         if (_co != null) StopCoroutine(_co);
-        _co = StartCoroutine(CoBlendLocal(g));
+        //_co = StartCoroutine(CoBlendLocal(g));
     }
 
     private IEnumerator CoBlendLocal(Transform targetGrip)
