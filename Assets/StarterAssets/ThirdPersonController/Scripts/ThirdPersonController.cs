@@ -277,8 +277,9 @@ namespace StarterAssets
                 //BlendSwordRight();
                 //每攻击一次计数，过1秒重置，当计数达到2时，设置canSkill
                 //只有当非同方向的时候才加，思路，对比attackID做区分
-                if(attackID != lastAttackID) comboCounts++;
-                else comboCounts=0;
+                comboCounts++;
+                //if (attackID != lastAttackID) comboCounts++;
+                //else comboCounts=0;
                 lastAttackID= attackID;
                 //Debug.Log("ComboCounts" + comboCounts);
                 comboTimer = 0f;//每次攻击重置连击计时器
@@ -1549,16 +1550,17 @@ namespace StarterAssets
         public void BlendSwordRight()
         {
             playerWeapon.GetComponent<SwordPoseBlender>().BlendToDir(SwordPoseBlender.Dir.Right);
+            _animator.SetFloat("HandIndex", 0f);
         }
         public void BlendSwordUp()
         {
             playerWeapon.GetComponent<SwordPoseBlender>().BlendToDir(SwordPoseBlender.Dir.Up);
-            
+            _animator.SetFloat("HandIndex", 1f);
         }
         public void BlendSwordLeft()
         {
             playerWeapon.GetComponent<SwordPoseBlender>().BlendToDir(SwordPoseBlender.Dir.Left);
-            
+            _animator.SetFloat("HandIndex", 2f);
             Debug.Log("触发向左");
         }
 
