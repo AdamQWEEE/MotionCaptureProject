@@ -98515,11 +98515,12 @@ MonoBehaviour:
   hpBar: {fileID: 0}
   usePatrol: 0
   moveSpeed: 2
-  chaseRange: 8
+  chaseRange: 15
   attackRange: 2
   attackCooldown: 1.5
   target: {fileID: 579682078626578205}
   agent: {fileID: 0}
+  animator: {fileID: 0}
   bossPhase: 0
   currentAction: 0
   closeRange: 2
@@ -98529,6 +98530,11 @@ MonoBehaviour:
   actionDuration: 1.2
   guardWeight: 40
   meleeWeight: 60
+  isFarAttackAction: 0
+  hasDoneFarAttackThisCycle: 0
+  farAttackTriggerWidth: 1
+  rangeAttackTimer: 0
+  canTriggerCloseAttack: 1
 --- !u!136 &8416685715156985580
 CapsuleCollider:
   m_ObjectHideFlags: 0

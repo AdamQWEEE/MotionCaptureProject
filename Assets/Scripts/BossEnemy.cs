@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using static EnemyBase;
 
@@ -30,7 +31,7 @@ public class BossEnemy : EnemyBase
         GuardLeft,
         GuardRight
     }
-
+    public Animator animator;
     [Header("Boss State")]
     public BossPhaseState bossPhase = BossPhaseState.Normal;
     public BossActionType currentAction = BossActionType.None;
@@ -52,11 +53,18 @@ public class BossEnemy : EnemyBase
     [Range(0, 100)] public int guardWeight = 40;      // 近距离时防御权重
     [Range(0, 100)] public int meleeWeight = 60;      // 近距离时近战权重
 
+    public bool isFarAttackAction = false;
+    public bool hasDoneFarAttackThisCycle = false;
+    public float farAttackTriggerWidth;
+    public float rangeAttackTimer;
+    public bool canTriggerCloseAttack;
+
     protected override void Start()
     {
         base.Start();
         enemyType = EnemyType.Boss;
         currentHP = maxHP;
+        animator=GetComponent<Animator>();
     }
 
     protected override void Update()
@@ -90,6 +98,7 @@ public class BossEnemy : EnemyBase
 
             return;
         }
+        rangeAttackTimer-=Time.deltaTime;
 
         base.Update();
     }
@@ -98,20 +107,31 @@ public class BossEnemy : EnemyBase
     {
         if (target == null || isHurt || isDead) return;
         if (bossPhase != BossPhaseState.Normal) return;
+        if (isPerformingAction) return;   // [新增] 动作播放中不切换
 
         float distance = Vector3.Distance(transform.position, target.position);
 
-        if (distance <= closeRange)
-        {
-            currentState = EnemyState.Attack;
-        }
-        else if (distance <= chaseRange)
-        {
-            currentState = EnemyState.Chase;
-        }
-        else
+        // [修改] 超出追击范围 -> Idle
+        if (distance > chaseRange)
         {
             currentState = EnemyState.Idle;
+        }
+        // [修改] 近战距离内 -> Attack
+        else if (distance <= closeRange)
+        {
+            currentState = EnemyState.Attack;
+            animator.SetFloat("BossSpeed", 0f);
+        }
+        // [修改] 中距离（closeRange ~ farRange）-> Attack（执行一次远程攻击）
+        else if (distance <= farRange)
+        {
+            if(!hasDoneFarAttackThisCycle)
+                currentState = EnemyState.Attack;
+        }
+        // [修改] farRange 外但仍在追击范围内 -> Chase
+        else
+        {
+            currentState = EnemyState.Chase;
         }
     }
 
@@ -119,7 +139,7 @@ public class BossEnemy : EnemyBase
     {
         StopMove();
         currentAction = BossActionType.None;
-        // animator.SetBool("IsMoving", false);
+        animator.SetFloat("BossSpeed", 0f);
     }
 
     protected override void UpdateChase()
@@ -130,9 +150,16 @@ public class BossEnemy : EnemyBase
         {
             agent.isStopped = false;
             agent.speed = moveSpeed;
-            agent.stoppingDistance = 2f;
+            animator.SetFloat("BossSpeed",1f);
+
+            // 还没打过远程：先追到 farRange
+            if (!hasDoneFarAttackThisCycle)
+                agent.stoppingDistance = farRange * 0.9f;
+            // 远程打完后：继续追到 closeRange
+            else
+                agent.stoppingDistance = closeRange * 0.9f;
+
             agent.SetDestination(target.position);
-            Debug.Log("追逐玩家");
         }
 
         FaceTarget();
@@ -145,14 +172,71 @@ public class BossEnemy : EnemyBase
         StopMove();
         FaceTarget();
 
-        if (attackTimer > 0f)
+        if (target == null) return;
+        if (isPerformingAction) return;   // 当前动作还没播完，不重复选动作
+
+        float distance = Vector3.Distance(transform.position, target.position);
+
+        // ===== 1. 玩家跑出 farRange：退出攻击，重新追击 =====
+        if (distance > farRange)
         {
-            attackTimer -= Time.deltaTime;
+            currentState = EnemyState.Chase;
             return;
         }
 
-        SelectAndPerformAction();
-        attackTimer = attackCooldown;
+        // ===== 2. 攻击冷却中：先不出手 =====
+        //if (attackTimer > 0f)
+        //{
+        //    attackTimer -= Time.deltaTime;
+        //    return;
+        //}
+
+        // ===== 3. 中距离：优先打一发远程攻击（只打一轮）=====
+        // ===== [修改] 只有在 farRange 外圈的一小段范围内才触发一次远程攻击 =====
+        if (distance > farRange - farAttackTriggerWidth && distance <= farRange)
+        {
+            if (rangeAttackTimer<=0 && !hasDoneFarAttackThisCycle)
+            {
+                currentAction = SelectFarRangeAction();
+                isFarAttackAction = true;
+                hasDoneFarAttackThisCycle = true;
+
+                PerformAction(currentAction);
+                attackTimer = attackCooldown;
+                rangeAttackTimer = 10f;
+                //Invoke("ChangeToChase", 2f);
+                return;
+            }
+
+            //currentState = EnemyState.Chase;
+            //return;
+        }
+
+        // ===== 4. 近距离：近战/四向防御 =====
+        if (distance <= closeRange && canTriggerCloseAttack)
+        {
+            currentAction = SelectCloseRangeAction();   // 7选1：3攻击 + 4防御
+            isFarAttackAction = false;
+            hasDoneFarAttackThisCycle = false;
+            canTriggerCloseAttack = false;
+            PerformAction(currentAction);
+            attackTimer = attackCooldown;
+            return;
+        }
+    }
+
+    public void TriggerNextAttack()
+    {
+        Invoke("EnableAttack", 0.5f);
+    }
+
+    private void EnableAttack()
+    {
+        canTriggerCloseAttack = true;
+    }
+    public void ChangeToChase()
+    {
+        currentState = EnemyState.Chase;
     }
 
     protected override void UpdateHurt()
@@ -168,23 +252,23 @@ public class BossEnemy : EnemyBase
         }
     }
 
-    private void SelectAndPerformAction()
-    {
-        if (target == null) return;
+    //private void SelectAndPerformAction()
+    //{
+    //    if (target == null) return;
 
-        float distance = Vector3.Distance(transform.position, target.position);
+    //    float distance = Vector3.Distance(transform.position, target.position);
 
-        if (distance <= closeRange)
-        {
-            currentAction = SelectCloseRangeAction();
-        }
-        else
-        {
-            currentAction = SelectFarRangeAction();
-        }
+    //    if (distance <= closeRange)
+    //    {
+    //        currentAction = SelectCloseRangeAction();
+    //    }
+    //    else
+    //    {
+    //        currentAction = SelectFarRangeAction();
+    //    }
 
-        PerformAction(currentAction);
-    }
+    //    PerformAction(currentAction);
+    //}
 
     private BossActionType SelectCloseRangeAction()
     {
@@ -231,55 +315,55 @@ public class BossEnemy : EnemyBase
             case BossActionType.LeftClaw:
                 actionDuration = 1.0f;
                 Debug.Log("Boss 使用：左爪攻击");
-                // animator.SetTrigger("LeftClaw");
+                animator.SetTrigger("LeftAttack");
                 break;
 
             case BossActionType.RightClaw:
                 actionDuration = 1.0f;
                 Debug.Log("Boss 使用：右爪攻击");
-                // animator.SetTrigger("RightClaw");
+                animator.SetTrigger("RightAttack");
                 break;
 
             case BossActionType.CrossClaw:
                 actionDuration = 1.2f;
                 Debug.Log("Boss 使用：交叉攻击");
-                // animator.SetTrigger("CrossClaw");
+                animator.SetTrigger("CrossAttack");
                 break;
 
             case BossActionType.GuardUp:
                 actionDuration = 0.8f;
                 Debug.Log("Boss 使用：上防御");
-                // animator.SetTrigger("GuardUp");
+                animator.SetTrigger("GuardUp");
                 break;
 
             case BossActionType.GuardDown:
                 actionDuration = 0.8f;
                 Debug.Log("Boss 使用：下防御");
-                // animator.SetTrigger("GuardDown");
+                animator.SetTrigger("GuardDown");
                 break;
 
             case BossActionType.GuardLeft:
                 actionDuration = 0.8f;
                 Debug.Log("Boss 使用：左防御");
-                // animator.SetTrigger("GuardLeft");
+                animator.SetTrigger("GuardLeft");
                 break;
 
             case BossActionType.GuardRight:
                 actionDuration = 0.8f;
                 Debug.Log("Boss 使用：右防御");
-                // animator.SetTrigger("GuardRight");
+                animator.SetTrigger("GuardRight");
                 break;
 
             case BossActionType.Roar:
                 actionDuration = 1.8f;
                 Debug.Log("Boss 使用：怒吼攻击");
-                // animator.SetTrigger("Roar");
+                animator.SetTrigger("Roar");
                 break;
 
             case BossActionType.SmashAOE:
                 actionDuration = 1.6f;
                 Debug.Log("Boss 使用：砸地AOE");
-                // animator.SetTrigger("SmashAOE");
+                animator.SetTrigger("Smash");
                 break;
         }
 
