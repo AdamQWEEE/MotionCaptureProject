@@ -57,7 +57,7 @@ public abstract class EnemyBase : MonoBehaviour
     protected bool isDead;
     protected bool isHurt;
 
-    protected NavMeshAgent agent;
+    public NavMeshAgent agent;
 
 
     protected virtual void OnEnable()
@@ -144,19 +144,20 @@ public abstract class EnemyBase : MonoBehaviour
 
     protected virtual void UpdateChase()
     {
-        if (target == null) return;
+        //if (target == null) return;
 
-        if (agent != null)
-        {
-            agent.isStopped = false;
-            agent.speed = moveSpeed;
-            agent.stoppingDistance = attackRange;
-            agent.SetDestination(target.position);
-        }
-        else
-        {
-            // 可选兜底：没Agent时仍可用transform移动
-        }
+        //if (agent != null)
+        //{
+        //    agent.isStopped = false;
+        //    agent.speed = moveSpeed;
+        //    agent.stoppingDistance = attackRange;
+        //    agent.SetDestination(target.position);
+            
+        //}
+        //else
+        //{
+        //    // 可选兜底：没Agent时仍可用transform移动
+        //}
     }
 
     protected virtual void UpdateAttack()
