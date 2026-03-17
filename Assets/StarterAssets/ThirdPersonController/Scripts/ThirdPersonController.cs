@@ -259,6 +259,7 @@ namespace StarterAssets
 
         private void Update()
         {
+            
             UnlockTimer();
             UpdateLockOnParam();
             _hasAnimator = TryGetComponent(out _animator);
@@ -273,11 +274,12 @@ namespace StarterAssets
                 _animator.SetTrigger("Attack");
                 _animator.SetInteger("attackID", attackID);
                 ResetLayerWeight();
-                BlendSwordRight();
+                //BlendSwordRight();
                 //每攻击一次计数，过1秒重置，当计数达到2时，设置canSkill
                 //只有当非同方向的时候才加，思路，对比attackID做区分
-                if(attackID != lastAttackID) comboCounts++;
-                else comboCounts=0;
+                comboCounts++;
+                //if (attackID != lastAttackID) comboCounts++;
+                //else comboCounts=0;
                 lastAttackID= attackID;
                 //Debug.Log("ComboCounts" + comboCounts);
                 comboTimer = 0f;//每次攻击重置连击计时器
@@ -950,8 +952,8 @@ namespace StarterAssets
                     
                     swordDir.gameObject.SetActive(false);
                     lockIcon.SetActive(false);
-                    ChangeRightIdle();
-                    BlendSwordRight();
+                    //ChangeRightIdle();
+                    //BlendSwordRight();
                 }
                     
             }
@@ -1456,27 +1458,27 @@ namespace StarterAssets
             _animator.SetInteger("attackID", attackID);
         }
 
-        public void ChangeRightIdle()
-        {
-            _animator.SetFloat("HandIndex", 0f);
-        }
-        public void ChangeTopIdle()
-        {
-            _animator.SetFloat("HandIndex", 1f);
-        }
+        //public void ChangeRightIdle()
+        //{
+        //    _animator.SetFloat("HandIndex", 0f);
+        //}
+        //public void ChangeTopIdle()
+        //{
+        //    _animator.SetFloat("HandIndex", 1f);
+        //}
 
 
-        public void ChangeLeftIdle()
-        {
-            _animator.SetFloat("HandIndex", 2f);
+        //public void ChangeLeftIdle()
+        //{
+        //    _animator.SetFloat("HandIndex", 2f);
 
-        }
+        //}
 
-        public void ChangeDownIdle()
-        {
-            _animator.SetFloat("HandIndex", 3f);
-            //playerWeapon.GetComponent<SwordPoseBlender>().BlendToDir(SwordPoseBlender.Dir.Down);
-        }
+        //public void ChangeDownIdle()
+        //{
+        //    _animator.SetFloat("HandIndex", 3f);
+        //    //playerWeapon.GetComponent<SwordPoseBlender>().BlendToDir(SwordPoseBlender.Dir.Down);
+        //}
 
         public void SwitchSwordPos(int index)
         {
@@ -1523,7 +1525,7 @@ namespace StarterAssets
                 BlendSwordRight();
             }
 
-            else if(_animator.GetFloat("HandIndex") == 1)
+            else if (_animator.GetFloat("HandIndex") == 1)
             {
                 BlendSwordUp();
             }
@@ -1545,10 +1547,20 @@ namespace StarterAssets
             if (driver) driver.SetUpperTarget(0f);
         }
 
-
+        public void BlendSwordRight()
+        {
+            playerWeapon.GetComponent<SwordPoseBlender>().BlendToDir(SwordPoseBlender.Dir.Right);
+            _animator.SetFloat("HandIndex", 0f);
+        }
+        public void BlendSwordUp()
+        {
+            playerWeapon.GetComponent<SwordPoseBlender>().BlendToDir(SwordPoseBlender.Dir.Up);
+            _animator.SetFloat("HandIndex", 1f);
+        }
         public void BlendSwordLeft()
         {
             playerWeapon.GetComponent<SwordPoseBlender>().BlendToDir(SwordPoseBlender.Dir.Left);
+            _animator.SetFloat("HandIndex", 2f);
             Debug.Log("触发向左");
         }
 
@@ -1556,18 +1568,13 @@ namespace StarterAssets
         public void BlendSwordDown()
         {
             playerWeapon.GetComponent<SwordPoseBlender>().BlendToDir(SwordPoseBlender.Dir.Down);
+            _animator.SetFloat("HandIndex", 3f);
         }
 
-        public void BlendSwordUp()
-        {
-            playerWeapon.GetComponent<SwordPoseBlender>().BlendToDir(SwordPoseBlender.Dir.Up);
-        }
+       
 
 
-        public void BlendSwordRight()
-        {
-            playerWeapon.GetComponent<SwordPoseBlender>().BlendToDir(SwordPoseBlender.Dir.Right);
-        }
+       
 
         public void BlendSwordDefense()
         {
