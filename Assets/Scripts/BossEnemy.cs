@@ -517,7 +517,7 @@ public class BossEnemy : EnemyBase
     {
         if (isDead) return;
         if (bossPhase == BossPhaseState.Executed) return;
-        hpBar.TakeDamage(10f);
+        hpBar.TakeDamage(damage);
         currentHP -= damage;
 
         if (currentHP <= 0f)
@@ -587,8 +587,8 @@ public class BossEnemy : EnemyBase
 
     protected override void OnDie()
     {
-        // animator.SetTrigger("Dead");
-        Destroy(gameObject, 3f);
+        animator.SetTrigger("Die");
+        Destroy(gameObject, 8f);
     }
 
     protected override void Attack()

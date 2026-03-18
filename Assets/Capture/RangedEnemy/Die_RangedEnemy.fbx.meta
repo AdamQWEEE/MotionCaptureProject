@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1918688a4534334489696ad8d889b855
+guid: 82f74ff43b7f9e8488e127df9648a979
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -17,7 +17,7 @@ ModelImporter:
     removeConstantScaleCurves: 0
     motionNodeName: 
     animationImportErrors: 
-    animationImportWarnings: "\nClip 'Adam0316_048' has import animation warnings
+    animationImportWarnings: "\nClip 'Adam0316_016' has import animation warnings
       that might lower retargeting quality:\nNote: Activate translation DOF on avatar
       to improve retargeting quality.\n\t'Adam50_Spine1' has translation animation
       that will be discarded.\n\t'Adam50_Head' has translation animation that will
@@ -38,11 +38,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: BossDie
-      takeName: Adam0316_048
-      internalID: 2225759175491570642
-      firstFrame: 534
-      lastFrame: 1330
+      name: Die_RangedEnemy
+      takeName: Adam0316_016
+      internalID: -6160816114280149888
+      firstFrame: 834
+      lastFrame: 1289
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -61,7 +61,14 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.92257756
+        functionName: EndDie
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -285,515 +292,530 @@ ModelImporter:
         length: 0
         modified: 0
     skeleton:
-    - name: Adam0316_048(Clone)
+    - name: Adam0316_016(Clone)
       parentName: 
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
-    - name: Adam0316_048
-      parentName: Adam0316_048(Clone)
+    - name: Adam0316_016
+      parentName: Adam0316_016(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_WaistLFront
-      parentName: Adam0316_048
-      position: {x: -0.08654146, y: 0.98787755, z: 0.1515623}
+      parentName: Adam0316_016
+      position: {x: -0.07270838, y: 0.99098384, z: 0.11244628}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_WaistRFront
-      parentName: Adam0316_048
-      position: {x: -0.055498105, y: 0.98950744, z: 0.39648426}
+      parentName: Adam0316_016
+      position: {x: -0.058431327, y: 0.9868732, z: 0.3600192}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_WaistLBack
-      parentName: Adam0316_048
-      position: {x: 0.1741477, y: 0.9355453, z: 0.1265544}
+      parentName: Adam0316_016
+      position: {x: 0.18938926, y: 0.9617193, z: 0.11223579}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_Hip_4
-      parentName: Adam0316_048
-      position: {x: 0.19557062, y: 1.0125326, z: 0.15568537}
+      parentName: Adam0316_016
+      position: {x: 0.1877158, y: 1.0511305, z: 0.14058855}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_WaistRBack
-      parentName: Adam0316_048
-      position: {x: 0.1872618, y: 0.93788266, z: 0.31570485}
+      parentName: Adam0316_016
+      position: {x: 0.19248618, y: 0.9598644, z: 0.30312613}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_BackTop
-      parentName: Adam0316_048
-      position: {x: 0.22328152, y: 1.4574975, z: 0.19910076}
+      parentName: Adam0316_016
+      position: {x: 0.20652734, y: 1.4774643, z: 0.18896888}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_ChestTop
-      parentName: Adam0316_048
-      position: {x: -0.018467946, y: 1.3915048, z: 0.22191978}
+      parentName: Adam0316_016
+      position: {x: -0.04452161, y: 1.4284962, z: 0.20450431}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_BackLeft
-      parentName: Adam0316_048
-      position: {x: 0.21122955, y: 1.2880148, z: 0.07353541}
+      parentName: Adam0316_016
+      position: {x: 0.17436926, y: 1.3153055, z: 0.059886567}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_BackRight
-      parentName: Adam0316_048
-      position: {x: 0.22074682, y: 1.2799821, z: 0.34972593}
+      parentName: Adam0316_016
+      position: {x: 0.18521509, y: 1.302745, z: 0.33248255}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_ChestLow
-      parentName: Adam0316_048
-      position: {x: -0.049466036, y: 1.3105602, z: 0.22133312}
+      parentName: Adam0316_016
+      position: {x: -0.075484104, y: 1.3465873, z: 0.20620511}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_HeadTop
-      parentName: Adam0316_048
-      position: {x: 0.023118934, y: 1.7683825, z: 0.22051185}
+      parentName: Adam0316_016
+      position: {x: 0.05089018, y: 1.8012042, z: 0.21897353}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_HeadFront
-      parentName: Adam0316_048
-      position: {x: -0.07394757, y: 1.7050588, z: 0.23709996}
+      parentName: Adam0316_016
+      position: {x: -0.051679287, y: 1.7495401, z: 0.21933968}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_HeadLeft
-      parentName: Adam0316_048
-      position: {x: 0.033839583, y: 1.7046422, z: 0.11632652}
+      parentName: Adam0316_016
+      position: {x: 0.064083025, y: 1.7401648, z: 0.1107887}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_HeadRight
-      parentName: Adam0316_048
-      position: {x: 0.022421218, y: 1.7102027, z: 0.31070104}
+      parentName: Adam0316_016
+      position: {x: 0.037811957, y: 1.7420739, z: 0.30380595}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_LShoulderBack
-      parentName: Adam0316_048
-      position: {x: 0.1837231, y: 1.3886247, z: 0.025929121}
+      parentName: Adam0316_016
+      position: {x: 0.16448806, y: 1.4186999, z: 0.01521224}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_LShoulderTop
-      parentName: Adam0316_048
-      position: {x: 0.123583, y: 1.506815, z: 0.10158011}
+      parentName: Adam0316_016
+      position: {x: 0.112918936, y: 1.5363108, z: 0.09807103}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_LElbowOut
-      parentName: Adam0316_048
-      position: {x: 0.09272645, y: 1.4168907, z: -0.20842315}
+      parentName: Adam0316_016
+      position: {x: 0.09578787, y: 1.4824821, z: -0.21038188}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_LUArmHigh
-      parentName: Adam0316_048
-      position: {x: 0.11454357, y: 1.3609304, z: -0.1278897}
+      parentName: Adam0316_016
+      position: {x: 0.10752924, y: 1.41421, z: -0.13239697}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_LWristOut
-      parentName: Adam0316_048
-      position: {x: 0.020804204, y: 1.4222925, z: -0.45814368}
+      parentName: Adam0316_016
+      position: {x: 0.051543754, y: 1.506261, z: -0.46615717}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_LWristIn
-      parentName: Adam0316_048
-      position: {x: -0.068850875, y: 1.3719928, z: -0.44447252}
+      parentName: Adam0316_016
+      position: {x: -0.058079537, y: 1.4908744, z: -0.46792352}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_LFArm
-      parentName: Adam0316_048
-      position: {x: -0.028293688, y: 1.4312603, z: -0.32329667}
+      parentName: Adam0316_016
+      position: {x: -0.017501658, y: 1.5219227, z: -0.3319995}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_LHandOut
-      parentName: Adam0316_048
-      position: {x: 0.01132583, y: 1.4079428, z: -0.53881097}
+      parentName: Adam0316_016
+      position: {x: 0.04142618, y: 1.488455, z: -0.5584262}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_LHandIn
-      parentName: Adam0316_048
-      position: {x: -0.1077778, y: 1.3624417, z: -0.51976454}
+      parentName: Adam0316_016
+      position: {x: -0.08654576, y: 1.4989111, z: -0.5443782}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_RShoulderBack
-      parentName: Adam0316_048
-      position: {x: 0.21412866, y: 1.4050971, z: 0.37443626}
+      parentName: Adam0316_016
+      position: {x: 0.1917696, y: 1.4268246, z: 0.35445166}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_RShoulderTop
-      parentName: Adam0316_048
-      position: {x: 0.1384067, y: 1.5102751, z: 0.31261066}
+      parentName: Adam0316_016
+      position: {x: 0.11938555, y: 1.5355786, z: 0.3009184}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_RElbowOut
-      parentName: Adam0316_048
-      position: {x: 0.12576129, y: 1.4455692, z: 0.6435537}
+      parentName: Adam0316_016
+      position: {x: 0.16200238, y: 1.4793311, z: 0.6192132}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_RUArmHigh
-      parentName: Adam0316_048
-      position: {x: 0.15102835, y: 1.3841587, z: 0.55364245}
+      parentName: Adam0316_016
+      position: {x: 0.15905182, y: 1.4166871, z: 0.52631634}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_RWristOut
-      parentName: Adam0316_048
-      position: {x: 0.06527282, y: 1.433473, z: 0.8871381}
+      parentName: Adam0316_016
+      position: {x: 0.14140978, y: 1.4824901, z: 0.8745418}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_RWristIn
-      parentName: Adam0316_048
-      position: {x: -0.025103755, y: 1.4846666, z: 0.8882618}
+      parentName: Adam0316_016
+      position: {x: 0.06001245, y: 1.5489161, z: 0.8962319}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_RFArm
-      parentName: Adam0316_048
-      position: {x: 0.0048685637, y: 1.4841055, z: 0.72817045}
+      parentName: Adam0316_016
+      position: {x: 0.06549955, y: 1.5453793, z: 0.7190338}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_RHandOut
-      parentName: Adam0316_048
-      position: {x: 0.07313698, y: 1.4693879, z: 0.96742123}
+      parentName: Adam0316_016
+      position: {x: 0.1730891, y: 1.5220677, z: 0.9566771}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_RHandIn
-      parentName: Adam0316_048
-      position: {x: -0.046733268, y: 1.4766026, z: 0.93723255}
+      parentName: Adam0316_016
+      position: {x: 0.04528535, y: 1.5409918, z: 0.95263207}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_LKneeOut
-      parentName: Adam0316_048
-      position: {x: 0.04283297, y: 0.4841838, z: 0.012593097}
+      parentName: Adam0316_016
+      position: {x: 0.1117387, y: 0.49935183, z: -0.00946002}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_LThighFront
-      parentName: Adam0316_048
-      position: {x: -0.09558124, y: 0.52446556, z: 0.09938202}
+      parentName: Adam0316_016
+      position: {x: -0.025340704, y: 0.52759594, z: 0.077667125}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_LThighSide
-      parentName: Adam0316_048
-      position: {x: 0.040113278, y: 0.71299607, z: 0.025418235}
+      parentName: Adam0316_016
+      position: {x: 0.09104492, y: 0.7260236, z: -0.0039771283}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_LAnkleOut
-      parentName: Adam0316_048
-      position: {x: 0.090509705, y: 0.09296332, z: -0.014829653}
+      parentName: Adam0316_016
+      position: {x: 0.12111749, y: 0.10626527, z: -0.06536064}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_LShin
-      parentName: Adam0316_048
-      position: {x: -0.0077406517, y: 0.2605897, z: 0.058388744}
+      parentName: Adam0316_016
+      position: {x: 0.050131056, y: 0.29117575, z: 0.027794855}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_LToeOut
-      parentName: Adam0316_048
-      position: {x: -0.007533211, y: 0.007427261, z: -0.077051684}
+      parentName: Adam0316_016
+      position: {x: 0.016191939, y: 0.008448242, z: -0.15155742}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_LToeIn
-      parentName: Adam0316_048
-      position: {x: -0.042563073, y: 0.0014361709, z: 0.062112577}
+      parentName: Adam0316_016
+      position: {x: -0.017679686, y: 0.0040325494, z: -0.0032053804}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_LHeel
-      parentName: Adam0316_048
-      position: {x: 0.18658727, y: 0.03437338, z: 0.043924402}
+      parentName: Adam0316_016
+      position: {x: 0.20906952, y: 0.039031606, z: -0.009937188}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_LToeTip
-      parentName: Adam0316_048
-      position: {x: -0.11012078, y: 0.011092655, z: -0.017913822}
+      parentName: Adam0316_016
+      position: {x: -0.08307394, y: 0.013045239, z: -0.08550616}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_RKneeOut
-      parentName: Adam0316_048
-      position: {x: 0.09655681, y: 0.51612616, z: 0.45680746}
+      parentName: Adam0316_016
+      position: {x: 0.123084016, y: 0.52232146, z: 0.44620764}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_RThighFront
-      parentName: Adam0316_048
-      position: {x: -0.053523615, y: 0.5487158, z: 0.44703883}
+      parentName: Adam0316_016
+      position: {x: -0.027989144, y: 0.5444973, z: 0.39229003}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_RThighSide
-      parentName: Adam0316_048
-      position: {x: 0.103269555, y: 0.6897396, z: 0.4354417}
+      parentName: Adam0316_016
+      position: {x: 0.121494465, y: 0.7032796, z: 0.4199862}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_RAnkleOut
-      parentName: Adam0316_048
-      position: {x: 0.14801818, y: 0.07855773, z: 0.54428554}
+      parentName: Adam0316_016
+      position: {x: 0.17173088, y: 0.102771565, z: 0.52241546}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_RShin
-      parentName: Adam0316_048
-      position: {x: 0.020445833, y: 0.27719748, z: 0.49141905}
+      parentName: Adam0316_016
+      position: {x: 0.054323215, y: 0.28881696, z: 0.44357195}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_RToeOut
-      parentName: Adam0316_048
-      position: {x: 0.008854268, y: 0.020050628, z: 0.6290863}
+      parentName: Adam0316_016
+      position: {x: 0.040358804, y: 0.02624392, z: 0.61317104}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_RToeIn
-      parentName: Adam0316_048
-      position: {x: -0.05216159, y: 0.0023533665, z: 0.5136816}
+      parentName: Adam0316_016
+      position: {x: -0.012917354, y: -0.00040933918, z: 0.49561274}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_RHeel
-      parentName: Adam0316_048
-      position: {x: 0.19267933, y: 0.028362745, z: 0.4464763}
+      parentName: Adam0316_016
+      position: {x: 0.22645898, y: 0.035252184, z: 0.4251471}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_RToeTip
-      parentName: Adam0316_048
-      position: {x: -0.0810231, y: 0.017755095, z: 0.58936214}
+      parentName: Adam0316_016
+      position: {x: -0.042557657, y: 0.011333885, z: 0.57039}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
-    - name: Unlabeled 10426
-      parentName: Adam0316_048
-      position: {x: 0.4966558, y: 1.1452104, z: -0.09033555}
+    - name: Unlabeled 3679
+      parentName: Adam0316_016
+      position: {x: 0.25045973, y: 0.15906036, z: 0.16710123}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
-    - name: Unlabeled 10428
-      parentName: Adam0316_048
-      position: {x: 0.2444397, y: 0.6957158, z: 0.47045666}
+    - name: Unlabeled 3680
+      parentName: Adam0316_016
+      position: {x: -0.1641677, y: 0.20299907, z: 0.12331248}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
-    - name: Unlabeled 10429
-      parentName: Adam0316_048
-      position: {x: -0.077022076, y: 0.12713268, z: 0.48399672}
+    - name: Unlabeled 3681
+      parentName: Adam0316_016
+      position: {x: 0.69024235, y: 0.045588084, z: -0.16974477}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
-    - name: Unlabeled 10434
-      parentName: Adam0316_048
-      position: {x: -0.045279168, y: -0.13738668, z: 0.088100925}
+    - name: Unlabeled 3682
+      parentName: Adam0316_016
+      position: {x: 0.813903, y: 0.014479816, z: -0.09395903}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
-    - name: Unlabeled 10435
-      parentName: Adam0316_048
-      position: {x: -0.94821507, y: 0.5720907, z: 0.15900594}
+    - name: Unlabeled 3685
+      parentName: Adam0316_016
+      position: {x: -1.003485, y: 0.8327569, z: -0.7329857}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
-    - name: Unlabeled 10437
-      parentName: Adam0316_048
-      position: {x: -0.86021125, y: 0.055210367, z: 0.038214974}
+    - name: Unlabeled 3687
+      parentName: Adam0316_016
+      position: {x: -0.65856004, y: 0.3791251, z: -0.53995377}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
-    - name: Unlabeled 10439
-      parentName: Adam0316_048
-      position: {x: -1.2960938, y: -0.36769047, z: 0.25195098}
+    - name: Unlabeled 3688
+      parentName: Adam0316_016
+      position: {x: 0.40787983, y: -0.36902362, z: -0.41581503}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
-    - name: Unlabeled 10440
-      parentName: Adam0316_048
-      position: {x: -0.8826698, y: -0.2531774, z: 0.110991046}
+    - name: Unlabeled 3692
+      parentName: Adam0316_016
+      position: {x: -0.21572688, y: -0.07389891, z: -0.9234881}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
-    - name: Unlabeled 10441
-      parentName: Adam0316_048
-      position: {x: -0.10564983, y: 0.0018519163, z: 0.44234678}
+    - name: Unlabeled 3693
+      parentName: Adam0316_016
+      position: {x: 0.3136303, y: 0.1286261, z: 0.16127968}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
-    - name: Unlabeled 10442
-      parentName: Adam0316_048
-      position: {x: -1.0044345, y: -0.093207866, z: 0.108481556}
+    - name: Unlabeled 3696
+      parentName: Adam0316_016
+      position: {x: -0.20124637, y: 0.060810044, z: -0.8938583}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
-    - name: Unlabeled 10443
-      parentName: Adam0316_048
-      position: {x: -0.97311217, y: -0.13530335, z: 0.007968069}
+    - name: Unlabeled 3697
+      parentName: Adam0316_016
+      position: {x: 0.028891705, y: -0.012592338, z: 0.030975113}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
-    - name: Unlabeled 10445
-      parentName: Adam0316_048
-      position: {x: -0.98058903, y: 0.21537115, z: 0.41975108}
+    - name: Unlabeled 3699
+      parentName: Adam0316_016
+      position: {x: 0.035211086, y: -0.20834053, z: -0.74943364}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
-    - name: Unlabeled 10446
-      parentName: Adam0316_048
-      position: {x: 0.41850722, y: 0.018017292, z: -0.32569334}
+    - name: Unlabeled 3700
+      parentName: Adam0316_016
+      position: {x: 0.1684127, y: -0.03182432, z: 0.1780049}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
-    - name: Unlabeled 10447
-      parentName: Adam0316_048
-      position: {x: -1.1472806, y: 0.04551287, z: 0.20802794}
+    - name: Unlabeled 3701
+      parentName: Adam0316_016
+      position: {x: -0.31476918, y: -0.1716999, z: -0.42374834}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
-    - name: Unlabeled 10451
-      parentName: Adam0316_048
-      position: {x: -0.9813386, y: -0.1581474, z: 0.42493615}
+    - name: Unlabeled 3702
+      parentName: Adam0316_016
+      position: {x: -0.2348796, y: 0.17791294, z: -0.9739743}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
-    - name: Unlabeled 10452
-      parentName: Adam0316_048
-      position: {x: -0.19153786, y: -0.03584912, z: -0.09100519}
+    - name: Unlabeled 3703
+      parentName: Adam0316_016
+      position: {x: -0.44910166, y: -0.03246507, z: -0.3528756}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
-    - name: Unlabeled 10453
-      parentName: Adam0316_048
-      position: {x: -1.0879483, y: 0.20640996, z: 0.050482675}
+    - name: Unlabeled 3705
+      parentName: Adam0316_016
+      position: {x: -0.4589073, y: 0.02231484, z: -0.46346083}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
-    - name: Unlabeled 10455
-      parentName: Adam0316_048
-      position: {x: 0.43056285, y: -0.027507799, z: -0.10375023}
+    - name: Unlabeled 3707
+      parentName: Adam0316_016
+      position: {x: -0.3561998, y: -0.12272666, z: -0.4009998}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
-    - name: Unlabeled 10456
-      parentName: Adam0316_048
-      position: {x: -1.0268276, y: 0.21621177, z: -0.016262978}
+    - name: Unlabeled 3708
+      parentName: Adam0316_016
+      position: {x: -0.6768334, y: 0.465734, z: -0.9239233}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
-    - name: Unlabeled 10457
-      parentName: Adam0316_048
-      position: {x: -1.0414219, y: -0.010368466, z: 0.56709373}
+    - name: Unlabeled 3709
+      parentName: Adam0316_016
+      position: {x: -0.397587, y: -0.01618161, z: -0.46486273}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
-    - name: Unlabeled 10459
-      parentName: Adam0316_048
-      position: {x: -1.2956463, y: 0.101984896, z: 0.43415564}
+    - name: Unlabeled 3711
+      parentName: Adam0316_016
+      position: {x: 0.35483977, y: -0.7723409, z: -1.281255}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
-    - name: Unlabeled 10460
-      parentName: Adam0316_048
-      position: {x: -1.1345674, y: 0.24194644, z: 0.13569187}
+    - name: Unlabeled 3712
+      parentName: Adam0316_016
+      position: {x: 0.9313707, y: -0.89557385, z: -0.11620962}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
-    - name: Unlabeled 10461
-      parentName: Adam0316_048
-      position: {x: -0.96517897, y: 0.0123747075, z: 0.24609177}
+    - name: Unlabeled 3714
+      parentName: Adam0316_016
+      position: {x: 0.9400491, y: -0.9068226, z: -0.104056716}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
-    - name: Unlabeled 10462
-      parentName: Adam0316_048
-      position: {x: -1.0442927, y: -0.01115489, z: 0.5730002}
+    - name: Unlabeled 3715
+      parentName: Adam0316_016
+      position: {x: -0.5194732, y: 0.19203901, z: -0.8851908}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
-    - name: Unlabeled 10463
-      parentName: Adam0316_048
-      position: {x: -1.2380257, y: 0.07657623, z: 0.46883774}
+    - name: Unlabeled 3716
+      parentName: Adam0316_016
+      position: {x: -0.27344966, y: -0.18312378, z: -0.598559}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
-    - name: Unlabeled 10464
-      parentName: Adam0316_048
-      position: {x: -1.2973584, y: 0.08831635, z: 0.39386305}
+    - name: Unlabeled 3717
+      parentName: Adam0316_016
+      position: {x: -0.4741495, y: -0.0084830485, z: -0.50118196}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
-    - name: Unlabeled 10465
-      parentName: Adam0316_048
-      position: {x: -1.0945361, y: -0.038993437, z: 0.27404353}
+    - name: Unlabeled 3718
+      parentName: Adam0316_016
+      position: {x: -0.35393962, y: -0.12467198, z: -0.4036904}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
-    - name: Unlabeled 10466
-      parentName: Adam0316_048
-      position: {x: -0.97460425, y: -0.00090952305, z: 0.26020697}
+    - name: Unlabeled 3719
+      parentName: Adam0316_016
+      position: {x: -0.52235365, y: 0.19031668, z: -0.8847115}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
-    - name: Unlabeled 10467
-      parentName: Adam0316_048
-      position: {x: -1.1476231, y: 0.22520204, z: 0.14503044}
+    - name: Unlabeled 3720
+      parentName: Adam0316_016
+      position: {x: -0.5932325, y: 0.1597765, z: -0.5828869}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Unlabeled 3721
+      parentName: Adam0316_016
+      position: {x: -0.4731476, y: -0.037910726, z: -0.8495448}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Unlabeled 3722
+      parentName: Adam0316_016
+      position: {x: -0.46716353, y: 0.055559993, z: -0.41933358}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Unlabeled 3723
+      parentName: Adam0316_016
+      position: {x: -0.47431618, y: -0.038421005, z: -0.8497073}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_Hips
-      parentName: Adam0316_048(Clone)
-      position: {x: 0.0000000037252903, y: 0.8639889, z: 0}
-      rotation: {x: 0.009850924, y: 0.011917411, z: -0.022649592, w: 0.9996239}
+      parentName: Adam0316_016(Clone)
+      position: {x: 0.000000007450581, y: 0.8773936, z: 0}
+      rotation: {x: 0.059455134, y: 0.0024790154, z: -0.009690415, w: 0.99818087}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_Spine
       parentName: Adam50_Hips
-      position: {x: -0, y: 0.08238888, z: 0}
-      rotation: {x: -0.10030394, y: -0.029023197, z: 0.03135862, w: 0.99403894}
+      position: {x: -0, y: 0.081144616, z: 0}
+      rotation: {x: -0.04236316, y: 0.006966314, z: 0.03666157, w: 0.9984051}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_Spine1
       parentName: Adam50_Spine
-      position: {x: 0.000000059604645, y: 0.23704815, z: 0}
-      rotation: {x: 0.1741182, y: -0.00958477, z: -0.014786095, w: 0.9845671}
+      position: {x: -0, y: 0.24197684, z: 0}
+      rotation: {x: -0.13941021, y: 0.0023027414, z: -0.028926125, w: 0.98980945}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_Neck
       parentName: Adam50_Spine1
-      position: {x: -0, y: 0.24922732, z: 0}
-      rotation: {x: 0.09523356, y: -0.00015038716, z: -0.032194618, w: 0.9949342}
+      position: {x: -0, y: 0.2546765, z: 0}
+      rotation: {x: 0.21978262, y: -0.022648472, z: -0.044247437, w: 0.9742817}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_Head
       parentName: Adam50_Neck
-      position: {x: -0, y: 0.15573508, z: 0.020094847}
-      rotation: {x: 0.033304244, y: -0.0062866835, z: 0.00471585, w: 0.9994144}
+      position: {x: -0, y: 0.15338312, z: 0.019791368}
+      rotation: {x: -0.014357493, y: -0.030908456, z: 0.013626802, w: 0.9993262}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_LeftShoulder
       parentName: Adam50_Spine1
-      position: {x: -0.040973604, y: 0.2042257, z: -0.0034237057}
-      rotation: {x: 0.009950211, y: 0.02929339, z: -0.13733904, w: 0.99004084}
+      position: {x: -0.040451273, y: 0.20935409, z: -0.0053590885}
+      rotation: {x: 0.0028977208, y: 0.008295338, z: -0.1570007, w: 0.9875594}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_LeftArm
       parentName: Adam50_LeftShoulder
-      position: {x: -0.13690221, y: 0, z: 0}
-      rotation: {x: -0.010006851, y: 0.032110363, z: 0.13006598, w: 0.9909347}
+      position: {x: -0.13893034, y: 0, z: 0}
+      rotation: {x: 0.028281847, y: 0.024273705, z: 0.14015134, w: 0.9894284}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_LeftForeArm
       parentName: Adam50_LeftArm
-      position: {x: -0.25035957, y: 0, z: 0}
-      rotation: {x: 0.26188618, y: -0.010144132, z: 0.0152769545, w: 0.9649246}
+      position: {x: -0.24343656, y: 0, z: 0}
+      rotation: {x: 0.16089691, y: 0.010826646, z: 0.03050838, w: 0.9864402}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_LeftHand
       parentName: Adam50_LeftForeArm
-      position: {x: -0.26817337, y: 0.00054883957, z: -0.000921309}
-      rotation: {x: 0.02195326, y: 0.0014482065, z: 0.068587475, w: 0.9974025}
+      position: {x: -0.26904222, y: -0.00016486645, z: -0.0010267794}
+      rotation: {x: -0.0020793965, y: -0.028600628, z: 0.07397949, w: 0.9968474}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_RightShoulder
       parentName: Adam50_Spine1
-      position: {x: 0.039345384, y: 0.2042257, z: -0.0034237057}
-      rotation: {x: 0.008977005, y: -0.005189385, z: 0.10141721, w: 0.99478996}
+      position: {x: 0.03865871, y: 0.20935409, z: -0.0053590885}
+      rotation: {x: -0.010848115, y: -0.02064726, z: 0.10098853, w: 0.9946142}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_RightArm
       parentName: Adam50_RightShoulder
-      position: {x: 0.13690221, y: 0, z: 0}
-      rotation: {x: 0.03282494, y: -0.008445535, z: -0.093855485, w: 0.9950087}
+      position: {x: 0.13893034, y: 0, z: 0}
+      rotation: {x: 0.004887244, y: -0.013017919, z: -0.07349722, w: 0.99719846}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_RightForeArm
       parentName: Adam50_RightArm
-      position: {x: 0.25035957, y: 0, z: 0}
-      rotation: {x: -0.2913965, y: 0.0068501155, z: -0.02005318, w: 0.9563677}
+      position: {x: 0.24343656, y: 0, z: 0}
+      rotation: {x: -0.19946022, y: 0.0057030176, z: 0.011505664, w: 0.9798218}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_RightHand
       parentName: Adam50_RightForeArm
-      position: {x: 0.27029154, y: -0.00037634373, z: -0.00047659874}
-      rotation: {x: 0.017671423, y: 0.054134227, z: 0.08678057, w: 0.9945986}
+      position: {x: 0.27239752, y: -0.00002527237, z: -0.00039118528}
+      rotation: {x: -0.015353878, y: 0.07912327, z: 0.05609927, w: 0.99516666}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_LeftUpLeg
       parentName: Adam50_Hips
-      position: {x: -0.10047424, y: 0, z: 0}
-      rotation: {x: 0.10119997, y: 0.01209608, z: -0.056382906, w: 0.99319345}
+      position: {x: -0.09895684, y: 0, z: 0}
+      rotation: {x: 0.008933495, y: 0.019337809, z: -0.0553059, w: 0.9982422}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_LeftLeg
       parentName: Adam50_LeftUpLeg
-      position: {x: -0, y: -0.3912489, z: 0}
-      rotation: {x: 0.037903573, y: 0.007739351, z: 0.021520045, w: 0.9990197}
+      position: {x: -0, y: -0.36265758, z: 0}
+      rotation: {x: -0.048963394, y: 0.018536065, z: -0.026863432, w: 0.9982672}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_LeftFoot
       parentName: Adam50_LeftLeg
-      position: {x: 0.0008857101, y: -0.40345776, z: -0.0023556724}
-      rotation: {x: -0.045215387, y: -0.1829969, z: 0.055561867, w: 0.98050016}
+      position: {x: 0.0014073905, y: -0.4286656, z: 0.00088231266}
+      rotation: {x: 0.0005940349, y: -0.2211037, z: 0.05678294, w: 0.9735957}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_LeftToeBase
       parentName: Adam50_LeftFoot
-      position: {x: -0, y: -0.06530825, z: 0.15071136}
-      rotation: {x: 0.0018581375, y: 0.00987494, z: 0.00081287697, w: 0.9999492}
+      position: {x: -0, y: -0.06432195, z: 0.14843528}
+      rotation: {x: -0.0025170145, y: -0.007828235, z: -0.0018892287, w: 0.9999644}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_RightUpLeg
       parentName: Adam50_Hips
-      position: {x: 0.10047424, y: 0, z: 0}
-      rotation: {x: 0.1064385, y: -0.023041442, z: 0.08650668, w: 0.99028105}
+      position: {x: 0.09895684, y: 0, z: 0}
+      rotation: {x: 0.0100955, y: -0.0338594, z: 0.12851636, w: 0.9910778}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_RightLeg
       parentName: Adam50_RightUpLeg
-      position: {x: -0, y: -0.3912489, z: 0}
-      rotation: {x: -0.0057990653, y: -0.014675842, z: 0.031584464, w: 0.99937654}
+      position: {x: -0, y: -0.36265758, z: 0}
+      rotation: {x: -0.0101954695, y: -0.013725134, z: -0.0005455433, w: 0.99985373}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_RightFoot
       parentName: Adam50_RightLeg
-      position: {x: 0.0006751418, y: -0.4098255, z: -0.0014690161}
-      rotation: {x: -0.0030396304, y: 0.17262734, z: -0.13824192, w: 0.9752332}
+      position: {x: 0.0010250211, y: -0.43533656, z: -0.00091192126}
+      rotation: {x: -0.030721838, y: 0.22290091, z: -0.1293667, w: 0.9657306}
       scale: {x: 1, y: 1, z: 1}
     - name: Adam50_RightToeBase
       parentName: Adam50_RightFoot
-      position: {x: -0, y: -0.06530825, z: 0.15071136}
-      rotation: {x: -0.01253938, y: -0.001337167, z: -0.00088690466, w: 0.9999201}
+      position: {x: -0, y: -0.06432195, z: 0.14843528}
+      rotation: {x: 0.022200357, y: 0.004092056, z: 0.002479697, w: 0.9997421}
       scale: {x: 1, y: 1, z: 1}
     armTwist: 0.5
     foreArmTwist: 0.5

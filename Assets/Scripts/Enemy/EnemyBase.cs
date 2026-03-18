@@ -38,7 +38,7 @@ public abstract class EnemyBase : MonoBehaviour
 
     [Header("Common Stats")]
     public float maxHP = 100f;
-    protected float currentHP;
+    public float currentHP;
     public WorldSpaceHealthBar hpBar;
 
     [Header("Move")]
@@ -230,7 +230,7 @@ public abstract class EnemyBase : MonoBehaviour
     protected virtual void OnDie()
     {
         // ²¥·ÅËÀÍö¶¯»­¡¢¹Ø±ÕÅö×²¡¢µôÂäµÈ
-        Destroy(gameObject, 2f);
+        //Destroy(gameObject, 2f);
     }
 
     protected abstract void Attack();

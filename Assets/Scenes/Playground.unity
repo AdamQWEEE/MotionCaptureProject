@@ -7544,17 +7544,21 @@ MonoBehaviour:
   enemyType: 0
   currentState: 0
   maxHP: 100
+  currentHP: 100
   hpBar: {fileID: 921913585}
   usePatrol: 0
   moveSpeed: 2
-  chaseRange: 8
-  attackRange: 2
+  chaseRange: 10
+  attackRange: 10
   attackCooldown: 1.5
-  target: {fileID: 0}
+  target: {fileID: 1344526836}
   agent: {fileID: 0}
-  projectilePrefab: {fileID: 0}
-  firePoint: {fileID: 0}
-  projectileSpeed: 10
+  boomerangPrefab: {fileID: 5420357892070659434, guid: c82ae8e2e030cb649999109925877a79, type: 3}
+  firePoint: {fileID: 511036908}
+  useHomingOnOut: 0
+  attackInterval: 5
+  attackIntervalTimer: 0
+  hurtChance: 0.6
 --- !u!54 &484690204
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7753,6 +7757,11 @@ RectTransform:
   m_AnchoredPosition: {x: -17.9, y: 153}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!4 &511036908 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -3392786101149583835, guid: 73f1e61f0e9862242b6e7db6f45f759f, type: 3}
+  m_PrefabInstance: {fileID: 2127185672}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &518390492
 GameObject:
   m_ObjectHideFlags: 0
@@ -14273,7 +14282,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8d77b8cc5fbb325468af4084b38b6e5f, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8d77b8cc5fbb325468af4084b38b6e5f, type: 3}
       propertyPath: m_TagString
@@ -29461,7 +29470,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c3462205661bf2e4e8db0e62608f6c99, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.045
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c3462205661bf2e4e8db0e62608f6c99, type: 3}
       propertyPath: m_LocalPosition.z
@@ -29686,6 +29695,7 @@ MonoBehaviour:
   originalTransform: {fileID: 0}
   knockCoolTime: 0
   hitEnemyNum: 0
+  hitEnemy: 0
 --- !u!136 &1178295801
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -30051,7 +30061,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8944336655422409503, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 255.85818
+      value: 248.24818
       objectReference: {fileID: 0}
     - target: {fileID: 8944336655422409503, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -30059,7 +30069,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8944336655422409503, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -100.70817
+      value: -103.42816
       objectReference: {fileID: 0}
     - target: {fileID: 8944336655422409503, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -30431,13 +30441,14 @@ MonoBehaviour:
   enemyType: 0
   currentState: 0
   maxHP: 100
+  currentHP: 0
   hpBar: {fileID: 1463063123}
   usePatrol: 1
-  moveSpeed: 2
-  chaseRange: 8
+  moveSpeed: 4
+  chaseRange: 10
   attackRange: 2
-  attackCooldown: 1.5
-  target: {fileID: 0}
+  attackCooldown: 4
+  target: {fileID: 579682078626578205}
   agent: {fileID: 0}
   comboCount: 3
   comboResetTime: 2
@@ -30446,6 +30457,7 @@ MonoBehaviour:
   - {fileID: 1007078710}
   - {fileID: 1454016608}
   waitAtPointTime: 1
+  hurtChance: 0.6
 --- !u!54 &1261613168
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -31206,6 +31218,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1318916025}
   m_CullTransparentMesh: 1
+--- !u!1 &1344526835
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1344526836}
+  m_Layer: 8
+  m_Name: targetPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1344526836
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1344526835}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.951, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 579682078626578205}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1350118040
 GameObject:
   m_ObjectHideFlags: 0
@@ -32067,7 +32110,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2070925441746177912, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 255.85818
+      value: 248.24818
       objectReference: {fileID: 0}
     - target: {fileID: 2070925441746177912, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -32075,7 +32118,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2070925441746177912, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -100.70817
+      value: -103.42816
       objectReference: {fileID: 0}
     - target: {fileID: 2070925441746177912, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -38119,6 +38162,7 @@ MonoBehaviour:
   originalTransform: {fileID: 0}
   knockCoolTime: 0
   hitEnemyNum: 0
+  hitEnemy: 0
 --- !u!1 &1551016123
 GameObject:
   m_ObjectHideFlags: 0
@@ -38614,7 +38658,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2070925441746177912, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 251.172
+      value: 242.11365
       objectReference: {fileID: 0}
     - target: {fileID: 2070925441746177912, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -38622,7 +38666,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2070925441746177912, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -100.62994
+      value: -104.74988
       objectReference: {fileID: 0}
     - target: {fileID: 2070925441746177912, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
       propertyPath: m_LocalRotation.w
@@ -52144,8 +52188,8 @@ MonoBehaviour:
   Damping: {x: 0.05, y: 0.15, z: 0.2}
   ShoulderOffset: {x: 1.2, y: -0.03, z: 0}
   VerticalArmLength: 0.4
-  CameraSide: 0.75
-  CameraDistance: 10
+  CameraSide: 0.65
+  CameraDistance: 8
   CameraCollisionFilter:
     serializedVersion: 2
     m_Bits: 0
@@ -52167,7 +52211,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8d77b8cc5fbb325468af4084b38b6e5f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 37.71
+      value: 37.813
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8d77b8cc5fbb325468af4084b38b6e5f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -52648,7 +52692,7 @@ PrefabInstance:
     - target: {fileID: 5866666021909216657, guid: 8d77b8cc5fbb325468af4084b38b6e5f, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 9100000, guid: c57c9c069c9241a4fa888773294e56cc, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 1082271958561512970, guid: 8d77b8cc5fbb325468af4084b38b6e5f, type: 3}
@@ -57946,6 +57990,7 @@ MonoBehaviour:
   originalTransform: {fileID: 0}
   knockCoolTime: 0
   hitEnemyNum: 0
+  hitEnemy: 0
 --- !u!136 &2008879024
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -57963,7 +58008,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.05135785
   m_Height: 1.3632371
@@ -64397,7 +64442,7 @@ Transform:
   m_GameObject: {fileID: 5551716652243304787}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.82021916, z: -0, w: 0.57204944}
-  m_LocalPosition: {x: 248.42, y: 37.619, z: -103.66}
+  m_LocalPosition: {x: 240.81, y: 37.619, z: -106.38}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -64406,6 +64451,7 @@ Transform:
   - {fileID: 5912289446657577207}
   - {fileID: 769136415741946136}
   - {fileID: 7539168892479111116}
+  - {fileID: 1344526836}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -110.213, z: 0}
 --- !u!4 &591078215404150113
@@ -80330,7 +80376,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &3038714787045726079
 GameObject:
   m_ObjectHideFlags: 0
@@ -80395,6 +80441,7 @@ MonoBehaviour:
   originalTransform: {fileID: 0}
   knockCoolTime: 0
   hitEnemyNum: 0
+  hitEnemy: 0
 --- !u!1 &3175553777789469254
 GameObject:
   m_ObjectHideFlags: 0
@@ -92709,6 +92756,7 @@ MonoBehaviour:
   originalTransform: {fileID: 0}
   knockCoolTime: 0
   hitEnemyNum: 0
+  hitEnemy: 0
 --- !u!4 &6626240432657837282
 Transform:
   m_ObjectHideFlags: 0
@@ -99007,6 +99055,7 @@ MonoBehaviour:
   enemyType: 0
   currentState: 0
   maxHP: 100
+  currentHP: 0
   hpBar: {fileID: 1171007326}
   usePatrol: 0
   moveSpeed: 2
