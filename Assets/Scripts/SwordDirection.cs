@@ -133,25 +133,25 @@ public class SwordDirection : MonoBehaviour
         if (dir != Dir.None && _lastDir != Dir.None && dir != _lastDir)
         {
             int idx = GetSwitchIndex(_lastDir, dir);
-            if (dir == Dir.Left)
-            {
-                player.BlendSwordLeft();
-            }
-            else if (dir == Dir.Down)
-            {
-                player.BlendSwordDown();
-            }
+            //if (dir == Dir.Left)
+            //{
+            //    player.BlendSwordLeft();
+            //}
+            //else if (dir == Dir.Down)
+            //{
+            //    player.BlendSwordDown();
+            //}
 
-            else if (dir == Dir.Up) { 
+            //else if (dir == Dir.Up) { 
 
 
-                player.BlendSwordUp();
-            }
+            //    player.BlendSwordUp();
+            //}
 
-            else if (dir == Dir.Right)
-            {
-                player.BlendSwordRight();
-            }
+            //else if (dir == Dir.Right)
+            //{
+            //    player.BlendSwordRight();
+            //}
 
 
             if (idx >= 0 && CanSwitch)
@@ -160,7 +160,7 @@ public class SwordDirection : MonoBehaviour
                     //LockSwitch();                 // ✅ 触发瞬间立刻锁                                                                 
                     LockSwitch();                 // ✅ 触发瞬间立刻锁
                     player.SwitchSwordPos(idx);   // 触发动画
-                    player.SwitchSwordBlend(idx);
+                    //player.SwitchSwordBlend(idx);
                     _lastDir = dir;
                 
 

@@ -47,6 +47,6 @@ public class RangedEnemy : EnemyBase
 
     public void CastFireBall()
     {
-        Debug.Log("Õ∂÷¿");
+        //Debug.Log("Õ∂÷¿");
     }
 }

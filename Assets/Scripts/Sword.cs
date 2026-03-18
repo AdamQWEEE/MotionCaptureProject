@@ -32,6 +32,8 @@ public class Sword : MonoBehaviour
                 EnemyBase enemy = other.GetComponent<EnemyBase>();
                
                 enemy.TakeDamage(10f);
+                Debug.Log(enemy.name);
+                
                 //AudioManager.Instance.PlayHit();
                 //hitEnemyNum++;
 

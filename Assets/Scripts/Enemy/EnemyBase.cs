@@ -199,8 +199,8 @@ public abstract class EnemyBase : MonoBehaviour
 
     public virtual void TakeDamage(float damage)
     {
-        if (isDead) return;
-
+        //if (isDead) return;
+        Debug.Log("‘Ï≥……À∫¶");
         currentHP -= damage;
         hpBar.TakeDamage(10f);
         if (currentHP <= 0)

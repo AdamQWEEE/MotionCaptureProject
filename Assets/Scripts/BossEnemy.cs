@@ -429,7 +429,7 @@ public class BossEnemy : EnemyBase
     {
         if (isDead) return;
         if (bossPhase == BossPhaseState.Executed) return;
-
+        hpBar.TakeDamage(10f);
         currentHP -= damage;
 
         if (currentHP <= 0f)
@@ -460,7 +460,7 @@ public class BossEnemy : EnemyBase
         isPerformingAction = false;
         currentAction = BossActionType.None;
 
-        Debug.Log("Boss Κά»χ");
+        //Debug.Log("Boss Κά»χ");
         // animator.SetTrigger("Hurt");
     }
 

@@ -277,10 +277,10 @@ namespace StarterAssets
                 //BlendSwordRight();
                 //每攻击一次计数，过1秒重置，当计数达到2时，设置canSkill
                 //只有当非同方向的时候才加，思路，对比attackID做区分
-                comboCounts++;
-                //if (attackID != lastAttackID) comboCounts++;
-                //else comboCounts=0;
-                lastAttackID= attackID;
+                //comboCounts++;
+                if (attackID != lastAttackID) comboCounts++;
+                else comboCounts = 0;
+                lastAttackID = attackID;
                 //Debug.Log("ComboCounts" + comboCounts);
                 comboTimer = 0f;//每次攻击重置连击计时器
                 ExecuteAttack();
@@ -1520,24 +1520,24 @@ namespace StarterAssets
 
         public void InitSwordBlendAfterAttack()
         {
-            if (_animator.GetFloat("HandIndex") == 0)
-            {
-                BlendSwordRight();
-            }
+            //if (_animator.GetFloat("HandIndex") == 0)
+            //{
+            //    BlendSwordRight();
+            //}
 
-            else if (_animator.GetFloat("HandIndex") == 1)
-            {
-                BlendSwordUp();
-            }
+            //else if (_animator.GetFloat("HandIndex") == 1)
+            //{
+            //    BlendSwordUp();
+            //}
 
-            else if (_animator.GetFloat("HandIndex") == 2)
-            {
-                BlendSwordLeft();
-            }
-            else if (_animator.GetFloat("HandIndex") == 3)
-            {
-                BlendSwordDown();
-            }
+            //else if (_animator.GetFloat("HandIndex") == 2)
+            //{
+            //    BlendSwordLeft();
+            //}
+            //else if (_animator.GetFloat("HandIndex") == 3)
+            //{
+            //    BlendSwordDown();
+            //}
         }
 
 

@@ -17,6 +17,7 @@ public class WorldSpaceHealthBar : MonoBehaviour
 
     private float _bufferTarget;        // 缓冲条目标 fillAmount
     private Camera _cam;
+    public bool disableFacing;
 
     void Awake()
     {
@@ -30,7 +31,7 @@ public class WorldSpaceHealthBar : MonoBehaviour
     void LateUpdate()
     {
         
-        if (_cam != null)
+        if (_cam != null &&!disableFacing)
         {
             // 简单 billboard：正面永远朝向摄像机方向
             transform.forward = _cam.transform.forward;
@@ -61,7 +62,7 @@ public class WorldSpaceHealthBar : MonoBehaviour
 
         currentHp = Mathf.Max(0f, currentHp - damage);
         float normalized = currentHp / maxHp;
-
+        Debug.Log("造成伤害");
         // 红条直接跳到真实血量
         if (hpFill != null)
             hpFill.fillAmount = normalized;
