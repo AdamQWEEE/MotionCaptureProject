@@ -284,7 +284,7 @@ namespace StarterAssets
                 //Debug.Log("ComboCounts" + comboCounts);
                 comboTimer = 0f;//每次攻击重置连击计时器
                 ExecuteAttack();
-                                
+
             }
 
             
@@ -774,6 +774,7 @@ namespace StarterAssets
         public void OpenDamageWindow()
         {
             canTakeDamage = true;
+            playerWeapon.hitEnemy = false;
             playerWeapon.GetComponent<CapsuleCollider>().enabled = true;
         }
 
@@ -781,8 +782,13 @@ namespace StarterAssets
 
         public void CloseDamageWindow()
         {
+            Debug.Log("closeDMG");
             canTakeDamage = false;
             playerWeapon.GetComponent<CapsuleCollider>().enabled = false;
+            if (playerWeapon.hitEnemy == false)
+            {
+                playerState.stanceValue = Mathf.Max(playerState.stanceValue - 0.2f, -1f);//没打中敌人扣体力
+            }
         }
 
         public void OpenHeavyAttackWindow()

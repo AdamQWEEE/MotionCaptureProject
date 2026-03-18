@@ -8,8 +8,14 @@ public class Sword : MonoBehaviour
     public Transform originalTransform;
     public float knockCoolTime;
     public int hitEnemyNum;
-    
+    public bool hitEnemy = false;
 
+
+    private void Awake()
+    {
+        playerController = GetComponentInParent<ThirdPersonController>();
+        
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -26,20 +32,17 @@ public class Sword : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            
+            Debug.Log("HitEnemy"+hitEnemy);
             if (playerController.canTakeDamage)
             {
                 EnemyBase enemy = other.GetComponent<EnemyBase>();
                
                 enemy.TakeDamage(10f);
                 Debug.Log(enemy.name);
-                
+                hitEnemy = true;//标记击中敌人，在攻击动画事件中重置
+                playerController.playerState.stanceValue = Mathf.Min(playerController.playerState.stanceValue + 0.2f, 1f);//打中敌人加体力
                 //AudioManager.Instance.PlayHit();
                 //hitEnemyNum++;
-
-
-
-
                 playerController.canTakeDamage = false;
             }
         }

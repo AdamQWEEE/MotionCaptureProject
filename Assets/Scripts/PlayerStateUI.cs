@@ -69,7 +69,7 @@ public class PlayerStateUI : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.H))
         {
-            stanceValue =Mathf.Min(stanceValue + 0.5f,1f);
+            stanceValue =Mathf.Min(stanceValue + 0.2f,1f);
             
             
             
@@ -77,7 +77,7 @@ public class PlayerStateUI : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.G))
         {
-            stanceValue = Mathf.Max(stanceValue - 0.5f, -1f);
+            stanceValue = Mathf.Max(stanceValue - 0.2f, -1f);
 
         }
     }
