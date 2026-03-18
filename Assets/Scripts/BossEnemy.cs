@@ -47,7 +47,7 @@ public class BossEnemy : EnemyBase
     [Header("Action Duration")]
     public float actionDuration = 1.2f;   // 当前动作持续时间
     private float actionTimer = 0f;
-    private bool isPerformingAction = false;
+    public bool isPerformingAction = false;
 
     [Header("Action Weights")]
     [Range(0, 100)] public int guardWeight = 40;      // 近距离时防御权重
@@ -59,6 +59,26 @@ public class BossEnemy : EnemyBase
     public float rangeAttackTimer;
     public bool canTriggerCloseAttack;
 
+    [Header("Tiger Material")]
+    public Material normal_mat;
+    public Material attack_mat;
+    public Material defense_mat;
+    public SkinnedMeshRenderer tigerBody;
+
+    public enum BossHurtType
+    {
+        Hurt1,
+        Hurt2,
+        Hurt3,
+        Hurt4
+    }
+
+    [Header("Hurt")]
+    [Range(0f, 1f)]
+    public float hurtTriggerChance = 1f;   // 50%概率触发Hurt
+
+    private BossHurtType currentHurtType;
+
     protected override void Start()
     {
         base.Start();
@@ -69,8 +89,9 @@ public class BossEnemy : EnemyBase
 
     protected override void Update()
     {
-        if (isDead) return;
 
+        if (isDead) return;
+        rangeAttackTimer -= Time.deltaTime;
         // 虚弱判定
         CheckWeakState();
 
@@ -89,16 +110,14 @@ public class BossEnemy : EnemyBase
         // 当前有动作在播放时，不重新选动作
         if (isPerformingAction)
         {
-            actionTimer -= Time.deltaTime;
-
-            if (actionTimer <= 0f)
-            {
-                EndCurrentAction();
-            }
-
+            
             return;
         }
-        rangeAttackTimer-=Time.deltaTime;
+        else
+        {
+            tigerBody.material=normal_mat;
+        }
+
 
         base.Update();
     }
@@ -145,6 +164,7 @@ public class BossEnemy : EnemyBase
     protected override void UpdateChase()
     {
         if (target == null) return;
+        Debug.Log("追逐");
 
         if (agent != null)
         {
@@ -160,6 +180,7 @@ public class BossEnemy : EnemyBase
                 agent.stoppingDistance = closeRange * 0.9f;
 
             agent.SetDestination(target.position);
+            //Debug.Log("追逐");
         }
 
         FaceTarget();
@@ -171,7 +192,7 @@ public class BossEnemy : EnemyBase
     {
         StopMove();
         FaceTarget();
-
+        animator.SetFloat("BossSpeed", 0f);
         if (target == null) return;
         if (isPerformingAction) return;   // 当前动作还没播完，不重复选动作
 
@@ -180,6 +201,7 @@ public class BossEnemy : EnemyBase
         // ===== 1. 玩家跑出 farRange：退出攻击，重新追击 =====
         if (distance > farRange)
         {
+            ResetCloseAttackGate();   // [新增]
             currentState = EnemyState.Chase;
             return;
         }
@@ -207,10 +229,18 @@ public class BossEnemy : EnemyBase
                 //Invoke("ChangeToChase", 2f);
                 return;
             }
-
-            //currentState = EnemyState.Chase;
-            //return;
+            //ResetCloseAttackGate();
+            currentState = EnemyState.Chase;
+            return;
         }
+
+        // 3. 中间推进区：继续追近，同时恢复近战门
+        //if (distance > closeRange && distance <= farRange - farAttackTriggerWidth)
+        //{
+        //    ResetCloseAttackGate();
+        //    currentState = EnemyState.Chase;
+        //    return;
+        //}
 
         // ===== 4. 近距离：近战/四向防御 =====
         if (distance <= closeRange && canTriggerCloseAttack)
@@ -218,36 +248,89 @@ public class BossEnemy : EnemyBase
             currentAction = SelectCloseRangeAction();   // 7选1：3攻击 + 4防御
             isFarAttackAction = false;
             hasDoneFarAttackThisCycle = false;
-            canTriggerCloseAttack = false;
+            //canTriggerCloseAttack = false;
+            LockCloseAttackGate();
             PerformAction(currentAction);
-            attackTimer = attackCooldown;
+            //attackTimer = attackCooldown;
             return;
         }
     }
 
     public void TriggerNextAttack()
     {
-        Invoke("EnableAttack", 0.5f);
+        CancelInvoke(nameof(EnableAttack));
+        Invoke(nameof(EnableAttack), 0.5f);
     }
 
     private void EnableAttack()
     {
+        if (isDead) return;
+        if (bossPhase != BossPhaseState.Normal) return;
+        if (isHurt) return;
+
         canTriggerCloseAttack = true;
+        isPerformingAction = false;
+    }
+
+    private void ResetCloseAttackGate()
+    {
+        CancelInvoke(nameof(EnableAttack));
+        canTriggerCloseAttack = true;
+    }
+
+    private void LockCloseAttackGate()
+    {
+        CancelInvoke(nameof(EnableAttack));
+        canTriggerCloseAttack = false;
     }
     public void ChangeToChase()
     {
         currentState = EnemyState.Chase;
+        isPerformingAction = false;
     }
 
     protected override void UpdateHurt()
     {
         StopMove();
-
+        FaceTarget();
+        animator.SetFloat("BossSpeed", 0f);
         // 这里先简化：短暂受击后恢复
         isHurt = false;
 
         if (!isDead && bossPhase == BossPhaseState.Normal)
         {
+            currentState = EnemyState.Idle;
+        }
+    }
+
+    public void EndHurt()
+    {
+        if (isDead) return;
+        if (bossPhase != BossPhaseState.Normal) return;
+
+        isHurt = false;
+
+        if (target == null)
+        {
+            currentState = EnemyState.Idle;
+            return;
+        }
+
+        float distance = Vector3.Distance(transform.position, target.position);
+        isPerformingAction = false;
+        if (distance <= closeRange)
+        {
+            ResetCloseAttackGate();   // [新增]
+            currentState = EnemyState.Attack;
+        }
+        else if (distance <= chaseRange)
+        {
+            ResetCloseAttackGate();   // [新增] 追击时也把门恢复，避免以后再进近战时卡死
+            currentState = EnemyState.Chase;
+        }
+        else
+        {
+            ResetCloseAttackGate();
             currentState = EnemyState.Idle;
         }
     }
@@ -278,6 +361,7 @@ public class BossEnemy : EnemyBase
 
         if (roll < guardWeight)
         {
+            tigerBody.material = defense_mat;
             int guardRoll = Random.Range(0, 4);
             switch (guardRoll)
             {
@@ -285,10 +369,12 @@ public class BossEnemy : EnemyBase
                 case 1: return BossActionType.GuardDown;
                 case 2: return BossActionType.GuardLeft;
                 default: return BossActionType.GuardRight;
+
             }
         }
         else
         {
+            tigerBody.material = attack_mat;
             int atkRoll = Random.Range(0, 3);
             switch (atkRoll)
             {
@@ -302,8 +388,10 @@ public class BossEnemy : EnemyBase
     private BossActionType SelectFarRangeAction()
     {
         // 玩家走远：怒吼 or 砸地AOE
+        tigerBody.material = attack_mat;
         int roll = Random.Range(0, 2);
         return roll == 0 ? BossActionType.Roar : BossActionType.SmashAOE;
+
     }
 
     private void PerformAction(BossActionType action)
@@ -449,9 +537,12 @@ public class BossEnemy : EnemyBase
         // 虚弱状态下不进普通受击
         if (bossPhase == BossPhaseState.Weak) return;
 
-        isHurt = true;
-        currentState = EnemyState.Hurt;
-        OnHurt();
+        if (Random.value <= hurtTriggerChance)
+        {
+            isHurt = true;
+            currentState = EnemyState.Hurt;
+            OnHurt();
+        }
     }
 
     protected override void OnHurt()
@@ -459,6 +550,23 @@ public class BossEnemy : EnemyBase
         StopMove();
         isPerformingAction = false;
         currentAction = BossActionType.None;
+        isFarAttackAction = false;
+
+        CancelInvoke(nameof(EnableAttack));   // [新增] 清掉旧的延迟攻击恢复
+        canTriggerCloseAttack = true;         // [新增] 受击后不要把近战锁死
+        isPerformingAction = true;
+
+        int hurtIndex = Random.Range(0, 4);
+        switch (hurtIndex)
+        {
+            case 0: currentHurtType = BossHurtType.Hurt1; break;
+            case 1: currentHurtType = BossHurtType.Hurt2; break;
+            case 2: currentHurtType = BossHurtType.Hurt3; break;
+            default: currentHurtType = BossHurtType.Hurt4; break;
+        }
+        tigerBody.material = normal_mat;
+        Debug.Log("Boss Hurt: " + currentHurtType);
+        animator.SetTrigger(currentHurtType.ToString());
 
         //Debug.Log("Boss 受击");
         // animator.SetTrigger("Hurt");
@@ -474,6 +582,8 @@ public class BossEnemy : EnemyBase
         Debug.Log("Boss 死亡");
         OnDie();
     }
+
+
 
     protected override void OnDie()
     {
