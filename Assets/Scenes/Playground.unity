@@ -50429,6 +50429,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!137 &1811432531 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7161880693481409823, guid: 281a764569c7b564b9d283a6c29c7040, type: 3}
+  m_PrefabInstance: {fileID: 2031459985}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1811983615 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 73f1e61f0e9862242b6e7db6f45f759f, type: 3}
@@ -58089,6 +58094,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7161880693481409823, guid: 281a764569c7b564b9d283a6c29c7040, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 03918474242fb9d469ecf480bb329af5, type: 2}
     - target: {fileID: 919132149155446097, guid: 281a764569c7b564b9d283a6c29c7040, type: 3}
       propertyPath: m_Name
       value: 0640_Tiger_7130_cleaned
@@ -99014,6 +99023,7 @@ MonoBehaviour:
   weakHPPercent: 0.15
   canEnterWeak: 1
   actionDuration: 1.2
+  isPerformingAction: 0
   guardWeight: 40
   meleeWeight: 60
   isFarAttackAction: 0
@@ -99021,6 +99031,11 @@ MonoBehaviour:
   farAttackTriggerWidth: 1
   rangeAttackTimer: 0
   canTriggerCloseAttack: 1
+  normal_mat: {fileID: 2100000, guid: 03918474242fb9d469ecf480bb329af5, type: 2}
+  attack_mat: {fileID: 2100000, guid: 6b58f7f82fe9e134aa920bfc3eca2187, type: 2}
+  defense_mat: {fileID: 2100000, guid: 2d19a53444bdccb40acfcbf144bab5e9, type: 2}
+  tigerBody: {fileID: 1811432531}
+  hurtTriggerChance: 1
 --- !u!136 &8416685715156985580
 CapsuleCollider:
   m_ObjectHideFlags: 0
