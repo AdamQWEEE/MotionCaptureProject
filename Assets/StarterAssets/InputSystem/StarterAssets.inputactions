@@ -71,7 +71,7 @@
                 },
                 {
                     "name": "Defense",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "540a9a9a-4102-4af8-a191-7bf2fdf0b84a",
                     "expectedControlType": "",
                     "processors": "",

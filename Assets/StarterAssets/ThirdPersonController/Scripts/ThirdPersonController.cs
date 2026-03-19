@@ -729,16 +729,26 @@ namespace StarterAssets
 
         private void Counter()
         {
+            Debug.Log("player Defence:" + _animator.GetBool("isDefence"));
+            Debug.Log("Controller _input.defense = " + _input.defense + " | id = " + _input.GetInstanceID());
             if (_input.defense)
             {
-                _input.defense=false;
-                _animator.SetTrigger("Defense");
+                //_input.defense=false;
+                if(!_animator.GetBool("isDefence")) _animator.SetTrigger("Defense");
+                _animator.SetBool("isDefence", true);
                 ResetLayerWeight();
-                BlendSwordDefense();
+                //BlendSwordDefense();
+                
                
+            }
+            else
+            {
+                _animator.SetBool("isDefence", false);
+                
             }
         }
 
+      
         public void ShowCounterEffect()
         {
             defenseEffect.SetActive(false);
@@ -895,6 +905,9 @@ namespace StarterAssets
         private void EndDodge()
         {
             isdodging=false;
+            //重置变量避免人物卡在原地不动 20260319
+            canMove = true;
+            _animator.applyRootMotion = false;
         }
 
         static Vector2 QuantizeTo8Dir(Vector2 raw, float dz)

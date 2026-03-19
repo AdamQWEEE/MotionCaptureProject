@@ -59,6 +59,7 @@ namespace StarterAssets
         public void OnDefense(InputValue value)
         {
             DefenseInput(value.isPressed);
+            //Debug.Log("OnDefense called, isPressed = " + value.isPressed + " | id = " + GetInstanceID());
         }
 
         public void OnSneak(InputValue value)
@@ -97,7 +98,8 @@ namespace StarterAssets
 		private void DefenseInput(bool newDefenseState)
 		{
 			defense = newDefenseState;
-		}
+            //Debug.Log("StarterAssetsInputs defense = " + defense + " | id = " + GetInstanceID());
+        }
 
         private void RollInput(bool newRollState)
         {
