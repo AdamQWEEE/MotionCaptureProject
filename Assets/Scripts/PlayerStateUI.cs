@@ -129,7 +129,7 @@ public class PlayerStateUI : MonoBehaviour
         if (normalized < _bufferTarget)
             _bufferTarget = normalized;
         Debug.Log("造成一次伤害");
-        if (currentHp == 0)
+        if (currentHp <= 0)
         {
             GetComponent<ThirdPersonController>().PlayerDead();
         }

@@ -1,5 +1,7 @@
 ﻿ using UnityEngine;
-#if ENABLE_INPUT_SYSTEM 
+using UnityEngine.Playables;
+
+#if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
 using System.Linq;
@@ -163,6 +165,7 @@ namespace StarterAssets
 
         [Header("Counter")]
         public bool isCounter;
+        bool isDefense;
 
         [Header("Weapon")]
         public Sword playerWeapon;
@@ -196,8 +199,15 @@ namespace StarterAssets
         float comboTimer;
         public int comboCounts;//记录连击次数
 
+        [Header("FocusMode")]
+        public float focusCost= 0.05f;
+
         [Header("Stance")]
         public bool isTired;
+        public float stanceRecoverValue;
+        public float stanceRecoverTime = 2f;
+        float stanceRecoverTimer;
+
         private bool IsCurrentDeviceMouse
         {
             get
@@ -259,7 +269,7 @@ namespace StarterAssets
 
         private void Update()
         {
-            
+            StanceChecker();
             UnlockTimer();
             UpdateLockOnParam();
             _hasAnimator = TryGetComponent(out _animator);
@@ -283,6 +293,7 @@ namespace StarterAssets
                 lastAttackID = attackID;
                 //Debug.Log("ComboCounts" + comboCounts);
                 comboTimer = 0f;//每次攻击重置连击计时器
+                stanceRecoverTimer = 0f;//每次攻击重置体力计时器
                 ExecuteAttack();
 
             }
@@ -323,8 +334,10 @@ namespace StarterAssets
                 UpdateAttackFacing();
                 Counter();
                 Dodge();
-                
-                
+                FocusMode();
+
+
+
                 ChangeMovement();
                 //ChangeExecutionView();
                 TakeExecution();
@@ -390,7 +403,7 @@ namespace StarterAssets
                     Move();
             }
 
-
+            if(Input.GetKeyDown(KeyCode.T)) GetHit();//用于测试玩家受击
             
 
             //Debug.Log(_input.attack);
@@ -727,15 +740,17 @@ namespace StarterAssets
             }
         }
 
+        
         private void Counter()
         {
-            Debug.Log("player Defence:" + _animator.GetBool("isDefence"));
+            Debug.Log("player Defence:" + _animator.GetBool("isDefensing"));
             Debug.Log("Controller _input.defense = " + _input.defense + " | id = " + _input.GetInstanceID());
             if (_input.defense)
             {
                 //_input.defense=false;
-                if(!_animator.GetBool("isDefence")) _animator.SetTrigger("Defense");
-                _animator.SetBool("isDefence", true);
+                isDefense = true;
+                if(!_animator.GetBool("isDefensing")) _animator.SetTrigger("Defense");
+                _animator.SetBool("isDefensing", true);
                 ResetLayerWeight();
                 //BlendSwordDefense();
                 
@@ -743,8 +758,8 @@ namespace StarterAssets
             }
             else
             {
-                _animator.SetBool("isDefence", false);
-                
+                isDefense= false;
+                _animator.SetBool("isDefensing", false);   
             }
         }
 
@@ -795,9 +810,9 @@ namespace StarterAssets
             Debug.Log("closeDMG");
             canTakeDamage = false;
             playerWeapon.GetComponent<CapsuleCollider>().enabled = false;
-            if (playerWeapon.hitEnemy == false)
+            if (playerWeapon.hitEnemy == false&&isTired)
             {
-                playerState.stanceValue = Mathf.Max(playerState.stanceValue - 0.2f, -1f);//没打中敌人扣体力
+                playerState.stanceValue = Mathf.Max(playerState.stanceValue - 0.2f, -1f);//在疲劳状态下攻击敌人扣体力
             }
         }
 
@@ -813,7 +828,7 @@ namespace StarterAssets
             isHeavyAttack = false;
         }
 
-        public void OpenCounterWindow()
+        public void OpenCounterWindow()//在动画事件中调用。
         {
             isCounter = true;
         }
@@ -1392,11 +1407,37 @@ namespace StarterAssets
             GetComponent<CharacterController>().radius = rate;
         }
 
+        
+
         public void GetHit()
         {
-            _animator.SetTrigger("getHit");
-            
+            if (!isDefense)
+            {
+                _animator.SetTrigger("getHit");
+                int hitID = Random.Range(1, 6);
+                _animator.SetInteger("getHitID_I", hitID);//send random hitID to Animator
+                playerState.TakeDamage(10f);
+                ResetLayerWeight();
+            }
+            else
+            {
+                _animator.SetTrigger("getHit");
+                playerState.stanceValue = Mathf.Max(playerState.stanceValue - 0.3f, -1f);//防御中扣体力
+                //根据体力数值播放动画
+                if (playerState.stanceValue > -1)
+                {
+                    _animator.SetInteger("getHitID_I", 6);//send random hitID to Animator
+                    
+                }
+                else
+                {
+                    _animator.SetInteger("getHitID_I", 7);
+                }
+                ResetLayerWeight();
+                stanceRecoverTimer = 0f;//重置stance计时器
 
+            }
+                
         }
 
         public void BeginHit()
@@ -1605,5 +1646,64 @@ namespace StarterAssets
             playerWeapon.GetComponent<SwordPoseBlender>().BlendToDir(SwordPoseBlender.Dir.DownTired);
         }
         
+        void StanceChecker()
+        {
+            if (playerState.stanceValue >= 0)
+            {
+                _animator.SetBool("isTired", false);
+                MoveSpeed = 6f;
+                lockMoveSpeed = 4f;
+                isTired = false;
+            }
+            else
+            {
+                _animator.SetBool("isTired", true);
+                MoveSpeed = 3.5f;
+                lockMoveSpeed = 2.4f;
+                isTired = true;
+            }
+
+            //恢复体力计时器，计时器在攻击，受伤时重置。
+            if (stanceRecoverTimer <= stanceRecoverTime)
+            {
+                stanceRecoverTimer += Time.deltaTime;
+            }
+            else
+            {
+                if(playerState.stanceValue<0)playerState.stanceValue += stanceRecoverValue*Time.deltaTime;
+            }
+
+
+        }
+
+        void FocusMode()
+        {
+            if (_input.focus&&playerState.stanceValue>-1) 
+            {
+                ResetLayerWeight();
+                canMove = false;//开启集中模式禁止移动
+                Debug.Log("enter focus mode");
+                float dirIndex = isTargeting?_animator.GetFloat("HandIndex"):2; //获取HandIndex得到当前持剑方向
+                if (!_animator.GetBool("isFocusing")) 
+                {
+                    _animator.SetTrigger("focus");
+                    _animator.SetInteger("focusID_I", (int)dirIndex);
+                }
+                _animator.SetBool("isFocusing", true);
+                playerWeapon.dirManager.BlendToDir(SwordDirManager.Dir.Focus);//翻转武器为逆手持
+                playerState.stanceValue -= Time.deltaTime * focusCost;
+                stanceRecoverTimer = 0f;//重置stance计时器
+
+            }
+            else
+            {
+                //ResetLayerWeight();
+                Debug.Log("exit focus mode");
+                _animator.SetBool("isFocusing", false);
+                playerWeapon.dirManager.BlendToDir(SwordDirManager.Dir.Normal);//翻转武器为正手持
+                canMove = true;
+            }
+            
+        }
     }
 }

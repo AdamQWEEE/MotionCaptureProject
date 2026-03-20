@@ -19,6 +19,7 @@ namespace StarterAssets
 		public bool defense;
 		public bool stab;
 		public bool toss;
+		public bool focus;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -82,7 +83,12 @@ namespace StarterAssets
 			TossInput(value.isPressed);
 		}
 
-        
+        public void OnFocus(InputValue value)
+        {
+            FocusInput(value.isPressed);
+        }
+
+
 
 
 #endif
@@ -145,6 +151,11 @@ namespace StarterAssets
 		{
 			Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
 		}
-	}
+
+        public void FocusInput(bool newFocusState)
+        {
+            focus = newFocusState;
+        }
+    }
 	
 }

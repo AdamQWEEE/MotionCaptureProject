@@ -9,12 +9,13 @@ public class Sword : MonoBehaviour
     public float knockCoolTime;
     public int hitEnemyNum;
     public bool hitEnemy = false;
+    public SwordDirManager dirManager;
 
 
     private void Awake()
     {
         playerController = GetComponentInParent<ThirdPersonController>();
-        
+        dirManager = GetComponent<SwordDirManager>();
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -40,7 +41,9 @@ public class Sword : MonoBehaviour
                 enemy.TakeDamage(10f);
                 Debug.Log(enemy.name);
                 hitEnemy = true;//标记击中敌人，在攻击动画事件中重置
-                playerController.playerState.stanceValue = Mathf.Min(playerController.playerState.stanceValue + 0.2f, 1f);//打中敌人加体力
+                if (!playerController.isTired){
+                    playerController.playerState.stanceValue = Mathf.Min(playerController.playerState.stanceValue + 0.2f, 1f);//非疲劳状态打中敌人加体力
+                }
                 //AudioManager.Instance.PlayHit();
                 //hitEnemyNum++;
                 playerController.canTakeDamage = false;
