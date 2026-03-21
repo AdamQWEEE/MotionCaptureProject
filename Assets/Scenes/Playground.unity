@@ -64440,8 +64440,8 @@ MonoBehaviour:
   isTired: 0
   stanceRecoverValue: 0
   stanceRecoverTime: 2
-  dodgeDistance: 3.5
-  dodgeDuration: 0.3
+  dodgeDistance: 4
+  dodgeDuration: 0.35
 --- !u!1 &519631589100936363
 GameObject:
   m_ObjectHideFlags: 0

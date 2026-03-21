@@ -922,8 +922,8 @@ namespace StarterAssets
 
             dodgeSpeed = dodgeDistance / dodgeDuration;
 
-            CancelInvoke(nameof(EndDodge));
-            Invoke(nameof(EndDodge), dodgeDuration);
+            CancelInvoke(nameof(EndDodgeMove));
+            Invoke(nameof(EndDodgeMove), dodgeDuration);
         }
         public void StartLockOnDodge()
         {
@@ -961,16 +961,23 @@ namespace StarterAssets
 
             dodgeSpeed = dodgeDistance / dodgeDuration;
 
-            CancelInvoke(nameof(EndDodge));
-            Invoke(nameof(EndDodge), dodgeDuration);
-            Invoke(nameof(ResetCamDamp), dodgeDuration+0.25f);
+            CancelInvoke(nameof(EndDodgeMove));
+            Invoke(nameof(EndDodgeMove), dodgeDuration);
+            //Invoke(nameof(ResetCamDamp), dodgeDuration+0.25f);
+        }
+
+        private void EndDodgeMove()
+        {
+            isdodging = false;
+            dodgeMoveDir = Vector3.zero;
         }
 
         private void EndDodge()
         {
-            isdodging = false;
+            //isdodging = false;
             canMove = true;
-            dodgeMoveDir = Vector3.zero;
+            //dodgeMoveDir = Vector3.zero;
+            Invoke(nameof(ResetCamDamp), 0.35f);
         }
 
         private void ResetCamDamp()
