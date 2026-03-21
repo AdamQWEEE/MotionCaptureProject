@@ -115,4 +115,13 @@ public class CameraModeController : Singleton<CameraModeController>
         //    vcamFree.Priority = 15;
         //}
     }
+
+    public void ChangeLockOnCamDamping(float rate)
+    {
+        
+
+        Vector3 damping = vcamLock.GetCinemachineComponent<Cinemachine3rdPersonFollow>().Damping;     
+        damping.x = rate;  // Æ½Ê±Ëø¶¨
+        vcamLock.GetCinemachineComponent<Cinemachine3rdPersonFollow>().Damping = damping;
+    }
 }

@@ -187,7 +187,7 @@ namespace StarterAssets
         public bool isDead;
         public Transform bornPoint;        
         
-        public bool isdodging;
+        //public bool isdodging;
         public int switchIndex;
         public SwordDirection swordDir;
 
@@ -208,6 +208,14 @@ namespace StarterAssets
         public float stanceRecoverTime = 2f;
         float stanceRecoverTimer;
 
+
+        [Header("Dodge")]
+        public float dodgeDistance = 4f;
+        public float dodgeDuration = 0.35f;
+
+        private Vector3 dodgeMoveDir;
+        private float dodgeSpeed;
+        private bool isdodging;
         private bool IsCurrentDeviceMouse
         {
             get
@@ -323,7 +331,7 @@ namespace StarterAssets
                 lockIcon.transform.position = Camera.main.WorldToScreenPoint(lockTarget.GetChild(0).position);
             }
 
-            if (!isDead&&!LevelManager.Instance.isPause)
+            if (!isDead)
             {
 
                 JumpAndGravity();
@@ -334,6 +342,18 @@ namespace StarterAssets
                 UpdateAttackFacing();
                 Counter();
                 Dodge();
+
+                if (isdodging)
+                {
+                    Vector3 move = dodgeMoveDir * dodgeSpeed * Time.deltaTime;
+                    move.y = 0f;
+
+                    // 如果你有 CharacterController，推荐用 Move
+                    // controller.Move(move);
+
+                    transform.position += move;
+                }
+
                 FocusMode();
 
 
@@ -857,72 +877,105 @@ namespace StarterAssets
 
         public void Dodge()
         {
-            if (_input.roll)
-            {
-                isdodging = true;
-                Vector2 raw = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-                cameraTransform = Camera.main.transform;
-                // 2) 把“镜头朝向”投影到地面（只取 XZ），作为本地坐标系的 +Z
-                Vector3 camF = cameraTransform ? cameraTransform.forward : Vector3.forward;
-                Vector3 camR = cameraTransform ? cameraTransform.right : Vector3.right;
+            if (!_input.roll || isdodging) return;
 
-                Vector3 f = camF;          // camF 是你投影到水平面的 camera forward
-                if (f.sqrMagnitude > 0.0001f)
-                {
-                    transform.rotation = Quaternion.LookRotation(f, Vector3.up);
-                }
+            if (lockTarget != null)
+                StartLockOnDodge();
+            else
+                StartFreeDodge();
 
-                // 投影到水平面，避免镜头俯仰影响
-                camF.y = 0f;
-                camR.y = 0f;
-                camF.Normalize();
-                camR.Normalize();
+            _input.roll = false;
 
-                // 3) 用镜头坐标系把输入转换成世界方向：dirWorld = camR * x + camF * y
-                Vector3 dirWorld3 = camR * raw.x + camF * raw.y;
+        }
+        public void StartFreeDodge()
+        {
+            isdodging = true;
+            canMove = false;
 
-                // 4) 没有输入就默认“向镜头前方”闪避
-                Vector2 dirWorld2;
-                if (dirWorld3.magnitude < 0.2f)
-                {
-                    dirWorld2 = Vector2.up; // 注意：这里的 Vector2.up 表示“镜头前方”
-                }
-                else
-                {
-                    // 转成“以镜头为坐标系”的二维向量：x=右，y=前
-                    // 这一步其实 raw 已经是镜头坐标系输入了，但我们用 dirWorld3 更稳（兼容手柄/自定义输入）
-                    // 把世界向量再投回镜头轴上得到 camera-space 2D
-                    float x = Vector3.Dot(dirWorld3.normalized, camR);
-                    float y = Vector3.Dot(dirWorld3.normalized, camF);
-                    dirWorld2 = new Vector2(x, y);
-                }
+            Vector2 raw = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+            Transform cam = Camera.main != null ? Camera.main.transform : null;
 
-                // 5) 在“镜头坐标系”下量化到 8 方向（结果为 -1/0/1 组合）
-                Vector2 dir = QuantizeTo8Dir(dirWorld2, 0.0001f); // 这里死区已在上面处理过，给个极小值即可
+            Vector3 camF = cam ? cam.forward : Vector3.forward;
+            Vector3 camR = cam ? cam.right : Vector3.right;
 
-                // 写入 BlendTree 参数
-                _animator.SetFloat("dodgeX", dir.x);
-                _animator.SetFloat("dodgeY", dir.y);
+            camF.y = 0f;
+            camR.y = 0f;
+            camF.Normalize();
+            camR.Normalize();
 
-                // 触发闪避
-                
-                _animator.SetTrigger("Dodge");
-                canMove = false;
-                _animator.applyRootMotion = true;
-                _input.roll = false;
-                
-                Invoke("EndDodge", 1.2f);
+            Vector3 worldDir = camR * raw.x + camF * raw.y;
 
+            // 无输入时默认朝角色当前前方闪避
+            if (worldDir.sqrMagnitude < 0.04f)
+                dodgeMoveDir = transform.forward;
+            else
+                dodgeMoveDir = worldDir.normalized;
 
-            }
+            // ===== 自由视角：转向式闪避，角色朝向=闪避方向 =====
+            Vector3 faceDir = dodgeMoveDir;
+            faceDir.y = 0f;
+            if (faceDir.sqrMagnitude > 0.0001f)
+                transform.rotation = Quaternion.LookRotation(faceDir.normalized, Vector3.up);
+
+            // ===== 只播前闪动画 =====
+            _animator.SetTrigger("Dodge");
+
+            dodgeSpeed = dodgeDistance / dodgeDuration;
+
+            CancelInvoke(nameof(EndDodge));
+            Invoke(nameof(EndDodge), dodgeDuration);
+        }
+        public void StartLockOnDodge()
+        {
+            CameraModeController.Instance.ChangeLockOnCamDamping(0.005f);
+            isdodging = true;
+            canMove = false;
+
+            // ===== 锁定时先始终朝向敌人 =====
+            Vector3 toTarget = lockTarget.position - transform.position;
+            toTarget.y = 0f;
+            if (toTarget.sqrMagnitude > 0.0001f)
+                transform.rotation = Quaternion.LookRotation(toTarget.normalized, Vector3.up);
+
+            Vector2 raw = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+
+            // 无输入时，默认后闪（很多锁定战斗更符合直觉）
+            Vector2 input2D = raw.sqrMagnitude < 0.04f ? new Vector2(0f, -1f) : raw.normalized;
+
+            // ===== 把输入解释为“相对角色当前朝向”的局部八方向 =====
+            Vector2 localDir2D = QuantizeTo8Dir(input2D, 0.0001f);
+
+            _animator.SetFloat("dodgeX", localDir2D.x);
+            _animator.SetFloat("dodgeY", localDir2D.y);
+            _animator.SetTrigger("Dodge");
+
+            // ===== 计算世界空间位移方向（相对角色朝向）=====
+            Vector3 forward = transform.forward;
+            Vector3 right = transform.right;
+            forward.y = 0f;
+            right.y = 0f;
+            forward.Normalize();
+            right.Normalize();
+
+            dodgeMoveDir = (right * localDir2D.x + forward * localDir2D.y).normalized;
+
+            dodgeSpeed = dodgeDistance / dodgeDuration;
+
+            CancelInvoke(nameof(EndDodge));
+            Invoke(nameof(EndDodge), dodgeDuration);
+            Invoke(nameof(ResetCamDamp), dodgeDuration+0.25f);
         }
 
         private void EndDodge()
         {
-            isdodging=false;
-            //重置变量避免人物卡在原地不动 20260319
+            isdodging = false;
             canMove = true;
-            _animator.applyRootMotion = false;
+            dodgeMoveDir = Vector3.zero;
+        }
+
+        private void ResetCamDamp()
+        {
+            CameraModeController.Instance.ChangeLockOnCamDamping(0.05f);
         }
 
         static Vector2 QuantizeTo8Dir(Vector2 raw, float dz)

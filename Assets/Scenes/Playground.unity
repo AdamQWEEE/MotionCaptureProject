@@ -20371,7 +20371,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 002064652c69eba4699de7e0319b02dc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -64430,7 +64430,6 @@ MonoBehaviour:
   isHeavyAttack: 0
   isDead: 0
   bornPoint: {fileID: 0}
-  isdodging: 0
   switchIndex: 0
   swordDir: {fileID: 580941298}
   attackID: 0
@@ -64441,6 +64440,8 @@ MonoBehaviour:
   isTired: 0
   stanceRecoverValue: 0
   stanceRecoverTime: 2
+  dodgeDistance: 3.5
+  dodgeDuration: 0.3
 --- !u!1 &519631589100936363
 GameObject:
   m_ObjectHideFlags: 0
