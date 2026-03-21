@@ -48,6 +48,7 @@ public class MeleeEnemy : EnemyBase
         // µÈ´ý
         if (waitTimer > 0f)
         {
+            animator.SetFloat("MeleeSpeed", 0f);
             waitTimer -= Time.deltaTime;
             StopMove();
             return;

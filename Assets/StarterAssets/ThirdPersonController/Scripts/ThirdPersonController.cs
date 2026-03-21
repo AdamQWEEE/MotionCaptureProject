@@ -982,7 +982,7 @@ namespace StarterAssets
 
         private void ResetCamDamp()
         {
-            CameraModeController.Instance.ChangeLockOnCamDamping(0.05f);
+            CameraModeController.Instance.ChangeLockOnCamDamping(0.01f);
         }
 
         static Vector2 QuantizeTo8Dir(Vector2 raw, float dz)
