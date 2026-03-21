@@ -718,6 +718,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 93677406}
   m_CullTransparentMesh: 1
+--- !u!1 &102028147
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 102028148}
+  m_Layer: 0
+  m_Name: NormalSocket
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &102028148
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 102028147}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.70361936, y: -0.07014261, z: 0.07014261, w: 0.7036192}
+  m_LocalPosition: {x: 0.062000573, y: 0.011799572, z: -0.35990074}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5808420145265315790}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &105742969
 GameObject:
   m_ObjectHideFlags: 0
@@ -26117,6 +26148,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 859601908}
   m_CullTransparentMesh: 1
+--- !u!1 &866035771
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 866035772}
+  m_Layer: 0
+  m_Name: FocusSocket
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &866035772
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 866035771}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7021384, y: -0.09697583, z: -0.07732042, w: -0.70115536}
+  m_LocalPosition: {x: 0.094, y: 0.02, z: 0.351}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5808420145265315790}
+  m_LocalEulerAnglesHint: {x: 104.159, y: -88.87399, z: 269.521}
 --- !u!1 &874605735
 GameObject:
   m_ObjectHideFlags: 0
@@ -29696,6 +29758,7 @@ MonoBehaviour:
   knockCoolTime: 0
   hitEnemyNum: 0
   hitEnemy: 0
+  dirManager: {fileID: 0}
 --- !u!136 &1178295801
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -38163,6 +38226,7 @@ MonoBehaviour:
   knockCoolTime: 0
   hitEnemyNum: 0
   hitEnemy: 0
+  dirManager: {fileID: 0}
 --- !u!1 &1551016123
 GameObject:
   m_ObjectHideFlags: 0
@@ -52092,6 +52156,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a18dd4b9c9334a64cbb1f053c5a94ee9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2008879024}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a18dd4b9c9334a64cbb1f053c5a94ee9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2008879025}
   m_SourcePrefab: {fileID: 100100000, guid: a18dd4b9c9334a64cbb1f053c5a94ee9, type: 3}
 --- !u!1 &1908914797
 GameObject:
@@ -57991,6 +58058,7 @@ MonoBehaviour:
   knockCoolTime: 0
   hitEnemyNum: 0
   hitEnemy: 0
+  dirManager: {fileID: 0}
 --- !u!136 &2008879024
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -58014,6 +58082,23 @@ CapsuleCollider:
   m_Height: 1.3632371
   m_Direction: 1
   m_Center: {x: -0.0000000018626456, y: 0.000015258789, z: -5.551115e-17}
+--- !u!114 &2008879025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1170792376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2de40bcc7ac0b6340956d37c60f31aa5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sword: {fileID: 2008879020}
+  gripNormal: {fileID: 102028148}
+  gripFocus: {fileID: 866035772}
+  blendTime: 0.03
+  smoothStep: 1
 --- !u!1001 &2023446939
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -64352,7 +64437,10 @@ MonoBehaviour:
   canSkill: 0
   comboTime: 2
   comboCounts: 0
+  focusCost: 0.05
   isTired: 0
+  stanceRecoverValue: 0
+  stanceRecoverTime: 2
 --- !u!1 &519631589100936363
 GameObject:
   m_ObjectHideFlags: 0
@@ -69522,6 +69610,7 @@ MonoBehaviour:
   defense: 0
   stab: 0
   toss: 0
+  focus: 0
   analogMovement: 0
   cursorLocked: 0
   cursorInputForLook: 1
@@ -80442,6 +80531,7 @@ MonoBehaviour:
   knockCoolTime: 0
   hitEnemyNum: 0
   hitEnemy: 0
+  dirManager: {fileID: 0}
 --- !u!1 &3175553777789469254
 GameObject:
   m_ObjectHideFlags: 0
@@ -91820,6 +91910,8 @@ Transform:
   - {fileID: 1351530381}
   - {fileID: 2322281965395497697}
   - {fileID: 2008879020}
+  - {fileID: 102028148}
+  - {fileID: 866035772}
   m_Father: {fileID: 6101940181382757706}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5828230742567730843
@@ -92757,6 +92849,7 @@ MonoBehaviour:
   knockCoolTime: 0
   hitEnemyNum: 0
   hitEnemy: 0
+  dirManager: {fileID: 0}
 --- !u!4 &6626240432657837282
 Transform:
   m_ObjectHideFlags: 0
