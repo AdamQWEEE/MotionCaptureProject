@@ -49,7 +49,7 @@ public abstract class EnemyBase : MonoBehaviour
 
     [Header("Combat")]
     public float attackCooldown = 1.5f;
-    protected float attackTimer;
+    public float attackTimer;
 
     [Header("Target")]
     public Transform target;
