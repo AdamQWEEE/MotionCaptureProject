@@ -175,8 +175,8 @@ public class EliteEnemy : EnemyBase
 
     private EliteActionType GetRandomAction()
     {
-        //int roll = Random.Range(0, 6);
-        int roll = 2;//临时测试用，测试完恢复随机数
+        int roll = Random.Range(0, 6);
+        //int roll = 2;//临时测试用，测试完恢复随机数
         switch (roll)
         {
             case 0: return EliteActionType.LightAttack;
