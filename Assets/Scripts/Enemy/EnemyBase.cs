@@ -59,6 +59,10 @@ public abstract class EnemyBase : MonoBehaviour
 
     public NavMeshAgent agent;
 
+    [Header("Defence")]
+    public bool isDefence = false;//敌人防御时调用
+    public int defenceDirID = 0;//1-4分别为上下左右，默认为0
+    public bool failDefence = false;//由玩家武器设置
 
     protected virtual void OnEnable()
     {
@@ -234,6 +238,12 @@ public abstract class EnemyBase : MonoBehaviour
     }
 
     protected abstract void Attack();
+
+    public void ResetDefenceID()
+    {
+        defenceDirID = 0;
+        //Debug.Log("defenceDirID" + defenceDirID);
+    }
 
 
 

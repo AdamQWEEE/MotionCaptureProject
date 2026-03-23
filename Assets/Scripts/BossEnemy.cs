@@ -421,23 +421,27 @@ public class BossEnemy : EnemyBase
             case BossActionType.GuardUp:
                 actionDuration = 0.8f;
                 Debug.Log("Boss 使用：上防御");
+                defenceDirID = 1;
                 animator.SetTrigger("GuardUp");
                 break;
 
             case BossActionType.GuardDown:
                 actionDuration = 0.8f;
+                defenceDirID = 2;
                 Debug.Log("Boss 使用：下防御");
                 animator.SetTrigger("GuardDown");
                 break;
 
             case BossActionType.GuardLeft:
                 actionDuration = 0.8f;
+                defenceDirID = 3;
                 Debug.Log("Boss 使用：左防御");
                 animator.SetTrigger("GuardLeft");
                 break;
 
             case BossActionType.GuardRight:
                 actionDuration = 0.8f;
+                defenceDirID = 4;
                 Debug.Log("Boss 使用：右防御");
                 animator.SetTrigger("GuardRight");
                 break;

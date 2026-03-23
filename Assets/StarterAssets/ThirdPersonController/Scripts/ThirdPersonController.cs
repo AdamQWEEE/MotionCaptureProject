@@ -208,6 +208,15 @@ namespace StarterAssets
         public float stanceRecoverTime = 2f;
         float stanceRecoverTimer;
 
+        [Header("AttackSetting")]
+        public bool canAttack;
+        public int attackDirID;//上下左右分别为0-3，利用SwordDirection设置
+        public bool failAttack;//在sword中设置,当攻击方向撞向敌人防御方向播放弹开动画
+
+        [Header("EnemyDetect")]
+        public float detectRadius = 1.2f;
+        public float detectDistance = 2.0f;
+        public LayerMask enemyLayer;
 
         [Header("Dodge")]
         public float dodgeDistance = 4f;
@@ -287,8 +296,14 @@ namespace StarterAssets
             if (_input.attack)
             {
                 _input.attack = false;
+                //对眼前做检测看是否有敌人，如果有获取对应ID判定攻击成功与否
+                EnemyBase enemy = DetectFrontEnemy();
+                //Debug.Log("面前敌人:" + enemy);
+                //Debug.Log("攻击方向ID"+attackDirID);
+                if (enemy != null && enemy.defenceDirID == attackDirID) failAttack = true;
+                else failAttack = false;//重置failAttack
+
                 //_animator.applyRootMotion = true;
-                //Debug.Log("攻击");
                 _animator.SetTrigger("Attack");
                 _animator.SetInteger("attackID", attackID);
                 ResetLayerWeight();
@@ -302,10 +317,11 @@ namespace StarterAssets
                 //Debug.Log("ComboCounts" + comboCounts);
                 comboTimer = 0f;//每次攻击重置连击计时器
                 stanceRecoverTimer = 0f;//每次攻击重置体力计时器
-                ExecuteAttack();
 
+                ExecuteAttack();
             }
 
+            _animator.SetBool("failAttack", failAttack);//随时同步failAttack变量到animator
             
             if (comboTimer <= comboTime)
             {
@@ -336,7 +352,7 @@ namespace StarterAssets
 
                 JumpAndGravity();
                 GroundedCheck();
-            
+
                 //Attack();
                 HeavyAttack();
                 UpdateAttackFacing();
@@ -763,8 +779,8 @@ namespace StarterAssets
         
         private void Counter()
         {
-            Debug.Log("player Defence:" + _animator.GetBool("isDefensing"));
-            Debug.Log("Controller _input.defense = " + _input.defense + " | id = " + _input.GetInstanceID());
+            //Debug.Log("player Defence:" + _animator.GetBool("isDefensing"));
+            //Debug.Log("Controller _input.defense = " + _input.defense + " | id = " + _input.GetInstanceID());
             if (_input.defense)
             {
                 //_input.defense=false;
@@ -773,8 +789,6 @@ namespace StarterAssets
                 _animator.SetBool("isDefensing", true);
                 ResetLayerWeight();
                 //BlendSwordDefense();
-                
-               
             }
             else
             {
@@ -830,9 +844,9 @@ namespace StarterAssets
             Debug.Log("closeDMG");
             canTakeDamage = false;
             playerWeapon.GetComponent<CapsuleCollider>().enabled = false;
-            if (playerWeapon.hitEnemy == false&&isTired)
+            if (playerWeapon.hitEnemy == false&&isTired||failAttack)
             {
-                playerState.stanceValue = Mathf.Max(playerState.stanceValue - 0.2f, -1f);//在疲劳状态下攻击敌人扣体力
+                playerState.stanceValue = Mathf.Max(playerState.stanceValue - 0.2f, -1f);//在疲劳状态下攻击敌人扣体力,攻击失败扣体力
             }
         }
 
@@ -1742,7 +1756,7 @@ namespace StarterAssets
             {
                 ResetLayerWeight();
                 canMove = false;//开启集中模式禁止移动
-                Debug.Log("enter focus mode");
+                //Debug.Log("enter focus mode");
                 float dirIndex = isTargeting?_animator.GetFloat("HandIndex"):2; //获取HandIndex得到当前持剑方向
                 if (!_animator.GetBool("isFocusing")) 
                 {
@@ -1758,12 +1772,57 @@ namespace StarterAssets
             else
             {
                 //ResetLayerWeight();
-                Debug.Log("exit focus mode");
+                //Debug.Log("exit focus mode");
                 _animator.SetBool("isFocusing", false);
                 playerWeapon.dirManager.BlendToDir(SwordDirManager.Dir.Normal);//翻转武器为正手持
                 canMove = true;
             }
             
+        }
+
+        public EnemyBase DetectFrontEnemy()
+        {
+            // 球体中心 = 玩家位置 + 前方偏移
+            Vector3 center = transform.position + transform.forward * detectDistance;
+
+            Collider[] hits = Physics.OverlapSphere(center, detectRadius, enemyLayer);
+
+            EnemyBase closestEnemy = null;
+            float closestDist = float.MaxValue;
+
+            foreach (Collider hit in hits)
+            {
+                EnemyBase enemy = hit.GetComponentInParent<EnemyBase>();
+                if (enemy == null) continue;
+
+                float dist = Vector3.Distance(transform.position, enemy.transform.position);
+
+                if (dist < closestDist)
+                {
+                    closestDist = dist;
+                    closestEnemy = enemy;
+                }
+            }
+
+            if (closestEnemy != null)
+            {
+                Debug.Log("检测到敌人: " + closestEnemy.name);
+            }
+            else
+            {
+                Debug.Log("未检测到敌人");
+            }
+
+            return closestEnemy;
+        }
+
+        private void OnDrawGizmos()//ShowSphereCastGizmo
+        {
+            Gizmos.color = Color.red;
+
+            Vector3 center = transform.position + transform.forward * detectDistance;
+
+            Gizmos.DrawWireSphere(center, detectRadius);
         }
     }
 }

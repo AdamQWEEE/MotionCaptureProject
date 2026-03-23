@@ -261,6 +261,7 @@ public class SwordDirection : MonoBehaviour
                 if (arrowUp)
                 {
                     arrowUp.color = highlightColor;
+                    player.attackDirID = 1;
                     if (player.canSkill)
                     {
                         player.attackID = 9;
@@ -277,6 +278,7 @@ public class SwordDirection : MonoBehaviour
                 if (arrowDown)
                 {
                     arrowDown.color = highlightColor;
+                    player.attackDirID = 2;
                     if (player.canSkill)
                     {
                         player.attackID = 10;
@@ -293,6 +295,7 @@ public class SwordDirection : MonoBehaviour
                 if (arrowLeft)
                 {
                     arrowLeft.color = highlightColor;
+                    player.attackDirID = 3;
                     if (player.canSkill)
                     {
                         player.attackID = 11;
@@ -309,6 +312,7 @@ public class SwordDirection : MonoBehaviour
                 if (arrowRight)
                 {
                     arrowRight.color = highlightColor;
+                    player.attackDirID = 4;
                     if (player.canSkill)
                     {
                         player.attackID = 12;

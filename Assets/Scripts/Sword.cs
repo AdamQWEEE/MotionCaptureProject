@@ -37,11 +37,27 @@ public class Sword : MonoBehaviour
             if (playerController.canTakeDamage)
             {
                 EnemyBase enemy = other.GetComponent<EnemyBase>();
-               
-                enemy.TakeDamage(10f);
+                //Debug.Log("碰到对象: " + other.name);
+                //Debug.Log("敌人防御ID: " + enemy.defenceDirID);
+                //Debug.Log("玩家攻击方向ID" + playerController.attackDirID);
+
+
                 Debug.Log(enemy.name);
+                if (playerController.attackDirID != enemy.defenceDirID)
+                {
+                    enemy.failDefence = true;
+                    playerController.failAttack = false;
+                    enemy.TakeDamage(10f);
+                }//当玩家攻击ID不等于敌人防御方向时，敌人防御失败,
+                else
+                {
+                    enemy.failDefence = false;
+                    playerController.failAttack = true;
+                    Debug.Log("玩家攻击被打断"+playerController.failAttack);
+                }
+
                 hitEnemy = true;//标记击中敌人，在攻击动画事件中重置
-                if (!playerController.isTired){
+                if (!playerController.isTired&&!playerController.failAttack){
                     playerController.playerState.stanceValue = Mathf.Min(playerController.playerState.stanceValue + 0.2f, 1f);//非疲劳状态打中敌人加体力
                 }
                 //AudioManager.Instance.PlayHit();
