@@ -47,13 +47,26 @@ public class Sword : MonoBehaviour
                 {
                     enemy.failDefence = true;
                     playerController.failAttack = false;
-                    enemy.TakeDamage(30f);
                     AudioManager.Instance.PlayHit();
+                    if (!playerController.CheckSkillAttack())
+                    {
+
+                        enemy.TakeDamage(20f);
+                        
+                    }
+                    else
+                    {
+                        enemy.TakeDamage(45f);
+                        
+                    }
+                    
                 }//当玩家攻击ID不等于敌人防御方向时，敌人防御失败,
                 else
                 {
                     enemy.failDefence = false;
                     playerController.failAttack = true;
+                    //AudioManager.Instance.PlayCounter();
+                    playerController.GetComponent<SwordVFX>().ShowVFX1();
                     Debug.Log("玩家攻击被打断"+playerController.failAttack);
                 }
 

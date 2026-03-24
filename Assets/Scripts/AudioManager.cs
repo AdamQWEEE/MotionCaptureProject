@@ -26,6 +26,11 @@ public class AudioManager : Singleton<AudioManager>
     public AudioClip fireballHit;
     public AudioClip axeExplode;
     public AudioClip getImpulse;
+    public AudioClip tigerRoar;
+    //public AudioClip groundExplode;
+    public AudioClip tigerAttack1;
+    public AudioClip tigerAttack2;
+    public AudioClip throwBoomer;
     private bool isPlayFootStep;
 
 
@@ -43,6 +48,19 @@ public class AudioManager : Singleton<AudioManager>
 
     public void PlayAttack() => PlaySFX(attackClip);
     public void PlayAxeAttack() => PlaySFX(axeClip);
+    public void PlayTigerAttack()
+    {
+        if (Random.Range(0, 2) >0)
+        {
+            PlaySFX(tigerAttack1);
+        }
+        else
+        {
+            PlaySFX(tigerAttack2);
+        }
+    }
+
+    public void PlayTigerRoar() => PlaySFX(tigerRoar);
     public void PlayJumpAttack() => PlaySFX(axeClip2);
     public void PlayHit() => PlaySFX(hitClip);
     public void PlayHitPlayer() => PlaySFX(hitplayerCilp);
@@ -57,6 +75,8 @@ public class AudioManager : Singleton<AudioManager>
     public void PlayBeginExecution() => PlaySFX(beginExecutionClip);
 
     public void PlayThrow() => PlaySFX(throwClip);
+
+    public void PlayThrowBoomer() => PlaySFX(throwBoomer);
 
     public void PlayThrowFireBall() => PlaySFX(throwFireBall);
 

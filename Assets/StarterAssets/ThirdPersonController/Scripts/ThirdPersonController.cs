@@ -1827,6 +1827,18 @@ namespace StarterAssets
             return closestEnemy;
         }
 
+        public bool CheckSkillAttack()
+        {
+            if (stateInfo.IsName("attack_UpperSkill") || stateInfo.IsName("attack_DownSkill") || stateInfo.IsName("attack_LeftSkill") || stateInfo.IsName("attack_RightSkill"))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         private void OnDrawGizmos()//ShowSphereCastGizmo
         {
             Gizmos.color = Color.red;
@@ -1836,4 +1848,5 @@ namespace StarterAssets
             Gizmos.DrawWireSphere(center, detectRadius);
         }
     }
+
 }

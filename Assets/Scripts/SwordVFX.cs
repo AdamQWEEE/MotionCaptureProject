@@ -25,7 +25,13 @@ public class SwordVFX : MonoBehaviour
             }
         }
         swordEffects[0].SetActive(true);
-        AudioManager.Instance.PlayAttack();
+        AudioManager.Instance.PlayCounter();
+        Invoke(nameof(HideEffect), 1.5f);
+    }
+
+    private void HideEffect()
+    {
+        swordEffects[0].SetActive(false);
     }
 
     public void ShowVFX2()

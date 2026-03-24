@@ -65,6 +65,11 @@ public class BossEnemy : EnemyBase
     public Material attack_mat;
     public Material defense_mat;
     public SkinnedMeshRenderer tigerBody;
+    [Header("groundExplode")]
+    public Transform ExplosionEffect;
+    public Transform leftFoot;
+    public Transform rightFoot;
+
 
     public enum BossHurtType
     {
@@ -435,14 +440,14 @@ public class BossEnemy : EnemyBase
 
             case BossActionType.GuardLeft:
                 actionDuration = 0.8f;
-                defenceDirID = 3;
+                defenceDirID = 4;
                 Debug.Log("Boss 使用：左防御");
                 animator.SetTrigger("GuardLeft");
                 break;
 
             case BossActionType.GuardRight:
                 actionDuration = 0.8f;
-                defenceDirID = 4;
+                defenceDirID = 3;
                 Debug.Log("Boss 使用：右防御");
                 animator.SetTrigger("GuardRight");
                 break;
@@ -602,5 +607,27 @@ public class BossEnemy : EnemyBase
     {
         // Boss 不直接使用 EnemyBase 的抽象 Attack 逻辑
         // 实际逻辑已经放进 UpdateAttack -> SelectAndPerformAction
+    }
+
+    public void PlayTigerShout()
+    {
+        AudioManager.Instance.PlayTigerRoar();
+    }
+
+    public void PlayTigerExplodeLeft()
+    {
+        AudioManager.Instance.PlayAxeExplode();
+        Instantiate(ExplosionEffect).position=leftFoot.position;
+    }
+
+    public void PlayTigerExplodeRight()
+    {
+        AudioManager.Instance.PlayAxeExplode();
+        Instantiate(ExplosionEffect).position = rightFoot.position;
+    }
+
+    public void PlayTigerAttack()
+    {
+        AudioManager.Instance.PlayTigerAttack();
     }
 }
