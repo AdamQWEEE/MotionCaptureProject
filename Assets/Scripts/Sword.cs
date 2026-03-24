@@ -47,7 +47,7 @@ public class Sword : MonoBehaviour
                 {
                     enemy.failDefence = true;
                     playerController.failAttack = false;
-                    enemy.TakeDamage(10f);
+                    enemy.TakeDamage(30f);
                 }//当玩家攻击ID不等于敌人防御方向时，敌人防御失败,
                 else
                 {

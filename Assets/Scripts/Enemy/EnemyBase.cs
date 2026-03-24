@@ -86,6 +86,10 @@ public abstract class EnemyBase : MonoBehaviour
             agent.stoppingDistance = attackRange;
             agent.autoBraking = true;
         }
+        if (target== null)
+        {
+            target=GameObject.FindGameObjectWithTag("Player").transform;
+        }
     }
 
     protected virtual void Update()

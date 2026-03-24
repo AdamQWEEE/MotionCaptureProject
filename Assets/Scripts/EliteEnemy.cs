@@ -1,3 +1,4 @@
+using StarterAssets;
 using UnityEngine;
 
 public class EliteEnemy : EnemyBase
@@ -289,6 +290,7 @@ public class EliteEnemy : EnemyBase
         Debug.Log($"{name} 近战怪死亡");
 
         // 如果你没有给死亡动画末尾加事件，就保留延时销毁
+        ThirdPersonController.Instance.ChangeToFreeView();
         Destroy(gameObject, 5f);
     }
 

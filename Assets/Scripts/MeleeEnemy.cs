@@ -1,3 +1,4 @@
+using StarterAssets;
 using UnityEngine;
 
 public class MeleeEnemy : EnemyBase
@@ -235,7 +236,7 @@ public class MeleeEnemy : EnemyBase
         }
 
         Debug.Log($"{name} 近战怪死亡");
-
+        ThirdPersonController.Instance.ChangeToFreeView();
         // 如果你没有给死亡动画末尾加事件，就保留延时销毁
         Destroy(gameObject, 3f);
     }

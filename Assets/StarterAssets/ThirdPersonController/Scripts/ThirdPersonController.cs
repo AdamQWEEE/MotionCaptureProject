@@ -1075,6 +1075,14 @@ namespace StarterAssets
             }
         }
 
+        public void ChangeToFreeView()
+        {
+            ReleaseLock();
+
+            swordDir.gameObject.SetActive(false);
+            lockIcon.SetActive(false);
+        }
+
         private void ChangeExecutionView()
         {
             
@@ -1562,8 +1570,8 @@ namespace StarterAssets
             _animator.ResetTrigger("isDead");            
             isDead = false;
             playerState.Heal(100);
-            transform.position=bornPoint.position;
-            transform.rotation=bornPoint.rotation;
+            //transform.position=bornPoint.position;
+            //transform.rotation=bornPoint.rotation;
         }
         private void OnFootstep(AnimationEvent animationEvent)
         {

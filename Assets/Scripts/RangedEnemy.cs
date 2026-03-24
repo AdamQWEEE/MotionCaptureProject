@@ -1,3 +1,4 @@
+using StarterAssets;
 using UnityEngine;
 
 public class RangedEnemy : EnemyBase
@@ -201,10 +202,12 @@ public class RangedEnemy : EnemyBase
         if (animator != null)
         {
             animator.SetTrigger("Die");
+            ThirdPersonController.Instance.ChangeToFreeView();
         }
         else
         {
-            Destroy(gameObject, 2f);
+            
+            Destroy(gameObject, 3.5f);
         }
     }
 

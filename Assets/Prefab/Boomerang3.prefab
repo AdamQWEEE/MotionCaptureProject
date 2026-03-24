@@ -106,7 +106,7 @@ MonoBehaviour:
   rotateSpeed: 3000
   useHomingOnOut: 0
   homingTurnSpeed: 6
-  damage: 20
+  damage: 3
   hitLayers:
     serializedVersion: 2
     m_Bits: 0

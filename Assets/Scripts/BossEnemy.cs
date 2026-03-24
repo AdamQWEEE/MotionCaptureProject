@@ -1,3 +1,4 @@
+using StarterAssets;
 using Unity.VisualScripting;
 using UnityEngine;
 using static EnemyBase;
@@ -592,6 +593,7 @@ public class BossEnemy : EnemyBase
     protected override void OnDie()
     {
         animator.SetTrigger("Die");
+        ThirdPersonController.Instance.ChangeToFreeView();
         Destroy(gameObject, 8f);
     }
 
