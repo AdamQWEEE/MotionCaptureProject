@@ -118,7 +118,7 @@ public class RangedEnemy : EnemyBase
 
         GameObject obj = Instantiate(boomerangPrefab, firePoint.position, Quaternion.identity);
 
-        Vector3 dir = (target.position - firePoint.position).normalized;
+        Vector3 dir = (target.position+target.up - firePoint.position).normalized;
 
         Boomerang boomerang = obj.GetComponent<Boomerang>();
         if (boomerang != null)

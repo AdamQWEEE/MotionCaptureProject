@@ -166,7 +166,7 @@ public class BossEnemy : EnemyBase
     {
         if (target == null) return;
         Debug.Log("×·Öð");
-
+        if (!hpBar.gameObject.activeInHierarchy) hpBar.gameObject.SetActive(true);
         if (agent != null)
         {
             agent.isStopped = false;
@@ -593,6 +593,7 @@ public class BossEnemy : EnemyBase
     protected override void OnDie()
     {
         animator.SetTrigger("Die");
+        hpBar.gameObject.SetActive(false);
         ThirdPersonController.Instance.ChangeToFreeView();
         Destroy(gameObject, 8f);
     }

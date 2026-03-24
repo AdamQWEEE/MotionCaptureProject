@@ -92,7 +92,7 @@ public class EliteEnemy : EnemyBase
             agent.SetDestination(target.position);
 
         }
-
+        if(!hpBar.gameObject.activeInHierarchy) hpBar.gameObject.SetActive(true);
         FaceTarget();
     }
 
@@ -291,6 +291,7 @@ public class EliteEnemy : EnemyBase
 
         // 如果你没有给死亡动画末尾加事件，就保留延时销毁
         ThirdPersonController.Instance.ChangeToFreeView();
+        hpBar.gameObject.SetActive(false);
         Destroy(gameObject, 5f);
     }
 

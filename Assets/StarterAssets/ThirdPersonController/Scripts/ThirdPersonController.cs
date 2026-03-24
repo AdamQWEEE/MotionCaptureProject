@@ -298,6 +298,8 @@ namespace StarterAssets
                 _input.attack = false;
                 //对眼前做检测看是否有敌人，如果有获取对应ID判定攻击成功与否
                 EnemyBase enemy = DetectFrontEnemy();
+                if(!isTired)
+                    AudioManager.Instance.PlayAttack();
                 //Debug.Log("面前敌人:" + enemy);
                 //Debug.Log("攻击方向ID"+attackDirID);
                 if (enemy != null && enemy.defenceDirID == attackDirID) failAttack = true;
@@ -696,6 +698,7 @@ namespace StarterAssets
                         // transform.rotation = Quaternion.RotateTowards(currentRot, targetRot, maxStep);
                     }
                 }
+                
 
                 
             }

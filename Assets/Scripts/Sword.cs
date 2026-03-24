@@ -41,13 +41,14 @@ public class Sword : MonoBehaviour
                 //Debug.Log("敌人防御ID: " + enemy.defenceDirID);
                 //Debug.Log("玩家攻击方向ID" + playerController.attackDirID);
 
-
+                
                 Debug.Log(enemy.name);
                 if (playerController.attackDirID != enemy.defenceDirID)
                 {
                     enemy.failDefence = true;
                     playerController.failAttack = false;
                     enemy.TakeDamage(30f);
+                    AudioManager.Instance.PlayHit();
                 }//当玩家攻击ID不等于敌人防御方向时，敌人防御失败,
                 else
                 {

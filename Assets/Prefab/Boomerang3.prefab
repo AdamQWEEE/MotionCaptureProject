@@ -100,8 +100,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8963491cd905424c949874a3bc27009, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forwardSpeed: 25
-  returnSpeed: 18
+  forwardSpeed: 18
+  returnSpeed: 12
   maxDistance: 15
   rotateSpeed: 3000
   useHomingOnOut: 0
